@@ -100,95 +100,116 @@ application is to facilitate more interaction between colleagues and facilitate 
                     </div>
                     <div class="sign-form">
                         <form>
-
-                            <div class="input-label">
-                                <label for="firstName">First Name</label>
-                            </div>
-                            <div class="input-area">
-                                <input type="text" placeholder="Joël" name="firstName" required>
-                            </div>
-
-                            <div class="input-label">
-                                <label for="lastName">Last Name</label>
-                            </div>
-                            <div class="input-area">
-                                <input type="text" placeholder="Atiamutu" name="lastName" required>
-                            </div>
-                            <div class="input-label">
-                                <label for="gender">Gender</label>
-                            </div>
-                            <div class="input-area gender-grid">
+                            <div class="form-grid">
                                 <div>
-                                    <label for="male">Male</label>
-                                    <input type="radio" id="male" name="gender" value="male" checked required>
+                                    <div class="input-label">
+                                        <label for="firstName">First Name</label>
+                                    </div>
+                                    <div class="input-area">
+                                        <input type="text" placeholder="Joël" name="firstName" required>
+                                    </div>
                                 </div>
                                 <div>
-                                    <label for="female">Female</label>
-                                    <input type="radio" id="female" name="gender" value="female" required>
+                                    <div class="input-label">
+                                        <label for="lastName">Last Name</label>
+                                    </div>
+                                    <div class="input-area">
+                                        <input type="text" placeholder="Atiamutu" name="lastName" required>
+                                    </div>
                                 </div>
                                 <div>
-                                    <label for="other">Other</label>
-                                    <input type="radio" id="other" name="gender" value="other" required>
-
+                                    <div class="input-label">
+                                        <label for="gender">Gender</label>
+                                    </div>
+                                    <div class="input-area gender-grid">
+                                        <div>
+                                            <label for="male">Male</label>
+                                            <input type="radio" id="male" name="gender" value="male" checked required>
+                                        </div>
+                                        <div>
+                                            <label for="female">Female</label>
+                                            <input type="radio" id="female" name="gender" value="female" required>
+                                        </div>
+                                        <div>
+                                            <label for="other">Other</label>
+                                            <input type="radio" id="other" name="gender" value="other" required>
+                                    
+                                        </div>
+                                    
+                                    </div>
                                 </div>
-                    
+                                <div>
+                                    <div class="input-label">
+                                        <label for="email">Email</label>
+                                    </div>
+                                    <div class="input-area">
+                                        <input type="email" placeholder="joelatiam@googlemail.com" name="email" required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input-label">
+                                        <label for="password">Password</label>
+                                    </div>
+                                    <div class="input-area">
+                                        <input type="password" placeholder="*******" name="password" required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input-label">
+                                        <label for="confirmPass">Confirm Password</label>
+                                    </div>
+                                    <div class="input-area">
+                                        <input type="password" placeholder="*******" name="confirmPass" required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input-label">
+                                        <label for="department">Department</label>
+                                    </div>
+                                    <div class="input-area">
+                                    
+                                        <select id="department" name="department">
+                                            <option value="">--Choose your department--</option>
+                                            <option value="IT">IT</option>
+                                            <option value="">Data from JS</option>
+                                        </select>
+                                    
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="input-label">
+                                        <label for="jobRole">Job Role</label>
+                                    </div>
+                                    <div class="input-area">
+                                        <select id="jobRole" name="jobRole">
+                                            <option value="">--Your Job Role--</option>
+                                            <option value="Software Dev">Software Dev</option>
+                                            <option value="">Data from JS</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
                             </div>
-                            
-                            <div class="input-label">
-                                <label for="email">Email</label>
+                            <div>
+                                <div class="input-label">
+                                    <label for="address">Address</label>
+                                </div>
+                                <div class="input-area">
+                                    <input type="text" placeholder="12 Av. du Palmier Makiso Kisangani DRC" name="address" class="address-input"
+                                        required>
+                                </div>
                             </div>
-                            <div class="input-area">
-                                <input type="email" placeholder="joelatiam@googlemail.com" name="email" required>
-                            </div>
-                            <div class="input-label">
-                                <label for="password">Password</label>
-                            </div>
-                            <div class="input-area">
-                                <input type="password" placeholder="*******" name="password" required>
-                            </div>
-                            
-                            <div class="input-label">
-                                <label for="confirmPass">Confirm Password</label>
-                            </div>
-                            <div class="input-area">
-                                <input type="password" placeholder="*******" name="confirmPass" required>
-                            </div>
-                            <div class="input-label">
-                                <label for="department">Department</label>
-                            </div>
-                            <div class="input-area">
-
-                                <select id="department" name="department">
-                                    <option value="">--Choose your department--</option>
-                                    <option value="IT">IT</option>
-                                    <option value="">Data from JS</option>
-                                </select>
-
-                            </div>
-                            
-                            <div class="input-label">
-                                <label for="jobRole">Job Role</label>
-                            </div>
-                            <div class="input-area">
-                                <select id="jobRole" name="jobRole">
-                                    <option value="">--Your Job Role--</option>
-                                    <option value="Software Dev">Software Dev</option>
-                                    <option value="">Data from JS</option>
-                                </select>
-                            </div>
-                            <div class="input-label">
-                                <label for="address">Address</label>
-                            </div>
-                            <div class="input-area">
-                                <input type="text" placeholder="12 Av. du Palmier Makiso Kisangani DRC" name="address" class="address-input" required>
-                            </div>
-                            <div class="signButton">
+                            <div>
+                                <div class="signButton">
                                 <button>Signup</button>
                             </div>
-                            <div class="sign-footer">
-                                <p>If you have an account, please signin</p>
                             </div>
-                            
+                            <div>
+                                <div class="sign-footer">
+                                    <p>If you have an account, please signin</p>
+                                </div>
+                            </div>
+ 
                         </form>
 
                     </div>
@@ -204,6 +225,11 @@ application is to facilitate more interaction between colleagues and facilitate 
 
         </div>
 
+    </div>
+    <div class="large-footer">
+        <p class="copyright">
+            copyright Teamwork 2019
+        </p>
     </div>
 
 </body>
