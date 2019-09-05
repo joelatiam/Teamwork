@@ -107,7 +107,7 @@ grid-template-rows: 100% 100%;
     margin: 0;
 }
 
-.welcome-message>button, .signButton>button {
+.welcome-message>a>button, .signButton>button {
     font-size: 1.3em;
     background-color: #176317;
     border-style: solid;
@@ -177,8 +177,6 @@ p.copyright {
     background: linear-gradient(-144deg, rgb(33, 32, 33) 10%, rgb(21, 127, 148) 80%);
     padding: 20px;
 }
-
-.sign-form {}
 
 .signup-white-arrea {
    
