@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0;
-  
+  /* font-family: arial; */
 }
 body{
     background-color: #ffffff;
@@ -438,11 +438,11 @@ span.userFirstName {
 }
 
 .first-category-main {
-    background: linear-gradient(23deg, rgb(169, 26, 169) 10%, rgb(62, 164, 185) 80%);
+    /* background: linear-gradient(23deg, rgb(169, 26, 169) 10%, rgb(62, 164, 185) 80%); */
     background-image: url('../img/signup-topics-large-bg.png');
     background-size: 220%;
     display: grid;
-    grid-template-rows: 12% auto auto;
+    grid-template-rows: 15% auto auto;
     justify-content: center;
     align-content: start;
     grid-gap: 10px;
@@ -466,7 +466,7 @@ span.userFirstName {
     font-size: 12px;
     width: 80px;
     height: 40px;
-    border-color: #1717bf;
+    border-color: #51a5a7;
 }
 
 .selected-category {
@@ -475,11 +475,13 @@ span.userFirstName {
 }
 
 button.unselected-category {
-    background: #c7aeae;
+    background: #f1ebeb;
+    color: #6b7979;
 }
 
 .categories-list-selection {
-    background-color: rgba(210, 193, 193, 0.68);
+    /* background-color: rgba(255, 255, 255, 0.68); */
+    background: linear-gradient(23deg, rgba(169, 26, 169,0.5) 12%, rgba(16, 177, 210, 0.68) 80%);
     display: grid;
     grid-template-columns: 30% 30% 30%;
     justify-content: center;
@@ -500,44 +502,48 @@ p.new-user-message-large {
 	/* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 	    .fixed-header {
-	    grid-template-columns: 40% 60%;
-	    height: 10%;
-	    /* align-content: center; */
+	    grid-template-columns: 30% 70%;
+	    height: 15%;
+	    align-content: center;
 	    /* justify-content: center; */
 	}
 	.app-logo {
-	    /* padding: 30px; */
+	    height: 100%;
+	    /* padding-bottom: 30px; */
 	    text-align: left;
 	    padding-left: 20px;
-	    display: grid;
-	    align-content: initial;
+	    /* display: grid; */
+	    /* align-content: center; */
 	    /* justify-content: right; */
 	}
 	.app-logo>p>img {
-	    width: 40%;
-	    margin-top: unset;
+	    width: 50%;
+	    margin-top: 15%;
 	}
 	.new-user-message>p {
-	    text-align: center;
+	    text-align: right;
 	    font-size: 12px;
-	    margin: unset;
+	    margin-right: 5%;
 	    color: #428098;
 	}
 	p.new-user-message-large {
 	    display: block;
+	    /* padding: 20px; */
 	    font-size:medium;
+	    align-content: center;
 	}
 	p.new-user-message-small {
 	    display:none;
 	}
 	.new-user-message {
+	    display: grid;
+	    /* align-content: flex-end; */
 	    padding-top: 30px;
 	}
 	.category-select {
-	    font-size: 24px;
-	    width: 160px;
-	    height: 60px;
-	    
+	    font-size: 18px;
+	    width: 120px;
+	    height: 50px;
 	}
 	.categories-list-selection {
 	    grid-gap:20px;
