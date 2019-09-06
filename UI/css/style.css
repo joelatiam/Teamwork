@@ -497,3 +497,56 @@ p.new-user-message-large {
     align-content: center;
 }
 
+	/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	    .fixed-header {
+	    grid-template-columns: 40% 60%;
+	    height: 10%;
+	    /* align-content: center; */
+	    /* justify-content: center; */
+	}
+	.app-logo {
+	    /* padding: 30px; */
+	    text-align: left;
+	    padding-left: 20px;
+	    display: grid;
+	    align-content: initial;
+	    /* justify-content: right; */
+	}
+	.app-logo>p>img {
+	    width: 40%;
+	    margin-top: unset;
+	}
+	.new-user-message>p {
+	    text-align: center;
+	    font-size: 12px;
+	    margin: unset;
+	    color: #428098;
+	}
+	p.new-user-message-large {
+	    display: block;
+	    font-size:medium;
+	}
+	p.new-user-message-small {
+	    display:none;
+	}
+	.new-user-message {
+	    padding-top: 30px;
+	}
+	.category-select {
+	    font-size: 24px;
+	    width: 160px;
+	    height: 60px;
+	    
+	}
+	.categories-list-selection {
+	    grid-gap:20px;
+	}
+
+	.instruction {
+	    font-size:larger;
+	}
+	.categories-submit>.submit-button {
+	    font-size:40px;
+	}
+}
