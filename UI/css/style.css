@@ -656,6 +656,8 @@ p.new-user-message-large {
     border-color: #2098a0;
     position: sticky;
     top: 0;
+    /* bottom: 0; */
+    /* overflow: scroll; */
 }
 
 .app-menu.no-large>div>p {
@@ -706,7 +708,7 @@ p.new-user-message-large {
 	}
 	.menu-link.link-to-topic.openTopics>div {
     	margin-left: 9px;
-	}
+ }
 
 }
 
@@ -788,11 +790,13 @@ p.new-user-message-large {
     justify-content: center;
     align-content: center;
     padding-top: 5px;
+    color: #a1c5b2;
 }
 
 .user-post>.article-title-category>.article-title {
     font-weight: bold;
     text-align: center;
+    color: #3c3c6b;
 }
 
 .user-post>.article-title-category>.category {
@@ -800,3 +804,147 @@ p.new-user-message-large {
     text-align: center;
     color: #2bd8e2;
 }
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+	.app-content {
+    padding-top: 25px;
+    padding-right: 40px;
+    display: grid;
+    justify-content: right;
+    min-height: 68.3%;
+    margin-top: 10%;
+ }
+	 .no-small{
+ }
+ 	.app-menu.no-large, .app-top.no-large.hide-on-scroll{
+ 	display:none;
+ }
+ .no-large{
+ 	display:none;
+ }
+ .app-menu.no-small {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    /* align-content: end; */
+    padding: 5px;
+    /* margin: 0; */
+    /* height: 100%; */
+    background: linear-gradient(23deg, rgb(230, 35, 230, 0.4) 10%, rgba(0,212,255,0.3) 80%);
+}
+
+.app-header {
+    position: fixed;
+    top: 0;
+    height: 12%;
+    /* padding: 5px; */
+    overflow: hidden;
+    background: #fff;
+    box-shadow: -1px 3px 12px 8px rgba(19, 64, 216, 0.2);
+    border-bottom-style: solid;
+    border-color: #447c80;
+}
+
+.menu-logo.logo-large>p>img {
+    width: 40%;
+}
+
+
+.menu-logo.logo-large>p {
+    margin: unset;
+}
+
+.user-info.no-small {
+    display: grid;
+    align-content: center;
+    color: #1c4b7d;
+    font-size: 1.3em;
+}
+
+.user-info.no-small>p.user-name {
+    /* margin: unset; */
+    text-align: right;
+    margin-right: 40px;
+}
+
+
+.fullName {
+    font-weight: bold;
+}
+
+.jobRole {
+    color: #ab9cc1;
+}
+.left-menu.no-small {
+    position: fixed;
+    top: 16%;
+    left: 5%;
+    width: fit-content;
+    display: grid;
+    grid-gap: 5px;
+    align-content: center;
+    background-color: #d4e6e6;
+    padding: 5px;
+    border-radius: 10px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: 5px;
+    border-color: #302ccc;
+    box-shadow: -4px -3px 8px 0px rgba(137, 16, 236, 0.77);
+}
+
+.menu-link {
+    grid-template-columns: 25% 75%;
+    align-content: center;
+    grid-gap: 2px;
+    border-bottom-style: solid;
+    background-color: #b9dde0;
+    padding: 5px;
+    width: 200px;
+    padding-bottom: unset;
+}
+
+.menu-link>p {
+    font-size: medium;
+    font-weight: bold;
+    text-align: left;
+    display: grid;
+    align-content: center;
+}
+
+.menu-link>div {
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+}
+
+.menu-link.link-to-topic.openTopics>div {
+    margin-left: unset;
+}
+
+.link-to-articleInDepartment>div {
+    margin-left: unset;
+}
+
+.link-to-articleByCategory>div {
+    margin-left: unset;
+}
+
+.link-to-activity>div {
+    margin-left: unset;
+}
+
+.link-to-profile>div {
+    margin-left: unset;
+}
+.active-link {
+    background-color: #022def63;
+}
+}
+
+body.app-body {
+    height: unset;
+}
+
