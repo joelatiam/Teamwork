@@ -805,6 +805,32 @@ p.new-user-message-large {
     color: #2bd8e2;
 }
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+	.menu-link>p {
+    
+    font-size: 15px;
+    
+}
+	.app-menu.no-large>div>p {
+    font-size: 12px;
+}
+.link-to-profile>div {
+    margin-left: 12px;
+}
+.link-to-activity>div {
+    margin-left: 25px;
+}
+.link-to-articleByCategory>div {
+    margin-left: 30px;
+}
+.link-to-articleInDepartment>div {
+    margin-left: 25px;
+}
+.menu-link.link-to-topic.openTopics>div {
+    margin-left: 20px;
+}
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
@@ -1042,3 +1068,5 @@ body.app-body {
     display: grid;
     align-content: center;
 }
+
+/* Page for specific article */
