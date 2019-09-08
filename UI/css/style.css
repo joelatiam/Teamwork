@@ -601,6 +601,7 @@ p.new-user-message-large {
 .app-footer {
     margin: 0;
     position: sticky;
+    display: none;
     bottom: 0;
     width: 100%;
     height: 5%;
@@ -714,34 +715,36 @@ p.new-user-message-large {
 
 .user-post {
     color: #3c3c6b;
-    background-color: #fff;
-    max-width: 360px;
+    /* background-color: #fff; */
+    max-width: 420px;
     /* min-height: 148px; */
     height: fit-content;
     border-radius: 5px;
-    box-shadow: 0 4px 8px 0px rgba(16, 39, 236, 0.77);
+    background: linear-gradient(23deg, rgb(230, 35, 230, 0.3) 10%, rgba(0,212,255,0.2) 80%);
+    box-shadow: 0 4px 8px 0px rgba(39, 158, 89, 0.77);
     border-top-style: solid;
-    border-top-color: #04a504;
+    border-width: 5px;
+    border-top-color: #86c5e6;
     margin: 20px;
 }
 
 .post-avatar {
     display: grid;
-    justify-content: center;
+    /* justify-content: center; */
     font-size: 35px;
 }
 
 .user-post>.header>.post-avatar>div {
     border-style: solid;
     border-radius: 50%;
-    border-color: #04a504;
+    border-color: #1791d07d;
     width: 45px;
     height: 45px;
     text-align: center;
-    background-color: #b9dede;
+    background-color: #ffffff;
     /* position: relative; */
     margin-top: -25px;
-    color: #04a504;
+    color: #1791d07d;
     display: grid;
     align-content: center;
 }
@@ -785,7 +788,7 @@ p.new-user-message-large {
 
 .user-post>.article-title-category {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 65% 35%;
     align-content: center;
     justify-content: center;
     align-content: center;
@@ -1071,3 +1074,100 @@ body.app-body {
 }
 
 /* Page for specific article */
+
+.post-details>.header {
+    grid-template-columns: 80% 20%;
+    background-color: #1791d0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.post-details>.header>.left-content {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    font-size: x-small;
+}
+
+.left-content>.user-info>.role {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-content: start;
+}
+
+.left-content>.avatar {
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #1791d07d;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #1791d07d;
+    font-size: 32px;
+    display: grid;
+    align-content: center;
+}
+
+.post-details>.header>.left-content>.user-info {
+    padding: 5px;
+}
+
+.user-info>.name {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: tahoma;
+    color: #cadcb6;
+}
+
+.left-content>.user-info>.role>p {
+    margin: 0;
+}
+
+.left-content>.user-info>.role>.department {
+    background-color: #cadcb6;
+    width: fit-content;
+}
+
+.post-details>.article-title-category {
+    font-size: 12px;
+    background-color: #607f8a;
+    align-items: center;
+}
+
+.post-details>.article-title-category>.article-title {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    font-size: 15px;
+    color: #172350;
+}
+
+.post-details>.date {
+    padding: 5px;
+    text-align: right;
+    font-size: x-small;
+}
+
+.article-full {
+    margin: 5px;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.article-options {
+    display: grid;
+    justify-content: right;
+    color: #0c2980ba;
+}
+
+.article-options>div {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 5px;
+    
+}
