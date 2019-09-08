@@ -713,7 +713,7 @@ p.new-user-message-large {
 
 }
 
-.user-post {
+.user-post, .new-comment-main {
     color: #3c3c6b;
     /* background-color: #fff; */
     max-width: 420px;
@@ -1170,4 +1170,53 @@ body.app-body {
     border-radius: 50%;
     margin: 5px;
     
+}
+
+.post-details {
+    margin-bottom: unset;
+}
+
+.new-comment-main {
+    margin-top: unset;
+    margin-bottom: unset;
+    border: unset;
+    background: unset;
+}
+
+.new-comment-main>.comment-message.no-large, .comment-area {
+    text-align: center;
+    font-size: larger;
+    font-family: Verdana, Geneva, sans-serif;
+    background-color: #3b819a;
+    color: #fff;
+    display: grid;
+    border-style: solid none;
+    /* height: 40px; */
+}
+
+.new-comment-main>.comment-message.no-large>p {
+}
+
+.comment-area>div {
+    display: grid;
+    padding: 5px;
+}
+
+.comment-area>div>textarea {
+    height: 50px;
+    border-radius: 5px;
+}
+
+.comment-area>div>button {
+    font-size: 1em;
+    background-color: #175263;
+    border-style: solid;
+    border-radius: 10px;
+    border-bottom-color: #fff;
+    padding: 5px 10px;
+    color: #fff;
+}
+
+.hidden{
+    display: none;
 }
