@@ -480,7 +480,6 @@ button.unselected-category {
 }
 
 .categories-list-selection {
-    /* background-color: rgba(255, 255, 255, 0.68); */
     background: linear-gradient(23deg, rgba(169, 26, 169,0.5) 12%, rgba(16, 177, 210, 0.68) 80%);
     display: grid;
     grid-template-columns: 30% 30% 30%;
@@ -548,12 +547,18 @@ p.new-user-message-large {
 	.categories-list-selection {
 	    grid-gap:20px;
 	}
+	.categories-list-selection.category-with-nav {
+		grid-gap:10px;
+}
 
 	.instruction {
 	    font-size:larger;
 	}
 	.categories-submit>.submit-button {
 	    font-size:40px;
+	}
+	.content-body.choose-topics>.content-div>.categories-submit>.submit-button{
+		font-size:20px;
 	}
 }
 
@@ -1458,11 +1463,11 @@ body.app-body {
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 992px) {
-	.content-body {
+@media only screen and (min-width: 768px) and (max-width: 992px){} {
+	.app-content {
     margin-left:20%;
 }
-
+}
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .content-body {
@@ -1474,3 +1479,62 @@ body.app-body {
 
 }
 
+/* topic selection */
+
+.content-body>.content-div>.categories-selection {
+    margin: 5px;
+}
+
+.choose-topics>.first-category-main>.instruction {
+    font-size: smaller;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+ 
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px){
+	.content-body.choose-topics{
+		margin-left:20%;
+	}
+	.menu-link>p {
+    font-size: smaller;
+    font-weight: bold;
+    text-align: left;
+    display: grid;
+    align-content: center;
+}
+	.menu-link {
+    grid-gap: 1px;
+    padding: 1px;
+    width: 200px;
+    padding-bottom: unset;
+}
+}
+
+@media only screen and (max-width: 991px){
+	.categories-list-selection.category-with-nav>button {
+    width: 70px;
+    height: 35px;
+    font-size: 10px;
+}
+
+
+}
+
+
+@media only screen and (min-width: 992px){
+    .app-content{
+        margin-left: unset;
+    }
+    .content-body.choose-topics{
+		margin-left:3%;
+		margin-top:5%
+	}
+	.choose-topics>.first-category-main>.instruction>p {
+    font-size: larger;
+
+}   
+	
+}
