@@ -2,11 +2,10 @@ html, body {
   height: 100%;
   width: 100%;
   margin: 0;
-  /* font-family: arial; */
 }
 body{
     background-color: #ffffff;
-    font-family: arial;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 [data-main-div]{
@@ -1520,12 +1519,13 @@ body.app-body {
 }
 
 /* Read by Category */
-.category-menu {
+.category-menu, .myArticlesComments {
+    display: grid;
     position: sticky;
     top: 15%;
     background-color: #5f9ea075;
-    border-style: solid none;
-    border-width: 2px;
+    border-style: solid;
+    border-width: 2px 0;
     border-color: #33c3c5;
     text-align: center;
 }
@@ -1561,4 +1561,135 @@ body.app-body {
 		width: 45%;
 		
 	}
+}
+
+/* My activities */
+.myArticlesComments {
+    grid-template-columns: 50% 50%;
+}
+
+.myArticlesComments>div>span {
+    background-color: #2a5e63;
+    padding: 5px;
+    margin: 2px;
+    width: 100px;
+    color: #c2c6c7;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+}
+
+.myArticlesComments>div {
+    display: grid;
+    justify-content: right;
+}
+.myArticlesComments>.displayComments {
+    justify-content: left;
+}
+
+.myArticlesComments>.active>span {
+	
+	background-color: #1c7326;color: #fff;
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.myArticlesComments {
+		top: 13%;
+		margin-left:35%;
+		width: 65%;
+		box-shadow: 1px 1px 10px 3px rgba(39, 158, 89, 0.77);
+	}
+
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.app-section.activities-section {
+		grid-template-columns: 25% 40% auto;
+	}
+	.myArticlesComments {
+		top: 13%;
+		margin-left:25%;
+		width:75%;
+	}
+	.comments-area.no-small.activities-comments {
+    background: linear-gradient(23deg, rgb(230, 35, 230, 0.3) 10%, rgba(0,212,255,0.2) 80%);
+}
+	.myArticlesComments>div {
+		display: grid;
+		justify-content: center;
+	}
+	.myArticlesComments>.displayComments {
+    	justify-content: center;
+	}
+	.myArticlesComments>.active>span {
+		background-color: #2a5e63;
+		color: #c2c6c7;
+	}
+	.myArticlesComments {
+		background-color: unset;
+		box-shadow: none;
+		border: none;
+	}
+
+	.myArticlesComments>div {
+		box-shadow: 1px 1px 10px 3px rgba(39, 158, 89, 0.77);
+		border-color: #33c3c5;
+		background-color: #34afaf;
+		border-style: solid none;
+		border-width: 2px;
+	}
+
+	.myArticlesComments>.displayComments {
+		box-shadow: 1px 1px 10px 3px rgba(39, 158, 89, 0.77);
+		border-color: #33c3c5;
+		background-color: #497996;
+	}
+	.comments-area.no-small.activities-comments {
+		position: fixed;
+		overflow: scroll;
+		max-height: 70%;
+		top: 25%;
+		right: 2%;
+		width: 35%;
+		margin: unset;
+	}
+
+}
+
+.activities-comments>.comment>.header {
+    grid-template-columns: unset;
+    justify-content: unset;
+    grid-template-rows: 50% 50%;
+}
+
+.activities-comments>.comment>.header>.title-userName>.title {
+    color: #fff;
+    font-weight: bold;
+}
+
+.activities-comments>.comment>.header>.title-userName>.userName {
+    font-style: italic;
+    color: #b7abab;
+}
+
+.activities-comments>.comment>.comment-options>.dispay-option {}
+
+.activities-comments>.comment>.comment-options>.dispay-option>.edit.edit-article {
+    grid-column-start: 3;
+}
+
+.activities-comments>.comment>.header>.top-date {
+    font-size: smaller;
+    color: aqua;
+}
+
+.activities-comments>.comment>.header>.top-date>span.date {
+    font-size: initial;
+    color: #b7abab;
+}
+
+.activities-comments>.comment {
+    margin-bottom: 20px;
 }
