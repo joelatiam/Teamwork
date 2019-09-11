@@ -9,33 +9,26 @@ body{
 }
 
 [data-main-div]{
-    
-height: 100%;
-
-    
+height: 100%;  
 display: grid;
-    
-grid-template-columns: 100%;
-    
+grid-template-columns: 100%; 
 grid-template-rows: 100% 100%;
-    
-
 }
 .welcome-div{
-        display: grid;
-        grid-template-rows: 100%;
+    display: grid;
+    grid-template-rows: 100%;
 }
 
 .welcome-small-logo{
-        text-align: center;
+    text-align: center;
     padding: 5%;
-        background-color: #ffff;
+    background-color: #ffff;
     top: 0;
-        box-shadow: azure;
-    }
+    box-shadow: azure;
+}
 .welcome-small-logo>img {
     width: 50%;
-        margin: 0;
+    margin: 0;
 }
 
 .welcome-content{
@@ -65,29 +58,25 @@ grid-template-rows: 100% 100%;
 .grey-text {
     color: #ded8d8;
     font-size: 120%;
-        margin: 0px;
+    margin: 0px;
     text-align: center;
 }
 
 .welcome-2 {
     padding: 0;
-   
     display: grid;
     justify-content: center;
-   
     font-size: 80%;
 }
 .app-description {
     font-size: 1.3em;
     margin: 0;
     color: #ffffff;
-   
     text-shadow: 0px 0px 5px #00BCD4;
 }
 
 .welcome-3 {
    display: grid;
-  
    grid-template-rows: auto auto auto;
    font-size: 0.8em;
    text-align: left;
@@ -113,7 +102,6 @@ grid-template-rows: 100% 100%;
     border-radius: 10px;
     border-bottom-color: #fff;
     padding: 5px 10px;
-   
     color: #fff;
 }
 .signup-header {
@@ -719,9 +707,7 @@ p.new-user-message-large {
 
 .user-post, .new-comment-main, .comments-area,.post-details {
     color: #3c3c6b;
-    /* background-color: #fff; */
     max-width: 420px;
-    /* min-height: 148px; */
     height: fit-content;
     border-radius: 5px;
     background: linear-gradient(23deg, rgb(230, 35, 230, 0.3) 10%, rgba(0,212,255,0.2) 80%);
@@ -1692,4 +1678,77 @@ body.app-body {
 
 .activities-comments>.comment {
     margin-bottom: 20px;
+}
+
+/* user profile */
+.user-profile {
+    color: #3c3c6b;
+    /* max-width: 420px; */
+    height: fit-content;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0px rgba(39, 158, 89, 0.77);
+    border-top-style: solid;
+    border-width: 10px;
+    border-top-color: #232f77;
+    margin-top: 30px;
+}
+
+.user-profile>.header {
+    grid-template-columns: 40% 20% 40%;
+    padding: 5px;
+}
+
+.user-profile>.header>.user-avatar {
+    grid-column-start: 2;
+    border-style: solid;
+    border-radius: 50%;
+    border-color: #232f77;
+    width: 45px;
+    height: 45px;
+    font-size: 35px;
+    text-align: center;
+    background-color: #ffffff;
+    /* position: relative; */
+    margin-top: -35px;
+    color: #232f77;
+    display: grid;
+    align-content: center;
+}
+
+.user-profile>.user-details>div>div>.title {
+    font-size: x-small;
+    text-align: center;
+}
+
+.user-profile>.user-details {
+    padding: 10px;
+    background-color: #68b2ce;
+    color: #fff;
+}
+
+.user-profile>.user-details>div>div>.data {
+    font-size: smaller;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.user-profile>.user-details>div>div>.title>span {
+    position: relative;
+    top: 5px;
+    padding: 0 20px;
+    background-color: #68b2ce;
+    color: #0b7292;
+}
+
+.user-profile>.user-details>div {
+    display: grid;
+    /* grid-template-columns: 50% 50%; */
+}
+
+.user-profile>.user-details>div>.jobRole {
+    color: #fff;
 }
