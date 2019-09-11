@@ -1660,7 +1660,6 @@ body.app-body {
     color: #b7abab;
 }
 
-.activities-comments>.comment>.comment-options>.dispay-option {}
 
 .activities-comments>.comment>.comment-options>.dispay-option>.edit.edit-article {
     grid-column-start: 3;
@@ -1751,4 +1750,13 @@ body.app-body {
 
 .user-profile>.user-details>div>.jobRole {
     color: #fff;
+}
+
+.department-header {
+    color: #174267;
+}
+
+.department-header>.myDepartment>span.department {
+    font-weight: 900;
+    text-shadow: 0px 1px 5px #24cad2;
 }
