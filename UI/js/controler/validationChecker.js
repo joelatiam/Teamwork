@@ -3,7 +3,7 @@ const regexpressions = {
     name : /[^A-Za-zÀ-ÿ]/g,
     email :/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
     pwSpace : /\s/g,
-    address: /\s/g,
+    address: /^\s/g,
 };
 
 
@@ -152,7 +152,7 @@ const validateAddress = (formAddress) => {
             status = false;
             break;
 
-        case (!address.test(value)):
+        case (address.test(value)):
             invalidAddress(formAddress);
             status = false;
             break;

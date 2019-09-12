@@ -450,7 +450,7 @@ span.userFirstName {
 }
 
 .category-select {
-    font-size: 12px;
+    font-size: 10px;
     width: 80px;
     height: 40px;
     border-color: #51a5a7;
@@ -527,7 +527,7 @@ p.new-user-message-large {
 	    padding-top: 30px;
 	}
 	.category-select {
-	    font-size: 18px;
+	    font-size: 16px;
 	    width: 120px;
 	    height: 50px;
 	}
@@ -1765,4 +1765,8 @@ body.app-body {
 .errorinPlaceHolder::placeholder{
     font-size: x-small;
     color:red;
+}
+
+button.submit-button:disabled {
+    background-color: #a09b94;
 }

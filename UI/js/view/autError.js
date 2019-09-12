@@ -8,7 +8,8 @@ const errorMessage= {
     pwMatch: 'Password should match',
     weakPass: 'Weak password',
     addressLength: 'Your string is too short',
-    addressFormat: 'Format not accepted'
+    addressFormat: 'Format not accepted',
+    usedEmail: 'Email is used by another user'
 
 }
 
@@ -35,6 +36,13 @@ const emailFormat = (userEmail) => {
     userEmail.value = '';
     userEmail.placeholder = errorMessage.wrongEmailFormat;
 }
+
+const emailIsUsed = (userEmail) => {
+    userEmail.classList.add('errorinPlaceHolder');
+    userEmail.value = '';
+    userEmail.placeholder = errorMessage.usedEmail;
+}
+
 
 const passwordLenght = (userPassword) => {
     userPassword.classList.add('errorinPlaceHolder');

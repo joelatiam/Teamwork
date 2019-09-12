@@ -30,11 +30,10 @@ const authValidation = (type)=>{
         const checkAddress = validateAddress(address);
 
         const validInput = checkFirstName && checkLastName && checkGender && checkEmail && checkPWord && checkDepartmentAndJob && checkAddress;
-        
+
 
         if(validInput){
-            
-            return{
+            const userData = {
                 firstName: firstName.value,
                 lastName: lastName.value,
                 gender: gender.value,
@@ -43,7 +42,9 @@ const authValidation = (type)=>{
                 department: department.value,
                 jobRole: jobRole.value,
                 address: address.value,
-            }
+            };
+            newAccount(userData);
+            
         }
 
     }
