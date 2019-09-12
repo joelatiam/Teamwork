@@ -1760,3 +1760,9 @@ body.app-body {
     font-weight: 900;
     text-shadow: 0px 1px 5px #24cad2;
 }
+
+/* with JS */
+.errorinPlaceHolder::placeholder{
+    font-size: x-small;
+    color:red;
+}

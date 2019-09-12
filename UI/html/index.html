@@ -15,6 +15,13 @@ application is to facilitate more interaction between colleagues and facilitate 
 
     <link rel="shortcut icon" href="../img/fav-ico.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/model/data.js"></script>
+    <script src="../js/controler/index.js"></script>
+    <script src="../js/view/autError.js"></script>
+    <script src="../js/controler/validationChecker.js"></script>
+    <script src="../js/controler/checkInput.js"></script>
+    <script src="../js/main.js"></script>
 </head>
 
 <body>
@@ -99,7 +106,7 @@ application is to facilitate more interaction between colleagues and facilitate 
                         <div></div>
                     </div>
                     <div class="sign-form">
-                        <form>
+                        
                             <div class="form-grid">
                                 <div>
                                     <div class="input-label">
@@ -169,9 +176,8 @@ application is to facilitate more interaction between colleagues and facilitate 
                                     <div class="input-area">
                                     
                                         <select id="department" name="department">
-                                            <option value="">--Choose your department--</option>
-                                            <option value="IT">IT</option>
-                                            <option value="">Data from JS</option>
+                                            <option  value="" >--Choose your department--</option>
+                            
                                         </select>
                                     
                                     </div>
@@ -182,9 +188,8 @@ application is to facilitate more interaction between colleagues and facilitate 
                                     </div>
                                     <div class="input-area">
                                         <select id="jobRole" name="jobRole">
-                                            <option value="">--Your Job Role--</option>
-                                            <option value="Software Dev">Software Dev</option>
-                                            <option value="">Data from JS</option>
+                                            <option value="" disabled>--First Choose your Department--</option>
+                                            
                                         </select>
                                     </div>
                                 </div>
@@ -201,7 +206,7 @@ application is to facilitate more interaction between colleagues and facilitate 
                             </div>
                             <div>
                                 <div class="signButton">
-                                <button>Signup</button>
+                                <button class="signupButton">Signup</button>
                             </div>
                             </div>
                             <div>
@@ -209,8 +214,8 @@ application is to facilitate more interaction between colleagues and facilitate 
                                     <p>If you have an account, please signin</p>
                                 </div>
                             </div>
- 
-                        </form>
+
+                        
 
                     </div>
 
