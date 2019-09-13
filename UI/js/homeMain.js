@@ -49,11 +49,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (localStorage.getItem('user')) {
             localUser = JSON.parse(localStorage.getItem('user'));
             
-            
-
             displayTopUserMenu(userTopMenu, localUser);
             
-
         }
 
     }

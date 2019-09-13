@@ -23,7 +23,7 @@ let users = [
         email: 'joelatiam@googlemail.com',
         password: '123456',
         department: 'IT',
-        jobRole: 'Software engineer',
+        jobRole: 'Web developer',
         address: '12 av du Palmier',
         topics: [],
         joined: Date.now(),
