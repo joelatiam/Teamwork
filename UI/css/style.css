@@ -596,6 +596,7 @@ p.new-user-message-large {
 
 .app-footer {
     margin: 0;
+    position: -webkit-sticky;
     position: sticky;
     display: none;
     bottom: 0;
@@ -651,6 +652,7 @@ p.new-user-message-large {
     box-shadow: -1px 3px 12px 5px rgba(19, 64, 216, 0.2);
     border-bottom-style: solid;
     border-color: #2098a0;
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     /* bottom: 0; */
@@ -1511,6 +1513,7 @@ body.app-body {
 /* Read by Category */
 .category-menu, .myArticlesComments {
     display: grid;
+    position: -webkit-sticky;
     position: sticky;
     top: 15%;
     background-color: #5f9ea075;
