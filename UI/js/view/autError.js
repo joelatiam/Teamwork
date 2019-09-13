@@ -9,7 +9,8 @@ const errorMessage= {
     weakPass: 'Weak password',
     addressLength: 'Your string is too short',
     addressFormat: 'Format not accepted',
-    usedEmail: 'Email is used by another user'
+    usedEmail: 'Email is used by another user',
+    wrongMailPass: 'Wrong Email or Password'
 
 }
 
@@ -79,4 +80,15 @@ const invalidAddress = (userAddress) => {
     userAddress.classList.add('errorinPlaceHolder');
     userAddress.value = '';
     userAddress.placeholder = errorMessage.addressFormat;
+}
+
+// login Error
+const failedAuth = (email, password) => {
+    email.classList.add('errorinPlaceHolder');
+    email.value = '';
+    email.placeholder = errorMessage.wrongMailPass;
+
+    password.classList.add('errorinPlaceHolder');
+    password.value = '';
+    password.placeholder = errorMessage.wrongMailPass;
 }

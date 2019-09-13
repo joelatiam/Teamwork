@@ -1,12 +1,24 @@
 
+
+
 const userSign = (type)=>{
-    type='signup'?signup():signin();
+    
+    if(type==='signup'){
+        signup();
+    } else uSignin();
+
+    // type==='signup'?signup():uSignin();
 }
 
 
 const signup = ()=>{
    const userData = authValidation('signup');
    
+}
+
+const uSignin = () => {
+    const userData = authValidation('signin');
+
 }
 
 const authValidation = (type)=>{
@@ -46,6 +58,17 @@ const authValidation = (type)=>{
             newAccount(userData);
             
         }
+
+    }
+
+    if (type === 'signin') {
+        
+        const email = document.querySelector("div.input-area input[name='email'].signin-email");
+        const password = document.querySelector("div.input-area input[name='password'].signin-password");
+        
+        signin(email.value, password.value);
+
+        
 
     }
 

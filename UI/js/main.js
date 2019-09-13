@@ -1,5 +1,6 @@
+let localUser = {};
 
-let localUser ={};
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
 
@@ -30,6 +31,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
         userSignup.addEventListener('click', () => userSign('signup'));
     }
 
+    const userSignin = document.querySelector('.signinButton');
+    if (userSignin) {
+        
+        userSignin.addEventListener('click', () => userSign('signin'));
+    }
 
 
     // first Category page
@@ -38,7 +44,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if(userHeader){
         if (localStorage.getItem('user')){
             localUser = JSON.parse(localStorage.getItem('user'));
+           
             messageToNewUser(userHeader, localUser.firstName);
+            
         }
           
     }

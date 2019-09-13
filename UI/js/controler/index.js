@@ -1,41 +1,42 @@
+
+
 const displayForm = (signInUp) => {
 
     signInUp.addEventListener('click',()=>{
         const activeYes = 'sign-box sign-active-yes';
         const activeNo = 'sign-box sign-active-no';
 
-        const formGrid = document.querySelector('.sign-form');
-        formGrid.innerHTML = '';
+        const signupForm = document.querySelector('.signup-form');
+        const signinForm = document.querySelector('.signin-form');
+        
 
         const activeSide = document.querySelector('.sign-box.sign-active-yes');
         if (activeSide) {
             activeSide.setAttribute('class', activeNo);
+
         }
 
         signInUp.setAttribute('class', activeYes);
 
         const option = signInUp.innerHTML;
         if (option === 'Signup') {
-            formGrid.innerHTML = signUpHtml;
-
-            // Fill datas to department Options
-            const userDepartment = document.querySelector("div.input-area select[name='department']");
-                if (userDepartment) {
-                    displayDepartments(userDepartment);
-
-                    // Data to the Job Role Option
-                    userDepartment.addEventListener('change', () => displayJob(userDepartment.value));
-                }
+            const hidden = document.querySelector('.hidden');
+            if('hidden'){
+                signupForm.classList.remove('hidden');
+                signinForm.classList.add('hidden');
+            }
             
         }else{
-            formGrid.innerHTML = signInHtml;
+            const hidden = document.querySelector('.hidden');
+            if ('hidden') {
+                signinForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+            }
+           
         }
     });
 
 };
-
-
-
 
 
 
@@ -81,3 +82,22 @@ const displayJob = (dep) => {
 
 }
 
+let currentUser = {};
+if (localStorage.getItem('user')) {
+    currentUser = JSON.parse(localStorage.getItem('user'));
+
+    if (currentUser.email) {
+        const user = users.indexOf(currentUser.email);
+    
+        if (user>0) {
+            alert(users[user])
+            const userTopics = currentUser.topics.length;
+            const topicsData = users[user].topics.length;
+            if (userTopics !== topicsData) {
+                users[user].topics = currentUser.topics;
+            }
+        } else users.push(currentUser);
+
+    } 
+    console.log(users);
+};

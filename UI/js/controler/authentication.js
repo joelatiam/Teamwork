@@ -22,21 +22,40 @@ const newAccount = (data) =>{
     
 }
 
-const signin = (email, password) => {
+const signin = (uEmail, uPassword) => {
 
-    const user = users.find((user) => {
-        return user.email === email && user.password === password;
-    });
+    const email = document.querySelector("div.input-area input[name='email'].signin-email");
+    const password = document.querySelector("div.input-area input[name='password'].signin-password");
     
-    if (user){
+    if(uEmail.length<1){
 
-        localStorage.setItem("user", JSON.stringify(user));
+        emptyWord(email);
 
-        if (user.topics.length<1){
-            window.location.assign("firstCategory.html");
+    } else if (uPassword.length < 1) {
+
+        emptyWord(password);
+    }else {
+        const user = users.find((user) => {
+            return user.email === uEmail && user.password === uPassword;
+        });
+
+        if (user) {
+
+            localStorage.setItem("user", JSON.stringify(user));
+
+            if (user.topics.length < 3) {
+                window.location.assign("firstCategory.html");
+            } else {
+                window.location.assign("home.html");
+
+            }
+
+        } else {
+            failedAuth(email, password);
         }
-        
     }
+
+    
 
     
 
