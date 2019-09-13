@@ -31,31 +31,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
         userSignup.addEventListener('click', () => userSign('signup'));
     }
 
-    const userSignin = document.querySelector('.signinButton');
-    if (userSignin) {
-        
-        userSignin.addEventListener('click', () => userSign('signin'));
-    }
-
 
     // first Category page
     //display topics for new 
     
-    // Message to new user
-    const userHeader = document.querySelectorAll('.new-user-message>p .userFirstName');
-    if (userHeader) {
-        if (localStorage.getItem('user')) {
-            localUser = JSON.parse(localStorage.getItem('user'));
-
-            messageToNewUser(userHeader, localUser.firstName);
-
-        }
-
-    }
+    
 
     const categoryToDisplay = document.querySelector('.categories-list-selection');
     if(categoryToDisplay){
         topicsReady(categoryToDisplay);
     }
 
+    // home page
+
+    const userTopMenu = document.querySelector('.app-menu>.user-info .user-name');
+    if (userTopMenu) {
+        if (localStorage.getItem('user')) {
+            localUser = JSON.parse(localStorage.getItem('user'));
+            
+            
+
+            displayTopUserMenu(userTopMenu, localUser);
+            
+
+        }
+
+    }
 });
