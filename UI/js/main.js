@@ -39,19 +39,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
     // first Category page
+    //display topics for new 
+    
     // Message to new user
     const userHeader = document.querySelectorAll('.new-user-message>p .userFirstName');
-    if(userHeader){
-        if (localStorage.getItem('user')){
+    if (userHeader) {
+        if (localStorage.getItem('user')) {
             localUser = JSON.parse(localStorage.getItem('user'));
-           
+
             messageToNewUser(userHeader, localUser.firstName);
-            
+
         }
-          
+
     }
-    // first Category page
-    //display topics for new users
+
+
     const categoryToDisplay = document.querySelector('.categories-list-selection');
     if(categoryToDisplay){
         topicsReady(categoryToDisplay);

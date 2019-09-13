@@ -390,6 +390,7 @@ input.address-input {width: 95%;}
 }
 
 /* first time article category  */
+
 .fixed-header {
     width: 100%;
     display: grid;
@@ -485,6 +486,8 @@ p.new-user-message-large {
     align-content: center;
 }
 
+
+
 	/* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 	    .fixed-header {
@@ -531,6 +534,7 @@ p.new-user-message-large {
 	    width: 120px;
 	    height: 50px;
 	}
+
 	.categories-list-selection {
 	    grid-gap:20px;
 	}
@@ -1769,4 +1773,9 @@ body.app-body {
 
 button.submit-button:disabled {
     background-color: #a09b94;
+}
+
+button.category-select:hover {
+	color: #fff;
+    background: #1e4208;
 }

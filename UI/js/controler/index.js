@@ -87,16 +87,30 @@ if (localStorage.getItem('user')) {
     currentUser = JSON.parse(localStorage.getItem('user'));
 
     if (currentUser.email) {
-        const user = users.indexOf(currentUser.email);
+        const user = users.findIndex(u => u.email === currentUser.email);
+        console.log(user)
     
-        if (user>0) {
-            alert(users[user])
-            const userTopics = currentUser.topics.length;
-            const topicsData = users[user].topics.length;
-            if (userTopics !== topicsData) {
-                users[user].topics = currentUser.topics;
-            }
+        if (user>-1) {
+//             const userTopics = currentUser.topics.length;
+//             const topicsData = users[user].topics.length;
+
+            const myTopics = currentUser.topics;
+            const serverTopics = users[user].topics;
+            let updateTop = [];
+
+            myTopics.forEach((topic)=>{
+                if(serverTopics.includes(topic)===false){
+                    serverTopics.push(topic)
+                }
+            });
+            users[user].topics = serverTopics;
+
+
+//             if (userTopics !== topicsData) {
+//                 users[user].topics = currentUser.topics;
+//             }
         } else users.push(currentUser);
+//         console.log(users);
 
     } 
     console.log(users);

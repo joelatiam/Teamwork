@@ -4,16 +4,41 @@ if (!localStorage.getItem('user')) {
     window.location.assign("index.html");
 }
 
+// let currentUser = {};
+// currentUser = JSON.parse(localStorage.getItem('user'));
+
 // ready to display topics
 const topicsReady = (parent)=>{
     const allTopics = topics;
     const myTopics = localUser.topics;
+    const userEmail = localUser.email;
+    console.log(localUser);
+
+    let updateMyTopics = myTopics;
 
     const submitButton = document.querySelector('.categories-submit button.submit-button');
-    submitButton.setAttribute('disabled','true');
+    if (myTopics.length<3){
+        submitButton.setAttribute('disabled', 'true');
+    }
+    
+
+    const updateUser = () =>{
+        const user = users.findIndex(u => u.email === localUser.email);
+
+        if (user >= 0) {
+            
+            users[user].topics = updateMyTopics;
+            localStorage.setItem("user", JSON.stringify(users[user]));
+            
+            if (users[user].topics.length>2){
+                window.location.assign("home.html");
+            }
+            
+        } 
+    }
+
 
     
-    let updateMyTopics = myTopics;
     
     // display topic list
     topicList(parent, allTopics);
@@ -78,7 +103,8 @@ const topicsReady = (parent)=>{
     }
 
     submitButton.addEventListener('click', ()=>{
-        alert(myTopics);
+        updateUser();
+        
     })
 
 }
