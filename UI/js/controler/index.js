@@ -1,3 +1,44 @@
+const displayForm = (signInUp) => {
+
+    signInUp.addEventListener('click',()=>{
+        const activeYes = 'sign-box sign-active-yes';
+        const activeNo = 'sign-box sign-active-no';
+
+        const formGrid = document.querySelector('.sign-form');
+        formGrid.innerHTML = '';
+
+        const activeSide = document.querySelector('.sign-box.sign-active-yes');
+        if (activeSide) {
+            activeSide.setAttribute('class', activeNo);
+        }
+
+        signInUp.setAttribute('class', activeYes);
+
+        const option = signInUp.innerHTML;
+        if (option === 'Signup') {
+            formGrid.innerHTML = signUpHtml;
+
+            // Fill datas to department Options
+            const userDepartment = document.querySelector("div.input-area select[name='department']");
+                if (userDepartment) {
+                    displayDepartments(userDepartment);
+
+                    // Data to the Job Role Option
+                    userDepartment.addEventListener('change', () => displayJob(userDepartment.value));
+                }
+            
+        }else{
+            formGrid.innerHTML = signInHtml;
+        }
+    });
+
+};
+
+
+
+
+
+
 const displayDepartments = (dep) => {
 
     let departmentFragment = document.createDocumentFragment();
@@ -39,3 +80,4 @@ const displayJob = (dep) => {
     }
 
 }
+

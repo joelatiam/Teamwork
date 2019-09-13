@@ -1,4 +1,9 @@
 
+// redirect to the index page
+if (!localStorage.getItem('user')) {
+    window.location.assign("index.html");
+}
+
 // ready to display topics
 const topicsReady = (parent)=>{
     const allTopics = topics;
