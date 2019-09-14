@@ -65,6 +65,8 @@ const topicsReady = (parent)=>{
                 const Uclass = btn.getAttribute('class');
                 if (Uclass === unselectedTopic ) {
                     btn.setAttribute("class", selectedTopic);
+                    btn.style.color = '#fff';
+                    btn.style.background = '#1e4208';
 
                     const topicID = btn.getAttribute('id');
                     const splitID = topicID.split(' ');
@@ -81,12 +83,14 @@ const topicsReady = (parent)=>{
                     
                 } else if (Uclass === selectedTopic) {
                     btn.setAttribute("class", unselectedTopic);
+                    btn.style.color = '#6b7979';
+                    btn.style.background = '#f1ebeb';
 
                     const topicID = btn.getAttribute('id');
                     const splitID = topicID.split(' ');
                     const dataID = parseInt(splitID[1]);
 
-                    const findMyNewTopic = updateMyTopics.find(elt => elt == dataID);
+                    const findMyNewTopic = updateMyTopics.find(elt => elt === dataID);
                     if (findMyNewTopic) {
                         updateMyTopics = updateMyTopics.filter(elt => elt !== dataID);
                         if (updateMyTopics.length < 3) {
@@ -95,6 +99,7 @@ const topicsReady = (parent)=>{
                         console.log(updateMyTopics);
                     }
                 }
+                btn.blur();
             })
         })
 
