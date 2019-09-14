@@ -1,3 +1,9 @@
+// redirect to the index page
+if (!localStorage.getItem('user')) {
+    window.location.assign("index.html");
+}
+
+
 let localUser = {};
 localUser = localStorage.getItem('user');
 
@@ -21,14 +27,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
     if (userTopMenu) {
         if (localStorage.getItem('user')) {
             localUser = JSON.parse(localStorage.getItem('user'));
-            
+         
+            const displayTopUserMenu = (parent, { firstName, lastName, jobRole }) => {
+                parent.innerHTML = '';
+
+                let fullName = document.createElement('span');
+                fullName.setAttribute('class', 'fullName');
+                fullName.innerHTML = `${firstName} ${lastName}`;
+                parent.appendChild(fullName);
+
+                parent.innerHTML += ', ';
+
+                let role = document.createElement('span');
+                role.setAttribute('class', 'jobRole');
+                role.innerHTML = jobRole;
+                parent.appendChild(role);
+            }
+
+
             displayTopUserMenu(userTopMenu, localUser);
             
         }
 
     }
 
-    const displayAllArticles = document.querySelector('.app-content');
+    const displayAllArticles = document.querySelector('.all-articles');
     if (displayAllArticles) {
         allArticles(displayAllArticles);
     }
@@ -40,6 +63,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             link.addEventListener('click', () => {
 
 
+                link.style.cssText = 'background-color: #022def63;     color: #302ccc;';
 
                 const address = link.innerHTML.trim();
 
@@ -91,6 +115,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
         });
+    }
+
+    const goToDetails = document.querySelectorAll('.user-post');
+    if (goToDetails){
+        goToDetails.forEach(post => {
+
+            post.addEventListener('click',()=>{
+                let postID = post.getAttribute('id');
+                if(postID){
+                    postID = postID.split(' ');
+                    postID = postID[1];
+                    
+                    window.location.assign(`articleDetails.html?id=${postID}`);
+                }
+            });
+        });
+    }
+
+    const postDetails = document.querySelector('.post-details');
+    if (postDetails){
+        let params = new URLSearchParams(document.location.search.substring(1));
+
+        let postID = params.get('id');
+        postID = parseInt(postID);
+
+        articleDetails(postID);
     }
     
 });

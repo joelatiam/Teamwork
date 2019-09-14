@@ -1076,6 +1076,7 @@ body.app-body {
 .post-details>.header>.left-content {
     padding: 5px;
     display: grid;
+    grid-gap: 5px;
     grid-template-columns: 20% 80%;
     font-size: x-small;
 }
@@ -1106,7 +1107,7 @@ body.app-body {
 
 .user-info>.name {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     font-family: tahoma;
     color: #cadcb6;
 }
@@ -1118,10 +1119,12 @@ body.app-body {
 .left-content>.user-info>.role>.department {
     background-color: #cadcb6;
     width: fit-content;
+    text-align: left;
+    padding: 2px;
 }
 
 .post-details>.article-title-category {
-    font-size: 12px;
+    font-size: 10px;
     background-color: #607f8a;
     align-items: center;
 }
@@ -1129,7 +1132,7 @@ body.app-body {
 .post-details>.article-title-category>.article-title {
     font-family: "Lucida Console", Monaco, monospace;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 12px;
     color: #172350;
 }
 
@@ -1209,7 +1212,7 @@ body.app-body {
     display: none;
 }
 
-.dispay-option {
+.display-option {
     display: grid;
     grid-template-columns: 40% 20% 20% 20%;
     justify-content: center;
@@ -1219,9 +1222,16 @@ body.app-body {
     grid-column-start: 2;
 }
 
+.display-option.guest {
+    grid-template-columns: 100%;
+}
 
+.flag.flag-article.guest-flag {
+    justify-content: right;
+    padding-right: 10px;
+}
 
-.dispay-option>div {
+.display-option>div {
     text-align: center;
     font-size: smaller;
     display: grid;
@@ -1231,7 +1241,7 @@ body.app-body {
 }
 
 
-.dispay-option>div>.icon>div {
+.display-option>div>.icon>div {
     border-radius: 50%;
     background-color: #2adcd3;
     width: 20px;
@@ -1240,17 +1250,17 @@ body.app-body {
     align-content: center;
 }
 
-.dispay-option>.delete-article>.icon>div {
+.display-option>.delete-article>.icon>div {
     margin-left: 6px;
     background-color: red;
 }
 
-.dispay-option>.flag-article>.icon>div {
+.display-option>.flag-article>.icon>div {
     margin-left: 2px;
     background-color: red;
 }
 
-.dispay-option>div>.text {
+.display-option>div>.text {
     font-size: smaller;
 }
 
@@ -1280,7 +1290,7 @@ body.app-body {
     border-radius: 5px 5px 0 0;
 }
 
-.dispay-option>.flag-article>.icon>div>i.fas.fa-ban {font-size: larger;}
+.display-option>.flag-article>.icon>div>i.fas.fa-ban {font-size: larger;}
 
 .comments-area>.comment>.header>.date {
     font-size: small;
@@ -1305,6 +1315,31 @@ body.app-body {
 .comment>.comment-options {
     padding: 2px;
 }
+.article-full>p {
+    text-align: justify;
+}
+
+@media only screen and (min-width: 425px){
+	.user-info>.name{	
+		font-size: initial;
+	}
+	.left-content>.user-info>.role {
+		font-size: larger;
+		text-align: right;
+		grid-gap: 5px;
+	}
+	.post-details>.article-title-category{
+		font-size:12px;
+	}
+	.post-details>.article-title-category>.article-title{
+		font-size:15px;
+	}
+	.post-details>.date{
+		font-size:12px
+	}
+}
+
+
 .share-article>.header>.header-avatar {grid-template-columns: 100%;justify-content: right;}
 
 .content-body>.header>.header-avatar {grid-column-start: 2;display: grid;}
@@ -1603,6 +1638,12 @@ body.app-body {
 
 }
 
+@media only screen and (min-width: 768px) and (max-width: 991px){
+	.activities-comments {
+		display:none;
+	}
+}
+
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 	.app-section.activities-section {
@@ -1675,7 +1716,7 @@ body.app-body {
 }
 
 
-.activities-comments>.comment>.comment-options>.dispay-option>.edit.edit-article {
+.activities-comments>.comment>.comment-options>.display-option>.edit.edit-article {
     grid-column-start: 3;
 }
 

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // index signup
 
-    // dispay Signin or signup contents
+    // display Signin or signup contents
     const displaySign = document.querySelectorAll('.Signup-signin div');
     if (displaySign) {
         displaySign.forEach((e) => {
