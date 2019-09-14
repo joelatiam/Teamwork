@@ -41,6 +41,8 @@ const articleDetails = (id)=>{
 
         displayDetails(fullArticle);
 
+    }else{
+        window.location.assign("home.html");
     }
 
 };
