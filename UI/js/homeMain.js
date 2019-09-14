@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                         window.location.assign("myActivities.html");
                         break;
 
-                    case (link.classList.contains('openMyAopenArticleByCatctivity')):
+                    case (link.classList.contains('openArticleByCat')):
 
                         window.location.assign("readByCategory.html");
                         break;
