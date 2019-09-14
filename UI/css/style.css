@@ -726,7 +726,7 @@ p.new-user-message-large {
 
 .post-avatar {
     display: grid;
-    /* justify-content: center; */
+    justify-content: center;
     font-size: 35px;
 }
 
@@ -786,13 +786,16 @@ p.new-user-message-large {
 
 .user-post>.article-title-category {
     display: grid;
-    grid-template-columns: 65% 35%;
+    grid-template-columns: auto auto;
     align-content: center;
     justify-content: center;
     align-content: center;
     padding-top: 5px;
     color: #a1c5b2;
-    font-size: smaller;
+    font-size: 17px;
+    text-align: left;
+    padding: 5px;
+    grid-gap: 5px;
 }
 
 .user-post>.article-title-category>.article-title {
@@ -800,6 +803,8 @@ p.new-user-message-large {
     text-align: center;
     color: #3c3c6b;
     font-size: initial;
+    border-right-style: solid;
+    border-color: #bcbfc5;
 }
 
 .user-post>.article-title-category>.category {

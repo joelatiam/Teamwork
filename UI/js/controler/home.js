@@ -42,12 +42,13 @@ const allArticles = (parent)=> {
         time = date.toLocaleTimeString('fr-FR').split(':');
 
         date = date.toLocaleDateString('US', options).split(',');
-        date.forEach((e)=> e.trim())
-
+        const trimedDate = [];
+        date.forEach((e) => trimedDate.push(e.trim()))
+        date = trimedDate;
 
         const newtitle = () =>{
-            if (title.length>35){
-                title = title.slice(0,32);
+            if (title.length>50){
+                title = title.slice(0,47);
                 title += '...';
             }
             return title;
@@ -80,7 +81,9 @@ const allArticles = (parent)=> {
         // console.log(fullName);
     })
 
-    console.log(myShortArticles);
+    // console.log(myShortArticles);
+
+    displayAllArt(parent, myShortArticles)
 
 
 }
