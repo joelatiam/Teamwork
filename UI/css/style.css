@@ -615,7 +615,7 @@ p.new-user-message-large {
     text-align: center;
     width: 35px;
     height: 35px;
-    background-color: #c1d4d6;
+    /* background-color: #c1d4d6; */
     border-style: solid;
     border-color: #1791d0;
     border-width: 2px;
@@ -805,6 +805,7 @@ p.new-user-message-large {
     font-size: initial;
     border-right-style: solid;
     border-color: #bcbfc5;
+    padding: 5px;
 }
 
 .user-post>.article-title-category>.category {
@@ -1503,6 +1504,7 @@ body.app-body {
 @media only screen and (min-width: 992px){
     .app-content{
         margin-left: unset;
+        margin-top: 20px;
     }
     .content-body.choose-topics{
 		margin-left:3%;
@@ -1787,3 +1789,4 @@ button.category-select:hover {
 	color: #fff;
     background: #1e4208;
 }
+

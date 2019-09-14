@@ -47,8 +47,8 @@ const allArticles = (parent)=> {
         date = trimedDate;
 
         const newtitle = () =>{
-            if (title.length>50){
-                title = title.slice(0,47);
+            if (title.length>55){
+                title = title.slice(0,52);
                 title += '...';
             }
             return title;
