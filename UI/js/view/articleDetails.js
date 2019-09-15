@@ -47,3 +47,50 @@ const displayDetails = ({ id,author, fullName, jobRole, department, time, date, 
 
 
 }
+
+const commentToHTML = (parent, comments)=>{
+    parent.innerHTML = `<p class="title">Comments on this article</p>`;
+
+    const commentFragment = document.createDocumentFragment();
+
+    
+    comments.forEach(element => {
+
+        const { id, fullName, date, time, comment } = element;
+
+        const commentMain = document.createElement('div');
+        commentMain.setAttribute('id',`comment ${id}`);
+        commentMain.setAttribute('class','comment');
+
+        const header = document.createElement('div');
+        header.setAttribute('class','header');
+
+        const userName = document.createElement('div');
+        userName.setAttribute('class', 'user-name');
+        userName.innerHTML = `<p>${fullName}</p>`;
+
+        const dateTime = document.createElement('div');
+        dateTime.setAttribute('class', 'date');
+        dateTime.innerHTML = `<span class="time">
+            ${time[0]}:${time[1]}</span>
+            <span class="date">${date}</span>`;
+        
+        
+        header.appendChild(userName);
+        header.appendChild(dateTime);
+        commentMain.appendChild(header);
+
+        const commentBody = document.createElement('div');
+        commentBody.setAttribute('class', 'comment-body');
+        commentBody.innerHTML = `<p>${comment}</p>`;
+        commentMain.appendChild(commentBody);
+
+        commentMain.innerHTML += commentOptions;
+
+        commentFragment.appendChild(commentMain);
+
+
+    });
+    
+    parent.appendChild(commentFragment);
+}

@@ -46,3 +46,39 @@ const articleDetails = (id)=>{
     }
 
 };
+
+const displayComment =(parent, id)=>{
+
+    let myComments = comments.filter(comment => comment.article === id);
+    
+    myComments = myComments.reverse();
+
+    
+
+    let commentTodisplay = [];
+
+    myComments.forEach((com)=>{
+
+        let {id, date, comment, author, article} = com;
+
+        let user = users. find((u)=>u.email === author);
+        let fullName = `${user.firstName} ${user.lastName}`;
+        fullName = fullName.trim();
+
+        
+        const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
+        time = date.toLocaleTimeString('fr-FR').split(':');
+
+        date = date.toLocaleDateString('US', options).split(',');
+        const trimedDate = [];
+        date.forEach((e) => trimedDate.push(e.trim()))
+        date = trimedDate;
+
+        commentTodisplay.push({id, fullName, date, time, comment });
+
+    });
+
+    commentToHTML(parent, commentTodisplay);
+
+};

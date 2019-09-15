@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     }
 
+// articles details
+
     const displayAllArticles = document.querySelector('.all-articles');
     if (displayAllArticles) {
         allArticles(displayAllArticles);
@@ -157,5 +159,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
             
         })
     }
+
+    const commentList = document.querySelector('.comments-area');
+    if(commentList){
+        let params = new URLSearchParams(document.location.search.substring(1));
+
+        let postID = params.get('id');
+        postID = parseInt(postID);
+
+        displayComment(commentList, postID);
+    }
+  
+
     
 });
