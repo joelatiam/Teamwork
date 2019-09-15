@@ -145,5 +145,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         articleDetails(postID);
     }
+
+    const addComment = document.querySelector('.comment-message ');
+    if(addComment){
+        addComment.addEventListener('click',()=>{
+            addComment.classList.add('hidden');
+
+            const commentArea = document.querySelector('.comment-area');
+            commentArea.classList.remove('hidden');
+            commentArea.style.display = 'grid';
+            
+        })
+    }
     
 });
