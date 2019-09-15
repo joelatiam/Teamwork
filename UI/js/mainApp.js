@@ -63,11 +63,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
             link.addEventListener('click', () => {
 
 
-                link.style.cssText = 'background-color: #022def63;     color: #302ccc;';
 
-                const address = link.innerHTML.trim();
+                const parentNode = document.querySelector('.left-menu.no-small');
+                if(parentNode.contains(link)){
+                    link.style.cssText = 'background-color: #022def63;     color: #302ccc;';
 
-                console.log(link.classList)
+                }
+
+                
 
                 switch (true) {
 
