@@ -720,7 +720,7 @@ p.new-user-message-large {
     box-shadow: 0 4px 8px 0px rgba(39, 123, 158, 0.77);
     border-top-style: solid;
     border-width: 5px;
-    border-top-color: #505477;
+    border-top-color: #13c4de;
     margin: 20px;
     background-color: #82afbf1a;
 }
@@ -734,14 +734,14 @@ p.new-user-message-large {
 .user-post>.header>.post-avatar>div {
     border-style: solid;
     border-radius: 50%;
-    border-color: #505477;
+    border-color: #13c4de;
     width: 45px;
     height: 45px;
     text-align: center;
     background-color: #ffffff;
     /* position: relative; */
     margin-top: -25px;
-    color: #505477;
+    color: #13c4de;
     display: grid;
     align-content: center;
 }
@@ -751,7 +751,7 @@ p.new-user-message-large {
     grid-template-columns: 40% 20% 40%;
     justify-content: center;
     align-content: center;
-    background: #1a84bbba;
+    background: linear-gradient(23deg, rgba(26, 50, 220, 0.97) 10%, rgb(24, 121, 78) 80%);
     /* padding-bottom: 5px; */
 }
 
@@ -1070,7 +1070,8 @@ body.app-body {
 
 .post-details>.header {
     grid-template-columns: 78% 22%;
-    background-color: #1a84bbba;
+    /* background-color: #1a84bbba; */
+    background: linear-gradient(23deg, rgba(26, 50, 220, 0.97) 10%, rgb(24, 121, 78) 80%);
     /* border-top-left-radius: 5px; */
     /* border-top-right-radius: 5px; */
 }
@@ -1098,24 +1099,24 @@ body.app-body {
 }
 
 .left-content>.user-info>.role {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: inline;
+    /* grid-template-columns: 50% 50%; */
     align-content: start;
+    font-size: smaller;
 }
 
 .left-content>.avatar {
     border-style: solid;
     border-radius: 50%;
-    border-color: #505477;
+    border-color: #13c4de;
     width: 40px;
     height: 40px;
     text-align: center;
     background-color: #ffffff;
-    color: #505477;
+    color: #13c4de;
     font-size: 32px;
-    display: grid;
+    display: inline-grid;
     align-content: center;
-    justify-content: r;
 }
 
 .post-details>.header>.left-content>.user-info {
@@ -1130,11 +1131,15 @@ body.app-body {
 }
 
 .left-content>.user-info>.role>p {
-    margin: 0;
+    /* margin: 3px; */
+    /* margin-bottom: 20px; */
+    color: #94d2d6;
+    display: inline;
 }
 
 .left-content>.user-info>.role>.department {
-    background-color: #cedae4;
+    background-color: #1d405d;
+    color: #c8d4d4;
     width: fit-content;
     text-align: left;
     padding: 2px;
@@ -1183,6 +1188,7 @@ body.app-body {
 
 .post-details {
     margin-bottom: unset;
+    border-radius: 5px 5px 0 0;
 }
 
 .new-comment-main, .comments-area {
@@ -1195,7 +1201,8 @@ body.app-body {
 .new-comment-main>.comment-message, .comment-area {
     text-align: center;
     font-family: Verdana, Geneva, sans-serif;
-    background-color: #f1fafb;
+    /* background-color: #f1fafb; */
+    background: linear-gradient(23deg, rgba(26, 50, 220, 0.97) 10%, rgb(43, 48, 49) 80%);
     color: #e4e9ec;
     display: grid;
     border-style: solid none;
@@ -1223,6 +1230,12 @@ body.app-body {
     border-bottom-color: #fff;
     padding: 5px 10px;
     color: #fff;
+    max-width: 200px;
+    margin-bottom: 10px;
+    /* text-align: center; */
+}
+.comment-area>div>button:hover {
+    background-color: #1f5821;
 }
 
 .hidden{
@@ -1304,8 +1317,8 @@ body.app-body {
     grid-template-columns: 50% 50%;
     justify-content: center;
     align-content: center;
-    background: #1a84bbba;
-    color: #355061;
+    background: linear-gradient(23deg, rgba(26, 50, 220, 0.45) 10%, rgba(24, 121, 78, 0.58) 80%);
+    color: #edf0f3;
     padding: 5px;
     border-radius: 5px 5px 0 0;
 }
@@ -1318,11 +1331,16 @@ body.app-body {
     grid-template-columns: 30% 70%;
     align-content: center;
 }
+.comments-area>.comment>.header>.date>.time {
+    text-align: right;
+    margin-right: 5px;
+    color: #d0eff3;
+}
 
 .comments-area>.comment>.header>.user-name>p {
     margin: unset;
     font-weight: bold;
-    color: #f7f9fb;
+    color: #093f75;
     font-size: smaller;
 }
 
@@ -1350,9 +1368,9 @@ body.app-body {
 	}
 	.left-content>.user-info>.role {
 		font-size: larger;
-		text-align: right;
+		/* text-align: right; */
 		grid-gap: 5px;
-		grid-template-columns: 30% 30% 40%;
+		/* grid-template-columns: 30% 30% 40%; */
 	}
 	.post-details>.article-title-category{
 		font-size:12px;
@@ -1879,7 +1897,6 @@ button.category-select:hover {
 
 .post-details>.header>.left-content{
 	    grid-template-columns: 10% 90%;
-
 }
 .left-content>.user-info>.role {
 		font-size: larger;
@@ -1891,12 +1908,20 @@ button.category-select:hover {
 }
 
 .new-comment-main>.comment-message{
-	background-color:#1b1b4a;
+	background: linear-gradient(23deg, rgba(26, 50, 220, 0.72) 10%, rgba(43, 48, 49, 0.87) 80%);
+	font-weight: bold;
+	color: #e4ebf3eb;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
+.new-comment-main>.comment-message:hover{
+	background: linear-gradient(23deg, rgba(26, 50, 220, 0.97) 10%, rgb(43, 48, 49) 80%);
+	color: #ffffffeb;
+}
+
 
 @media only screen and (min-width: 768px){
 	.active-link {
-    background-color: #022def63;
+    background-color: #13c4de;
     border-style: solid;
     border-width: thin;
     border-radius: 20px;
@@ -1916,6 +1941,7 @@ button.category-select:hover {
 	width: 400px;
 	min-width:400px;
 }
+
 }
 
 @media only screen and (min-width: 992px){
@@ -1924,5 +1950,13 @@ button.category-select:hover {
     max-width: 650px;
 	min-width: 600px;
 }
+.left-content>.avatar{
+	margin-left:30%;
+}
 
+}
+
+.comment-area>div {
+    text-align: center;
+    display: block;
 }
