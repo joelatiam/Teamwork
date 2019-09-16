@@ -41,6 +41,9 @@ const displayDetails = ({ id,author, fullName, jobRole, department, time, date, 
 
 
 
+    }else{
+        const flagArticle = document.querySelector('.article-options>.display-option .flag-article');
+        flagArticle.remove();
     }
 
 
@@ -56,7 +59,7 @@ const commentToHTML = (parent, comments)=>{
     
     comments.forEach(element => {
 
-        const { id, fullName, date, time, comment } = element;
+        const { id, fullName, date, time, comment, author } = element;
 
         const commentMain = document.createElement('div');
         commentMain.setAttribute('id',`comment ${id}`);
@@ -85,7 +88,12 @@ const commentToHTML = (parent, comments)=>{
         commentBody.innerHTML = `<p>${comment}</p>`;
         commentMain.appendChild(commentBody);
 
-        commentMain.innerHTML += commentOptions;
+        if (author !== localUser.email){
+            commentMain.innerHTML += commentOptionsOther;
+        }else{
+            commentMain.innerHTML += commentOptions;
+        }
+        
 
         commentFragment.appendChild(commentMain);
 

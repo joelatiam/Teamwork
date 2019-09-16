@@ -75,7 +75,7 @@ const displayComment =(parent, id)=>{
         date.forEach((e) => trimedDate.push(e.trim()))
         date = trimedDate;
 
-        commentTodisplay.push({id, fullName, date, time, comment });
+        commentTodisplay.push({id, fullName, date, time, comment, author });
 
     });
 

@@ -20,6 +20,16 @@ const commentOptions = `<div class="comment-options">
                                         Delete
                                     </div>
                                 </div>
+                        
+                            </div>
+                            <div class="option-icon">
+                                <i class="fas fa-cog"></i>
+                            </div>
+                        </div>`;
+
+const commentOptionsOther = `<div class="comment-options">
+                            <div class="display-option">
+                                
                                 <div class="flag flag-article">
                                     <div class="icon">
                                         <div>
@@ -28,7 +38,7 @@ const commentOptions = `<div class="comment-options">
                         
                                     </div>
                                     <div class="text">
-                                        Unfit
+                                        flag
                                     </div>
                                 </div>
                         

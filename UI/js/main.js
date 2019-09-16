@@ -5,6 +5,24 @@ let localUser = {};
 document.addEventListener('DOMContentLoaded', (event) => {
 
     // index signup
+     const button = document.querySelectorAll('button');
+    if (button) {
+        button.forEach(btn =>{
+             btn.addEventListener('click', () => {
+           
+            btn.style.cssText = 'cursor: wait;';
+
+        })
+        btn.addEventListener('mousemove', () => {
+
+            btn.style.cssText = 'cursor: pointer;';
+
+        });
+        })
+       
+    }
+   
+
 
     // display Signin or signup contents
     const displaySign = document.querySelectorAll('.Signup-signin div');
