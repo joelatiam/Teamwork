@@ -1213,14 +1213,23 @@ body.app-body {
     display: grid;
     /* padding-right: 5px; */
 }
-
 .comment-area>div>textarea {
     min-height: 50px;
     border-radius: 5px;
-    width: 97.5%;
-    min-width: 97.5%;
+    width: 90%;
+    min-width: 90%;
     margin: 5px;
 }
+
+@media only screen and (min-width: 768px){
+	.comment-area>div>textarea {
+    
+    width: 96%;
+    min-width: 96%;
+   
+}
+}
+
 
 .comment-area>div>button {
     font-size: 1em;

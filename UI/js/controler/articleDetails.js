@@ -3,6 +3,17 @@ if (!localStorage.getItem('user')) {
     window.location.assign("index.html");
 }
 
+if(localStorage.getItem('comment')){
+    localComment = localStorage.getItem('comment');
+
+    const commentExist = comments.find(com => com.id === localComment.id && com.author === localComment.author);
+
+    if (!commentExist){
+        comments.push(localComment);
+    }
+}
+ 
+
 const articleDetails = (id)=>{
 
     let post = articles.find(post => post.id === id);
@@ -82,3 +93,49 @@ const displayComment =(parent, id)=>{
     commentToHTML(parent, commentTodisplay);
 
 };
+
+const newComment = ((input, articleID) => {
+
+    let commentText = input.value;
+    commentText = commentText.trim();
+    const hasWord = /\w/g;
+
+    input.value = '';
+
+    switch(true){
+     case (commentText.length < 1):
+        input.placeholder = "Please write something ";
+        input.classList.add('errorinPlaceHolder');
+
+        break;
+
+     case (!hasWord.test(commentText)):
+        input.placeholder = "Please add some words ";
+        input.classList.add('errorinPlaceHolder');
+         
+        break;
+
+     default:
+        input.placeholder = "Feel free to comment again";
+        input.classList.remove('errorinPlaceHolder');
+        
+        const comment = commentText.slice(0, 280);
+        const author = localUser.email;
+        const article = articleID;
+
+        const newData = comments.push({id:comments.length+1, date:new Date(), comment, author, article });
+
+        if(comments[newData-1].author === author && comments[newData-1].comment === comment ){
+
+            localStorage.setItem("comment", JSON.stringify(comments[newData-1]));
+
+            const commentList = document.querySelector('.comments-area');
+
+            displayComment(commentList, article);
+
+        }
+
+
+    }
+
+})

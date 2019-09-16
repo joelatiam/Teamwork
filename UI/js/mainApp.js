@@ -214,6 +214,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         displayComment(commentList, postID);
     }
+
+    const submitComment = document.querySelector('.commentButton');
+    if(submitComment){
+        submitComment.addEventListener('click',()=>{
+            const textArea = document.querySelector('.comment-area>div textarea');
+
+            if (textArea){
+                let params = new URLSearchParams(document.location.search.substring(1));
+
+                let postID = params.get('id');
+                postID = parseInt(postID);
+                
+                newComment(textArea, postID);
+                
+            }
+        })
+    }
   
 
     
