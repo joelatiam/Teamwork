@@ -1596,7 +1596,8 @@ body.app-body {
 
 
 @media only screen and (min-width: 992px){
-    .app-content{
+    .my-articles{
+    padding-top: unset;
     }
     .content-body.choose-topics{
 		margin-left:3%;
@@ -1611,7 +1612,7 @@ body.app-body {
 
 /* Read by Category */
 .category-menu, .myArticlesComments {
-    display: grid;
+    display: none;
     position: -webkit-sticky;
     position: sticky;
     top: 15%;
@@ -1933,6 +1934,9 @@ button.category-select:hover {
 	
 	grid-template-columns: 85% 15%;
 	padding-left:155px;
+}
+.user-post{
+	min-width: 700px;
 }
 }
 

@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const goToDetails = document.querySelectorAll('.user-post');
     if (goToDetails){
         goToDetails.forEach(post => {
-
+//             console.log(post);
             post.addEventListener('click',()=>{
                 
                 post.style.cssText = 'cursor: wait;';
@@ -271,18 +271,46 @@ document.addEventListener('DOMContentLoaded', (event) => {
         submitArticle.addEventListener('click',()=>{
             submitArticle.cssText = 'background-color: #166f28; cursor: wait;';
 
-            const user = localUser.email;
+            const author = localUser.email;
             const title = document.querySelector('.share-article>.article-title input')
             const article = document.querySelector('.share-article>.share-box>.input-area textarea');
 
-            if (categoryToShare && user && title && article){
-                shareArticle(user, title, article, categoryToShare);
+            if (categoryToShare && author && title && article){
+                shareArticle(author, title, article, categoryToShare);
             }
         });
 
     }
 
+    // myActivies
+    const displayMyArticles = document.querySelector('.my-articles');
+    if (displayMyArticles) {
+        myArticles(displayMyArticles);
+    }
     
+    const goToMyDetails = document.querySelectorAll('.user-post');
+    if (goToMyDetails) {
+        goToMyDetails.forEach(post => {
+//             console.log(post);
+            post.addEventListener('click', () => {
 
+                post.style.cssText = 'cursor: wait;';
+
+                let postID = post.getAttribute('id');
+                if (postID) {
+                    postID = postID.split(' ');
+                    postID = postID[1];
+
+                    window.location.assign(`articleDetails.html?id=${postID}`);
+                }
+            });
+
+            post.addEventListener('mousemove', () => {
+
+                post.style.cssText = 'cursor: pointer;';
+
+            });
+        });
+    }
     
 });

@@ -16,6 +16,11 @@ application is to facilitate more interaction between colleagues and facilitate 
     <link rel="shortcut icon" href="../img/fav-ico.png" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
 
+    <script src="../js/model/fakeArticles.js"></script>
+    <script src="../js/model/data.js"></script>
+    <script src="../js/view/home.js"></script>
+    <script src="../js/view/allArticles.js"></script>
+    <script src="../js/controler/myActivities.js"></script>
     <script src="../js/mainApp.js"></script>
 </head>
 
@@ -93,7 +98,7 @@ application is to facilitate more interaction between colleagues and facilitate 
                 <p />
         </div>
     </div>
-    <div class="myArticlesComments">
+    <div class="myArticlesComments hidden">
         <div class="displayArticles active"><span>Articles</span></div>
         <div class="displayComments"><span>Comments</span></div>
     </div>
@@ -153,127 +158,7 @@ application is to facilitate more interaction between colleagues and facilitate 
             </div>
         </div>
         <div>
-            <div class="app-content">
-
-                <div class="user-post">
-                    <div class="header">
-                        <div class="name">
-                            Olivier Esuka
-                        </div>
-                        <div class="post-avatar">
-                            <div>
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                        </div>
-                        <div class="date">
-                            <span class="time">13:30</span>
-                            <span class="date">
-                                Sept. 13 2019
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <div class="article-title-category">
-                        <div class="article-title">
-                            Test your React App
-                        </div>
-                        <div>
-                            Computer Science
-                        </div>
-                    </div>
-
-                    <div class="short-article">
-                        <p> Hello there, today, I would like to
-                            share with you how to test your React App
-                        </p>
-                    </div>
-
-                    <div class="details-instruction">
-                        Click to read the story and comments
-                    </div>
-
-                </div>
-
-                <div class="user-post">
-                    <div class="header">
-                        <div class="name">
-                            Olivier Esuka
-                        </div>
-                        <div class="post-avatar">
-                            <div>
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                        </div>
-                        <div class="date">
-                            <span class="time">13:30</span>
-                            <span class="date">
-                                Sept. 13 2019
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <div class="article-title-category">
-                        <div class="article-title">
-                            Test your React App
-                        </div>
-                        <div>
-                            Computer Science
-                        </div>
-                    </div>
-
-                    <div class="short-article">
-                        <p> Hello there, today, I would like to
-                            share with you how to test your React App
-                        </p>
-                    </div>
-
-                    <div class="details-instruction">
-                        Click to read the story and comments
-                    </div>
-
-                </div>
-
-                <div class="user-post">
-                    <div class="header">
-                        <div class="name">
-                            Olivier Esuka
-                        </div>
-                        <div class="post-avatar">
-                            <div>
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                        </div>
-                        <div class="date">
-                            <span class="time">13:30</span>
-                            <span class="date">
-                                Sept. 13 2019
-                            </span>
-                        </div>
-
-                    </div>
-
-                    <div class="article-title-category">
-                        <div class="article-title">
-                            Test your React App
-                        </div>
-                        <div>
-                            Computer Science
-                        </div>
-                    </div>
-
-                    <div class="short-article">
-                        <p> Hello there, today, I would like to
-                            share with you how to test your React App
-                        </p>
-                    </div>
-
-                    <div class="details-instruction">
-                        Click to read the story and comments
-                    </div>
-
-                </div>
+            <div class="app-content my-articles">
 
                 <div class="user-post">
                     <div class="header">

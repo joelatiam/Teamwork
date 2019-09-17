@@ -1,11 +1,9 @@
-
-
-const allArticles = (parent)=> {
-    const myTopics = localUser.topics;
+const myArticles = (parent)=> {
+    let myEmail = localUser.email;
 
     let myArticles = articles.filter((article)=>{
 
-       return  myTopics.includes(article.topic);
+       return  article.author === myEmail;
         
     });
 
@@ -58,13 +56,10 @@ const allArticles = (parent)=> {
 
         myShortArticles.push({id, fullName, time, date, title, topic, article})
 
-        // console.log(fullName);
     })
 
-    // console.log(myShortArticles);
 
     displayAllArt(parent, myShortArticles)
 
 
 }
-

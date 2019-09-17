@@ -84,7 +84,7 @@ const displayAllArt = (parent, articles) => {
 
         allArticleFragment.appendChild(userPost);
 
-        console.log(element);
+//         console.log(element);
     });
 
     parent.appendChild(allArticleFragment)
