@@ -12,7 +12,7 @@ const topicsReady = (parent)=>{
     const allTopics = topics;
     const myTopics = localUser.topics;
     const userEmail = localUser.email;
-    console.log(localUser);
+    
 
     let updateMyTopics = myTopics;
 

@@ -457,10 +457,6 @@ span.userFirstName {
     border-color: #51a5a7;
 }
 
-.selected-category {
-    color: #fff;
-    background: #1e4208;
-}
 
 button.unselected-category {
     background: #f1ebeb;
@@ -475,7 +471,7 @@ button.unselected-category {
     justify-content: center;
     align-content: center;
     grid-gap: 5px;
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 5px;
 }
 
@@ -565,7 +561,7 @@ p.new-user-message-large {
     top: 0;
     /* padding-top: 10px; */
     display: grid;
-    background-color: #13c4de;
+    background-color: #1ec0d830;
     /* background: linear-gradient(23deg, rgb(230, 35, 230, 0.4) 10%, rgba(0,212,255,0.3) 80%); */
     overflow: hidden;
 }
@@ -1454,7 +1450,7 @@ body.app-body {
     font-size: larger;
 }
 
-.share-article>.category>.list>div, .category-menu>.category>.list>div {
+.share-article>.category>.list>div {
     display: inline-block;
     background: #2a8994;
     margin: 2px;
@@ -1472,7 +1468,7 @@ body.app-body {
     padding: 5px;
 }
 
-.share-article>.category>.list>.selected, .category-menu>.category>.list>.selected {
+.share-article>.category>.list>.selected {
     background-color: #4c9e1f;
 }
 .category-to-share :hover {
@@ -1611,50 +1607,6 @@ body.app-body {
 	
 }
 
-/* Read by Category */
-.category-menu, .myArticlesComments {
-    display: none;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 15%;
-    /* background-color: #5f9ea075; */
-    border-style: solid;
-    border-width: 2px 0;
-    border-color: #33c3c5;
-    text-align: center;
-}
-@media only screen and (min-width: 425px){
-	.category-menu{
-		top: 16%;
-	}
-}
-
-.category-menu>.category>.list {
-    padding: 2px;
-}
-.category-menu>.category>.list>div {
-    background-color: #a9a99d;
-    font-size: 15px;
-}
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-	.category-menu {
-		top: 13%;
-		margin-left:35%;
-		width: 65%;
-		box-shadow: 1px 1px 10px 3px rgba(39, 158, 89, 0.77);
-	}
-
-
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-	.category-menu {
-		margin-left:25%;
-		width: 75%;
-	}
-}
 
 /* My activities */
 .myArticlesComments {
@@ -1882,7 +1834,22 @@ button.category-select:hover {
 	color: #ffffffeb;
 }
 
+.editTopics>button {
+    margin: 5px;
+}
+.category-menu {position: sticky;top: 10%;/* left: 35%; */background-color: #fff;color: #505477;min-height: 50px;border-bottom: solid;border-width: thin;}
 
+.category-menu>.category>.list>.category-to-read {
+    display: inline-grid;
+    border-style: solid;
+    border-width: thin;
+    padding: 2px;
+    margin: 2px;
+    background-color: #8ca2a2;
+}
+.category-menu>div>.list {
+    text-align: center;
+}
 @media only screen and (min-width: 768px){
 	.active-link {
     background-color: #13c4de;
@@ -1916,9 +1883,34 @@ button.category-select:hover {
 	
 	grid-template-columns: 80% 20%;
 }
+.editTopics>button {
+    margin: 2px;
+    font-size:15px;
+    width:110px
+    height:fit-content;
+}
+.category-menu {
+    position: fixed;
+    top: 7.5%;
+    left: 35%;
+    width: 65%;
+    min-height: unset;
+}
 }
 
 @media only screen and (min-width: 992px){
+
+.category-menu {
+    position: fixed;
+    top: 7.5%;
+    left: 25%;
+    width: 75%;
+    padding:2px;
+    min-height: unset;
+}
+.category-menu>div>.list{
+	padding:5px;
+}
 .share-article>.share-box>.input-area>textarea{
     width: 650px;
     max-width: 650px;
@@ -1954,4 +1946,11 @@ button.category-select:hover {
 .content-body.choose-topics {
     padding: 5px;
     background: linear-gradient(23deg, rgba(26, 50, 220, 0.53) 10%, rgba(24, 121, 78, 0.45) 80%);
+}
+.editTopics>button:hover {
+    cursor:pointer;
+}
+
+.category-menu>.category>.list>.category-to-read.selected-category {background-color: rgb(19, 196, 222);
+	color: #2b56b9;
 }

@@ -83,6 +83,27 @@ const displayAllArt = (parent, articles) => {
         userPost.appendChild(detailsInstruction);
 
         allArticleFragment.appendChild(userPost);
+  
+        userPost.addEventListener('click', () => {
+
+            userPost.style.cssText = 'cursor: wait;';
+
+            let postID = userPost.getAttribute('id');
+                    if (postID) {
+                        postID = postID.split(' ');
+                        postID = postID[1];
+
+                        window.location.assign(`articleDetails.html?id=${postID}`);
+                    }
+                });
+
+        userPost.addEventListener('mousemove', () => {
+
+            userPost.style.cssText = 'cursor: pointer;';
+
+                });
+            
+        
 
 //         console.log(element);
     });

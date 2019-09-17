@@ -149,33 +149,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    const goToDetails = document.querySelectorAll('.user-post');
-    if (goToDetails){
-        goToDetails.forEach(post => {
-//             console.log(post);
-            post.addEventListener('click',()=>{
-                
-                post.style.cssText = 'cursor: wait;';
-
-                let postID = post.getAttribute('id');
-                if(postID){
-                    postID = postID.split(' ');
-                    postID = postID[1];
-                    
-                    window.location.assign(`articleDetails.html?id=${postID}`);
-                }
-            });
-
-            post.addEventListener('mousemove', () => {
-
-                post.style.cssText = 'cursor: pointer;';
-                
-            });
-        });
-    }
-
-    
-
     const postDetails = document.querySelector('.post-details');
     if (postDetails){
         let params = new URLSearchParams(document.location.search.substring(1));
@@ -288,29 +261,78 @@ document.addEventListener('DOMContentLoaded', (event) => {
         myArticles(displayMyArticles);
     }
     
-    const goToMyDetails = document.querySelectorAll('.user-post');
-    if (goToMyDetails) {
-        goToMyDetails.forEach(post => {
-//             console.log(post);
-            post.addEventListener('click', () => {
-
-                post.style.cssText = 'cursor: wait;';
-
-                let postID = post.getAttribute('id');
-                if (postID) {
-                    postID = postID.split(' ');
-                    postID = postID[1];
-
-                    window.location.assign(`articleDetails.html?id=${postID}`);
-                }
-            });
-
-            post.addEventListener('mousemove', () => {
-
-                post.style.cssText = 'cursor: pointer;';
-
-            });
-        });
-    }
     
+    //  read by category
+
+    
+    // display categoryMenu
+    const categoryList = document.querySelector('.category-menu>.category .list');
+    if(categoryList){
+        displayCategoryList(categoryList);
+    }
+
+    let lastSelected = null
+
+    const firstcategoryToRead = document.querySelector('.category-to-read');
+    if (firstcategoryToRead) {
+
+        let categoryID = firstcategoryToRead.getAttribute('id');
+        if (categoryID) {
+            categoryID = categoryID.split(' ');
+            categoryID = categoryID[1];
+
+            firstcategoryToRead.classList.add('selected-category');
+            firstcategoryToRead.style.cssText = 'background-color: rgb(19, 196, 222);color: #2b56b9;';
+            
+            lastSelected = categoryID;
+
+            articleByTopic(categoryID);
+        }
+    }
+
+
+    const categoryToRead = document.querySelectorAll('.category-to-read');
+    if(categoryToRead){
+        categoryToRead.forEach(category=>{
+            category.addEventListener('mousemove', () => {
+
+                category.style.cssText = 'cursor: pointer;';
+
+            });
+            category.addEventListener('click', () => {
+
+
+                if (lastSelected) {
+                    
+                    const previous = document.getElementById(`topic ${lastSelected}`);
+                    
+                    if (previous) {
+                        previous.classList.remove('selected-category');
+                        previous.style.cssText = 'background-color: #8ca2a2; color: #505477;';
+    
+                    }
+                }
+                
+
+                category.classList.add('selected-category');
+                category.style.cssText = 'background-color: rgb(19, 196, 222);color: #2b56b9;';
+
+
+                let categoryID = category.getAttribute('id');
+                if (categoryID) {
+                    categoryID = categoryID.split(' ');
+                    categoryID = categoryID[1];
+
+                    lastSelected = categoryID;
+
+                    articleByTopic(categoryID);
+                }
+            })
+           
+        })
+        
+    }
+
+    
+
 });
