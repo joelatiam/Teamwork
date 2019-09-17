@@ -468,7 +468,8 @@ button.unselected-category {
 }
 
 .categories-list-selection {
-    background: linear-gradient(23deg, rgba(169, 26, 169,0.5) 12%, rgba(16, 177, 210, 0.68) 80%);
+    /* background: linear-gradient(23deg, rgba(26, 50, 220, 0.97) 10%, rgb(24, 121, 78) 80%); */
+    background-color: #f7f4f438;
     display: grid;
     grid-template-columns: 30% 30% 30%;
     justify-content: center;
@@ -564,8 +565,8 @@ p.new-user-message-large {
     top: 0;
     /* padding-top: 10px; */
     display: grid;
-    background-color: #ffff;
-    background: linear-gradient(23deg, rgb(230, 35, 230, 0.4) 10%, rgba(0,212,255,0.3) 80%);
+    background-color: #13c4de;
+    /* background: linear-gradient(23deg, rgb(230, 35, 230, 0.4) 10%, rgba(0,212,255,0.3) 80%); */
     overflow: hidden;
 }
 
@@ -1567,7 +1568,7 @@ body.app-body {
 
 @media only screen and (min-width: 768px) and (max-width: 992px){
 	.content-body.choose-topics{
-		margin-left:20%;
+		/* margin-left:20%; */
 	}
 	.menu-link>p {
     font-size: smaller;
@@ -1948,4 +1949,9 @@ button.category-select:hover {
 .errorinArticle::placeholder{
 /*     font-size: x-small; */
     color:red;
+}
+
+.content-body.choose-topics {
+    padding: 5px;
+    background: linear-gradient(23deg, rgba(26, 50, 220, 0.53) 10%, rgba(24, 121, 78, 0.45) 80%);
 }

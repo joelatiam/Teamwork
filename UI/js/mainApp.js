@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
     
     const categoryToDisplay = document.querySelector('.categories-list-selection');
-    // if(categoryToDisplay){
-    //     topicsReady(categoryToDisplay);
-    // }
+    if(categoryToDisplay){
+        topicsReady(categoryToDisplay);
+    }
 
     // home page
 
