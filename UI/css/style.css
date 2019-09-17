@@ -679,7 +679,7 @@ p.new-user-message-large {
     padding-right: 30%;
 }
 
-.app-content {/* background-color: #c1ebef38; */padding: 10px;padding-top: 25px;display: grid;justify-content: center;min-height: 68.3%;}
+.app-content {display: grid;justify-content: center;padding-top: 20px;}
 
 .menu-link.link-to-topic.openTopics>div {
     margin-left: 3px;
@@ -752,7 +752,7 @@ p.new-user-message-large {
     justify-content: center;
     align-content: center;
     background: linear-gradient(23deg, rgba(26, 50, 220, 0.97) 10%, rgb(24, 121, 78) 80%);
-    /* padding-bottom: 5px; */
+    padding-bottom: 5px;
 }
 
 .user-post>.header>.name {
@@ -845,12 +845,7 @@ p.new-user-message-large {
 @media only screen and (min-width: 768px) {
 
 	.app-content {
-    padding-top: 5%;
-    /* padding-right: 20%; */
-    display: grid;
-    /* justify-content: right; */
-    min-height: 68.3%;
-    /* margin-top: 8%; */
+ padding-top: 50px;
  }
 	 .no-small{
  display: block;
@@ -998,11 +993,7 @@ body.app-body {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 	.app-content {
-    /* padding-top: 25px; */
-    /* padding-right: 10%; */
-    display: grid;
-    justify-content: center;
-    /* margin-top: 5%; */
+    padding-top: 100px;
     }
  .right-content.no-small {
     position: fixed;
@@ -1063,7 +1054,7 @@ body.app-body {
 .app-section>div {
     display: grid;
     align-content: center;
-    padding-top: 7%;
+    /* padding-top: 7%; */
 }
 
 /* Page for specific article */
@@ -1406,7 +1397,7 @@ body.app-body {
 }
 
 .content-body {
-    color: #3c3c6b;
+    /* color: #3c3c6b; */
     min-width: 250px;
     max-width: fit-content;
     height: fit-content;
@@ -1445,7 +1436,7 @@ body.app-body {
     border-style: solid;
     border-width: thin;
     border-radius: 10px;
-    background-color: #acbed2;
+    background-color: #acbed24d;
     font-size: small;
 }
 .share-article>.category>.title {
@@ -1458,13 +1449,15 @@ body.app-body {
 
 .share-article>.category>.title>p {
     margin: unset;
+    padding: 5px;
+    font-size: larger;
 }
 
 .share-article>.category>.list>div, .category-menu>.category>.list>div {
     display: inline-block;
     background: #2a8994;
     margin: 2px;
-    padding: 2px;
+    padding: 5px;
     border-style: solid;
     border-width: thin;
     border-color: #474796;
@@ -1481,6 +1474,10 @@ body.app-body {
 .share-article>.category>.list>.selected, .category-menu>.category>.list>.selected {
     background-color: #4c9e1f;
 }
+.category-to-share :hover {
+    background-color: #4c9e1f;
+    cursor:pointer;
+}
 
 .share-article>.share-box {
     margin: 5px;
@@ -1491,7 +1488,7 @@ body.app-body {
 }
 
 .share-article>.share-box>.input-area>textarea {
-    width: 300px;
+    /* width: 300px; */
     min-width: 90%;
     min-height: 100px;
     border-style: solid;
@@ -1515,7 +1512,7 @@ body.app-body {
     display: grid;
     grid-template-columns: 70% 30%;
     color: #fff;
-    background-color: #166f28;
+    background-color: #166f288c;
     border-style: solid;
     border-color: #3f3f6d;
     border-radius: 10px;
@@ -1524,9 +1521,16 @@ body.app-body {
     max-width: 70px;
 }
 
+.share-article>.share-box>.submit-area>.submit:hover{
+	background-color:#166f28;
+	cursor: pointer;
+	
+}
+
 @media only screen and (min-width: 600px) {
     .share-article>.share-box>.submit-area>.submit{
-        margin-left:30px;
+        /* margin-left:30px; */
+        /* text-align: right; */
     }
 }
 
@@ -1593,8 +1597,6 @@ body.app-body {
 
 @media only screen and (min-width: 992px){
     .app-content{
-        margin-left: unset;
-        /* margin-top: 20px; */
     }
     .content-body.choose-topics{
 		margin-left:3%;
@@ -1613,7 +1615,7 @@ body.app-body {
     position: -webkit-sticky;
     position: sticky;
     top: 15%;
-    background-color: #5f9ea075;
+    /* background-color: #5f9ea075; */
     border-style: solid;
     border-width: 2px 0;
     border-color: #33c3c5;
@@ -1683,10 +1685,10 @@ body.app-body {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
 	.myArticlesComments {
-		top: 13%;
+		top: 8%;
 		margin-left:35%;
 		width: 65%;
-		box-shadow: 1px 1px 10px 3px rgba(39, 158, 89, 0.77);
+		/* box-shadow: 1px 1px 10px 3px rgba(39, 158, 89, 0.77); */
 	}
 
 
@@ -1700,64 +1702,15 @@ body.app-body {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-	.app-section.activities-section {
-		grid-template-columns: 25% 40% auto;
-	}
-	.myArticlesComments {
-		top: 13%;
-		margin-left:25%;
-		width:75%;
-	}
-	.comments-area.no-small.activities-comments {
-    background: linear-gradient(23deg, rgb(230, 35, 230, 0.3) 10%, rgba(0,212,255,0.2) 80%);
+	
+.myArticlesComments {
+    top: 8%;
+    margin-left: 25%;
+    width: 75%;
 }
-	.myArticlesComments>div {
-		display: grid;
-		justify-content: center;
-	}
-	.myArticlesComments>.displayComments {
-    	justify-content: center;
-	}
-	.myArticlesComments>.active>span {
-		background-color: #2a5e63;
-		color: #c2c6c7;
-	}
-	.myArticlesComments {
-		background-color: unset;
-		box-shadow: none;
-		border: none;
-	}
-
-	.myArticlesComments>div {
-		box-shadow: 1px 1px 10px 3px rgba(39, 158, 89, 0.77);
-		border-color: #33c3c5;
-		background-color: #34afaf;
-		border-style: solid none;
-		border-width: 2px;
-	}
-
-	.myArticlesComments>.displayComments {
-		box-shadow: 1px 1px 10px 3px rgba(39, 158, 89, 0.77);
-		border-color: #33c3c5;
-		background-color: #497996;
-	}
-	.comments-area.no-small.activities-comments {
-		position: fixed;
-		overflow: scroll;
-		max-height: 70%;
-		top: 25%;
-		right: 2%;
-		width: 35%;
-		margin: unset;
-	}
 
 }
 
-.activities-comments>.comment>.header {
-    grid-template-columns: unset;
-    justify-content: unset;
-    grid-template-rows: 50% 50%;
-}
 
 .activities-comments>.comment>.header>.title-userName>.title {
     color: #fff;
@@ -1950,22 +1903,45 @@ button.category-select:hover {
 	width: 400px;
 	min-width:400px;
 }
-
+.content-body>.header {
+    
+    grid-template-columns: 85% 15%;
+}
+.post-details>.header {
+    grid-template-columns: 85% 15%;
+}  
+.share-article>.share-box>.submit-area{
+	
+	grid-template-columns: 80% 20%;
+}
 }
 
 @media only screen and (min-width: 992px){
 .share-article>.share-box>.input-area>textarea{
     width: 650px;
     max-width: 650px;
-	min-width: 600px;
+    min-width: 650px;
 }
 .left-content>.avatar{
 	margin-left:30%;
 }
-
+.content-body>.header {
+    
+    grid-template-columns: 90% 10%;
+}
+.share-article>.share-box>.submit-area{
+	
+	grid-template-columns: 85% 15%;
+	padding-left:155px;
+}
 }
 
 .comment-area>div {
     text-align: center;
     display: block;
+}
+
+.errorinArticle::placeholder{
+/*     font-size: x-small; */
+    color:red;
 }

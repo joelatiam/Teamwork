@@ -4,8 +4,6 @@ if (!localStorage.getItem('user')) {
 }
 
 
-let localUser = {};
-localUser = localStorage.getItem('user');
 
 
 
@@ -231,7 +229,60 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
         })
     }
-  
+    
+    // share article
+    let categoryToShare = null;
+
+    const displayTopicToShare = document.querySelector('.share-article>.category .list')
+    if (displayTopicToShare){
+        topicToshareList(displayTopicToShare);
+    }
+
+    const selectedTopicToShare = document.querySelectorAll('.share-article>.category>.list div');
+    if (selectedTopicToShare) {
+        selectedTopicToShare.forEach(topic => {
+            topic.addEventListener('click', () => {
+                if (categoryToShare) {
+                    const previous = document.getElementById(`topic ${categoryToShare}`);
+                    if (previous) {
+                        previous.classList.remove('selected');
+                        previous.style.cssText = 'background-color: #2a8994;';
+                        console.log(previous)
+                    }
+                }
+
+                topic.classList.add('selected');
+                topic.style.background = 'background-color: #4c9e1f;';
+
+                let topicID = topic.getAttribute('id');
+                topicID = topicID.split(' ');
+                topicID = parseInt(topicID[1]);
+
+                categoryToShare = topicID;
+                // console.log(categoryToShare)
+
+            })
+        })
+    }
+    
+    const submitArticle = document.querySelector('.share-article>.share-box>.submit-area .submit');
+    if(submitArticle){
+
+        submitArticle.addEventListener('click',()=>{
+            submitArticle.cssText = 'background-color: #166f28; cursor: wait;';
+
+            const user = localUser.email;
+            const title = document.querySelector('.share-article>.article-title input')
+            const article = document.querySelector('.share-article>.share-box>.input-area textarea');
+
+            if (categoryToShare && user && title && article){
+                shareArticle(user, title, article, categoryToShare);
+            }
+        });
+
+    }
+
+    
 
     
 });

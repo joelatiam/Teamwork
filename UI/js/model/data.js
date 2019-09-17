@@ -1,4 +1,5 @@
 
+
 let activeUserInfo = {};
 
 const roleInMarketing = ['Chief Marketing Officer', 'Marketing Specialist', 'Brand Manager', 'Product Manager', 'SEO Specialist'];
@@ -433,3 +434,64 @@ let comments = [
         article: 13,
     }
 ];
+
+
+
+
+let localUser = {};
+let localComment = {};
+let localArticle = {};
+
+
+
+if (localStorage.getItem('user')) {
+
+    localUser = JSON.parse(localStorage.getItem('user'));
+
+    if (localUser.email) {
+        const userExist = users.find(user => user.email === (localUser.email));
+
+        if (!userExist) {
+
+            let newUser = users.push(localUser);
+
+        }
+    }
+
+
+}
+
+if (localStorage.getItem('comment')) {
+
+    localComment = JSON.parse(localStorage.getItem('comment'));
+
+    if (localComment.author === localUser.email) {
+        const commentExist = comments.find(uComment => uComment.id === (localComment.id));
+
+        if (!commentExist) {
+            localComment.date = new Date()
+
+            let newComment = comments.push(localComment);
+//         console.log(comments[newComment-1]);
+    }
+    
+    }
+}
+
+if (localStorage.getItem('article')) {
+
+    localArticle = JSON.parse(localStorage.getItem('article'));
+
+    if (localArticle.author === localUser.email) {
+        const articleExist = articles.find(uArticle => uArticle.id === (localArticle.id));
+
+        if (!articleExist) {
+            localArticle.date = new Date()
+
+            let newArticle = articles.push(localArticle);
+            
+        }
+    }
+
+    
+}

@@ -3,17 +3,6 @@ if (!localStorage.getItem('user')) {
     window.location.assign("index.html");
 }
 
-if(localStorage.getItem('comment')){
-    localComment = localStorage.getItem('comment');
-
-    const commentExist = comments.find(com => com.id === localComment.id && com.author === localComment.author);
-
-    if (!commentExist){
-        comments.push(localComment);
-    }
-}
- 
-
 const articleDetails = (id)=>{
 
     let post = articles.find(post => post.id === id);
@@ -138,4 +127,4 @@ const newComment = ((input, articleID) => {
 
     }
 
-})
+});
