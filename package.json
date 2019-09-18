@@ -1,0 +1,22 @@
+{
+  "name": "teamwork",
+  "version": "1.0.0",
+  "description": "![Teamwork Logo](UI/img/logo.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelatiam/Teamwork.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joelatiam/Teamwork/issues"
+  },
+  "homepage": "https://github.com/joelatiam/Teamwork#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
