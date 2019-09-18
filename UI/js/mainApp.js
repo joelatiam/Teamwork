@@ -342,6 +342,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         readDepartment(myDepartmentDiv);
     }
-    
+    const userProfile = document.querySelector('.app-content .user-profile');
+    if (userProfile){
+
+        let firstName = document.querySelector('.firstName>.data span');
+        firstName.innerHTML = localUser.firstName;
+
+        let lastName = document.querySelector('.lastName>.data span');
+        lastName.innerHTML = localUser.lastName;
+
+        let gender = document.querySelector('.gender>.data span');
+        gender.innerHTML = localUser.gender;
+
+        let email = document.querySelector('.email>.data span');
+        email.innerHTML = localUser.email;
+
+        let department = document.querySelector('.department>.data span');
+        department.innerHTML = localUser.department;
+
+        let jobRole = document.querySelector('.jobRole>.data span');
+        jobRole.innerHTML = localUser.jobRole;
+
+        let address = document.querySelector('.address>.data span');
+        address.innerHTML = localUser.address;
+
+        let date = document.querySelector('.date>.data span');
+        date.innerHTML = new Date();
+    }
 
 });
