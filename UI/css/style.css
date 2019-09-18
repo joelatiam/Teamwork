@@ -653,7 +653,7 @@ p.new-user-message-large {
     position: sticky;
     top: 0;
     /* bottom: 0; */
-    /* overflow: scroll; */
+    /* overflow: hidden; */
 }
 
 .app-menu.no-large>div>p {
@@ -1837,7 +1837,7 @@ button.category-select:hover {
 .editTopics>button {
     margin: 5px;
 }
-.category-menu {position: sticky;top: 10%;/* left: 35%; */background-color: #fff;color: #505477;min-height: 50px;border-bottom: solid;border-width: thin;}
+.category-menu {position: sticky;/* top: 10%; *//* left: 35%; */background-color: #fff;color: #505477;min-height: 50px;border-bottom: solid;border-width: thin;}
 
 .category-menu>.category>.list>.category-to-read {
     display: inline-grid;
@@ -1953,4 +1953,12 @@ button.category-select:hover {
 
 .category-menu>.category>.list>.category-to-read.selected-category {background-color: rgb(19, 196, 222);
 	color: #2b56b9;
+}
+
+.department-header>.myDepartment {
+    display: inline;
+}
+
+.category-menu.department-header {
+    text-align: center;
 }

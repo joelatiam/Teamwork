@@ -332,7 +332,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
         
     }
+    const departmentTitle = document.querySelector('.department-header>.myDepartment .department');
+    if(departmentTitle){
+        departmentTitle.innerHTML = localUser.department;
+    }
 
+    const myDepartmentDiv = document.querySelector('.app-content.my-department');
+    if (myDepartmentDiv){
+
+        readDepartment(myDepartmentDiv);
+    }
     
 
 });
