@@ -11,6 +11,7 @@ const errorMessage = {
 
 };
 
+
 const emptyWord = (res, userInput) => res.status(400).json({
   status: 400,
   error: `${userInput} ${errorMessage.emptyString}`,

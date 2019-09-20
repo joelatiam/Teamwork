@@ -1,6 +1,7 @@
 import myDB from '../models/myDB';
 import errorMessage from './errorMessage';
 import validateAuth from './validateAuth';
+import { generateJWT } from './myJWT';
 
 const user = {};
 
@@ -10,29 +11,25 @@ const checkUserInput = (res, expected, data) => {
   const inputedValues = Object.values(data);
   const acceptedKeys = inputedKeys.filter((key) => expected.includes(key));
 
-  // if the client provided all the required keys
   if (acceptedKeys.length === expected.length) {
     inputedKeys.forEach((key) => {
       const value = data[key];
       validateAuth.authValidation(res, key, value);
     });
-
     // if the request came in the required order
     acceptedKeys.forEach((key) => {
       const keyIndex = acceptedKeys.indexOf(key);
       if (acceptedKeys[keyIndex] === expected[keyIndex]) {
         if (inputedValues[keyIndex].length > 0) {
           user[expected[keyIndex]] = inputedValues[keyIndex];
-        } else {
-          errorMessage.missingFields(res, expected);
-        }
+        } else errorMessage.missingFields(res, expected);
       }
-      //   console.log(key);
     });
   } else {
     errorMessage.requestNotAccepted(res, expected);
   }
-  return user;
+  const accepted = Object.keys(validateAuth.user);
+  return expected.length === accepted.length ? validateAuth.user : null;
 };
 
 // Validate Signup datas before input
@@ -55,6 +52,13 @@ const userObject = {
   isAdmin: false,
 };
 
+const infoToSend = (uObject) => ({
+  Name: `${uObject.firstName} ${uObject.lastName}`,
+  email: uObject.email,
+  role: `${uObject.jobRole} in ${uObject.department} department`,
+  joined: uObject.joined.toLocaleDateString('US'),
+});
+
 const createNewUser = (res, newUser) => {
   const id = myDB.users.length + 1;
   const keysTobeUpdated = Object.keys(newUser);
@@ -69,20 +73,21 @@ const createNewUser = (res, newUser) => {
   userObject.id = id;
   myDB.users.push(userObject);
 
-  return res.status(201).json({
+  const data = [{ token: generateJWT(userObject) }, infoToSend(userObject)];
+  res.status(201).json({
     status: 201,
     message: 'user created successfully',
-    data: userObject,
+    data,
   });
 };
-const createAccount = (res, newUser) => {
-  const usedEmail = myDB.users.find((u) => u.email === newUser.email);
+const createAccount = (res, newU) => {
+  const usedEmail = myDB.users.find((u) => u.email === newU.email);
 
-  if (usedEmail) {
-    return errorMessage.emailIsUsed(res, newUser.email);
+  if (!usedEmail) {
+    createNewUser(res, newU);
+  } else {
+    errorMessage.emailIsUsed(res, newU.email);
   }
-
-  return createNewUser(res, newUser);
 };
 
 

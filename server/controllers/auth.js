@@ -4,9 +4,9 @@ import auth from '../helpers/auth';
 const signup = (req, res) => {
   const user = auth.validateSignup(res, req.body);
 
-  const userKeys = Object.keys(user);
-  if (userKeys.length > 0) {
+  if (user) {
     auth.createAccount(res, user);
+    // console.log(user);
   }
 };
 
