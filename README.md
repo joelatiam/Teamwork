@@ -1,5 +1,5 @@
 ![Teamwork Logo](UI/img/logo.png)
-
+[![Maintainability](https://api.codeclimate.com/v1/badges/d2bae7534b764f580476/maintainability)](https://codeclimate.com/github/joelatiam/Teamwork/maintainability)
 # Teamwork
 
 

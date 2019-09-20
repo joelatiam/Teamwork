@@ -72,7 +72,7 @@ const createNewUser = (res, newUser) => {
   return res.status(201).json({
     status: 201,
     message: 'user created successfully',
-    data: userObject
+    data: userObject,
   });
 };
 const createAccount = (res, newUser) => {
