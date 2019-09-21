@@ -3,32 +3,25 @@ import errorMessage from './errorMessage';
 import validateAuth from './validateAuth';
 import { generateJWT } from './myJWT';
 
-const user = {};
 
 // check if the input meets the expectation
 const checkUserInput = (res, expected, data) => {
   const inputedKeys = Object.keys(data);
-  const inputedValues = Object.values(data);
   const acceptedKeys = inputedKeys.filter((key) => expected.includes(key));
 
   if (acceptedKeys.length === expected.length) {
     inputedKeys.forEach((key) => {
       const value = data[key];
-      validateAuth.authValidation(res, key, value);
-    });
-    // if the request came in the required order
-    acceptedKeys.forEach((key) => {
-      const keyIndex = acceptedKeys.indexOf(key);
-      if (acceptedKeys[keyIndex] === expected[keyIndex]) {
-        if (inputedValues[keyIndex].length > 0) {
-          user[expected[keyIndex]] = inputedValues[keyIndex];
-        } else errorMessage.missingFields(res, expected);
-      }
+      validateAuth.authValidation(res, key.trim(), value.trim());
     });
   } else {
     errorMessage.requestNotAccepted(res, expected);
   }
   const accepted = Object.keys(validateAuth.user);
+
+  if (expected.length > accepted.length) {
+    errorMessage.missingFields(res, expected);
+  }
   return expected.length === accepted.length ? validateAuth.user : null;
 };
 
@@ -90,8 +83,37 @@ const createAccount = (res, newU) => {
   }
 };
 
+const login = (res, data) => {
+  const { email, password } = data;
+  const signed = myDB.users.find((user) => user.email === email && user.password === password);
+  if (signed) {
+    const myToken = generateJWT(signed);
+    res.status(200).json({
+      status: 200,
+      message: `${signed.firstName} ${signed.lastName} is successfully logged in`,
+      token: myToken,
+    });
+  } else {
+    errorMessage.failedAuth(res);
+  }
+};
+
+const signin = (res, { email, password }) => {
+  switch (true) {
+    case (email === ''):
+      errorMessage.emptyWord(res, 'email');
+      break;
+    case (password === ''):
+      errorMessage.emptyWord(res, 'password');
+      break;
+    default:
+      login(res, { email, password });
+      break;
+  }
+};
 
 export default {
   validateSignup,
   createAccount,
+  signin,
 };

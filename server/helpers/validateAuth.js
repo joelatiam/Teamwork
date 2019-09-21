@@ -32,7 +32,6 @@ const validateName = (res, key, value) => {
       errorMessage.nameCharacter(res, key);
       break;
     default:
-      console.log(key)
       user[key] = value;
       break;
   }

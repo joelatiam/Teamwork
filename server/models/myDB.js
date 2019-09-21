@@ -16,6 +16,7 @@ const myGender = ['male', 'female', 'other'];
 
 const users = [
   {
+    id: 1,
     firstName: 'Joël',
     lastName: 'Atiamutu',
     gender: 'male',
@@ -26,8 +27,10 @@ const users = [
     address: '12 av du Palmier',
     topics: [],
     joined: new Date(),
+    isAdmin: true,
   },
   {
+    id: 2,
     firstName: 'Nissi',
     lastName: 'Atiamutu',
     gender: 'male',
@@ -38,8 +41,10 @@ const users = [
     address: '12 av du Palmier',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 3,
     firstName: 'Ken',
     lastName: 'Bwende',
     gender: 'male',
@@ -50,8 +55,10 @@ const users = [
     address: '12 av du Palmier',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 4,
     firstName: 'Olivier',
     lastName: 'Esuka',
     gender: 'male',
@@ -62,8 +69,10 @@ const users = [
     address: '12 Kigali Rwanda',
     topics: [],
     joined: new Date(),
+    isAdmin: true,
   },
   {
+    id: 5,
     firstName: 'Natacha',
     lastName: 'Boyoko',
     gender: 'female',
@@ -74,8 +83,10 @@ const users = [
     address: '15 Himbi Goma',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 6,
     firstName: 'Christian',
     lastName: 'Atiamutu',
     gender: 'male',
@@ -86,8 +97,10 @@ const users = [
     address: '15 City center Goma',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 7,
     firstName: 'Blaise',
     lastName: 'Bikoro',
     gender: 'male',
@@ -98,8 +111,10 @@ const users = [
     address: '15 Himbi Goma',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 8,
     firstName: 'Marc',
     lastName: 'Lomba',
     gender: 'male',
@@ -110,8 +125,10 @@ const users = [
     address: '18 Kansanga Kampala',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 9,
     firstName: 'Espoir',
     lastName: 'Murhabazi',
     gender: 'male',
@@ -122,6 +139,7 @@ const users = [
     address: '25 Downtown Kigali',
     topics: [],
     joined: new Date(),
+    isAdmin: true,
   },
 ];
 

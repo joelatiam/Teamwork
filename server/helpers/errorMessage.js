@@ -71,23 +71,11 @@ const missingFields = (res, expectedKeys) => res.status(400).json({
   'required fields': expectedKeys,
 });
 
-// const addressLength = (userAddress) => {
-//   userAddress.classList.add('errorinPlaceHolder');
-//   userAddress.value = '';
-//   userAddress.placeholder = errorMessage.addressLength;
-// };
-
-// const invalidAddress = (userAddress) => {
-//   userAddress.classList.add('errorinPlaceHolder');
-//   userAddress.value = '';
-//   userAddress.placeholder = errorMessage.addressFormat;
-// };
-
 // login Error
-// const failedAuth = (res) => res.status(400).json({
-//   status: 400,
-//   Message: 'Wrong email or password',
-// });
+const failedAuth = (res) => res.status(404).json({
+  status: 404,
+  Message: 'Wrong email or password',
+});
 
 export default {
   emptyWord,
@@ -101,4 +89,5 @@ export default {
   invalidGender,
   requestNotAccepted,
   missingFields,
+  failedAuth,
 };
