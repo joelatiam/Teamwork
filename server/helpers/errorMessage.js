@@ -8,74 +8,55 @@ const errorMessage = {
   weakPass: 'Is weak, input at least 4 different characters of a length of 6',
   usedEmail: 'Email is used by another user',
   wrongMailPass: 'Wrong Email or Password',
+  wrongToken: 'You have provided an invalid token',
+  gender: 'Gender should be male , female or other',
+  invalidRequest: 'Sorry, your request data was not accepted, please send your data has required ',
+  missingFields: 'Sorry, send all the required datas',
+  failedAuth: 'Wrong email or password',
+  noToken: 'Please signin to get the token key',
 
 };
 
+const sendError = (res, code, errorText, ...fields) => {
+  const myObject = {};
+  myObject.status = code;
+  myObject.error = errorText;
+  if (fields.length > 0) {
+    myObject['required fields'] = fields;
+    myObject['content-type'] = 'application / x - www - form - urlencoded';
+  }
 
-const emptyWord = (res, userInput) => res.status(400).json({
-  status: 400,
-  error: `${userInput} ${errorMessage.emptyString}`,
-});
+  const buildResponse = res.status(code).json(myObject);
+  return buildResponse;
+};
 
-const nameLenght = (res, userInput) => res.status(400).json({
-  status: 400,
-  error: `${userInput} ${errorMessage.userName}`,
-});
+const emptyWord = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.emptyString}`);
 
-const nameCharacter = (res, userInput) => res.status(400).json({
-  status: 400,
-  error: `${userInput} ${errorMessage.wrongCharacter}`,
-});
+const nameLenght = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.userName}`);
 
-const emailFormat = (res) => res.status(400).json({
-  status: 400,
-  error: errorMessage.wrongEmailFormat,
-  'example of a valide email': 'joelatiam@googlemail.com',
-});
+const nameCharacter = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.wrongCharacter}`);
 
-const emailIsUsed = (res, userEmail) => res.status(409).json({
-  status: 409,
-  error: `${userEmail} ${errorMessage.usedEmail}`,
-});
+const emailFormat = (res) => sendError(res, 400, errorMessage.wrongEmailFormat);
 
-const passwordLenght = (res, userInput) => res.status(400).json({
-  status: 400,
-  error: `${userInput} ${errorMessage.pwLenght}`,
-});
+const emailIsUsed = (res, userEmail) => sendError(res, 400, `${userEmail} ${errorMessage.usedEmail}`);
 
-const passwordSpace = (res, userInput) => res.status(400).json({
-  status: 400,
-  error: `${userInput} ${errorMessage.pwSpace}`,
-});
+const passwordLenght = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.pwLenght}`);
 
-const passwordWeak = (res, userInput) => res.status(400).json({
-  status: 400,
-  error: `${userInput} ${errorMessage.weakPass}`,
-});
+const passwordSpace = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.pwSpace}`);
 
-const invalidGender = (res) => res.status(400).json({
-  status: 400,
-  error: 'Gender should be male , female or other',
-});
+const passwordWeak = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.weakPass}`);
 
-const requestNotAccepted = (res, expectedKeys) => res.status(400).json({
-  status: 400,
-  error: 'Sorry, your request data was not accepted, please send your data has required ',
-  'content-type': 'application / x - www - form - urlencoded',
-  'required fields': expectedKeys,
-});
+const invalidGender = (res) => sendError(res, 400, errorMessage.gender);
 
-const missingFields = (res, expectedKeys) => res.status(400).json({
-  status: 400,
-  error: 'Sorry, send all the required datas',
-  'required fields': expectedKeys,
-});
+const requestNotAccepted = (res, keys) => sendError(res, 400, errorMessage.invalidRequest, keys);
 
-// login Error
-const failedAuth = (res) => res.status(404).json({
-  status: 404,
-  Message: 'Wrong email or password',
-});
+const missingFields = (res, keys) => sendError(res, 400, errorMessage.missingFields, keys);
+
+const failedAuth = (res) => sendError(res, 400, errorMessage.failedAuth);
+
+const invalidToken = (res) => sendError(res, 400, errorMessage.wrongToken);
+
+const missingToken = (res) => sendError(res, 400, errorMessage.noToken);
 
 export default {
   emptyWord,
@@ -90,4 +71,6 @@ export default {
   requestNotAccepted,
   missingFields,
   failedAuth,
+  invalidToken,
+  missingToken,
 };
