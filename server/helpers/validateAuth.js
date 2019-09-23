@@ -1,5 +1,6 @@
 import errorMessage from './errorMessage';
 import myDB from '../models/myDB';
+import checkInput from './checkInput';
 
 const user = {};
 
@@ -21,33 +22,19 @@ const { email, pwSpace } = regexpressions;
 
 
 const validateName = (res, key, value) => {
-  switch (true) {
-    case (value === ''):
-      errorMessage.emptyWord(res, key);
-      break;
-    case (value.length > 20 || value.length < 2):
-      errorMessage.nameLenght(res, key);
-      break;
-    case (regexpressions.name.test(value)):
-      errorMessage.nameCharacter(res, key);
-      break;
-    default:
-      user[key] = value;
-      break;
+  const checkedName = checkInput.checkLength(res, key, value, 2);
+  if (checkedName === true) {
+    user[key] = value.slice(0, 20);
   }
 };
 
 const validateEmail = (res, key, value) => {
-  switch (true) {
-    case (value === ''):
-      errorMessage.emptyWord(res, key);
-      break;
-    case (!email.test(value)):
-      errorMessage.emailFormat(res);
-      break;
-    default:
-      user[key] = value;
-      break;
+  const checkedEmail = checkInput.checkLength(res, key, value);
+  const checkFormat = email.test(value);
+  if (!checkFormat) {
+    errorMessage.emailFormat(res);
+  } else if (checkedEmail === true && checkFormat) {
+    user[key] = value;
   }
 };
 
@@ -72,35 +59,23 @@ const validatePassWord = (res, key, value) => {
 };
 
 const validateDepartment = (res, key, value) => {
-  switch (true) {
-    case (value === ''):
-      errorMessage.emptyWord(res, key);
-      break;
-    default:
-      user[key] = value;
-      break;
+  const checkedDepartment = checkInput.checkLength(res, key, value);
+  if (checkedDepartment === true) {
+    user[key] = value;
   }
 };
 
 const validateJobRole = (res, key, value) => {
-  switch (true) {
-    case (value === ''):
-      errorMessage.emptyWord(res, key);
-      break;
-    default:
-      user[key] = value;
-      break;
+  const checkedJobRole = checkInput.checkLength(res, key, value);
+  if (checkedJobRole === true) {
+    user[key] = value;
   }
 };
 
 const validateAddress = (res, key, value) => {
-  switch (true) {
-    case (value === ''):
-      errorMessage.emptyWord(res, key);
-      break;
-    default:
-      user[key] = value;
-      break;
+  const checkedAddress = checkInput.checkLength(res, key, value);
+  if (checkedAddress === true) {
+    user[key] = value;
   }
 };
 

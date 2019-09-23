@@ -20,6 +20,7 @@ const checkUserInput = (res, expected, data) => {
   const accepted = Object.keys(validateAuth.user);
 
   if (expected.length > accepted.length) {
+    // console.table(accepted)
     errorMessage.missingFields(res, expected);
   }
   return expected.length === accepted.length ? validateAuth.user : null;

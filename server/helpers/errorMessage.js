@@ -1,6 +1,6 @@
 const errorMessage = {
   emptyString: 'Should not be empty',
-  userName: 'Length should be between 2 to 20 characters',
+  shortLength: 'Length should contain at least',
   wrongCharacter: 'Please Input only characters between A to Z',
   wrongEmailFormat: 'Sorry, your email format was not accepted',
   pwLenght: 'Rerquired length 6-20 characters',
@@ -14,9 +14,8 @@ const errorMessage = {
   missingFields: 'Sorry, send all the required datas',
   failedAuth: 'Wrong email or password',
   noToken: 'Please signin to get the token key',
-  titleLength: 'Your title should contain at least 2 characters',
   articleLength: 'Your article need some words',
-  idFormat: 'Send an interger representing the topic ID',
+  idFormat: 'ID format is not valid',
   requireWords: 'should contain word characters',
   noTopcID: 'No matching Topic category',
 
@@ -37,7 +36,7 @@ const sendError = (res, code, errorText, ...fields) => {
 
 const emptyWord = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.emptyString}`);
 
-const nameLenght = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.userName}`);
+const shortLength = (res, word, length) => sendError(res, 400, `Your ${word} ${errorMessage.shortLength} ${length} characters `);
 
 const nameCharacter = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.wrongCharacter}`);
 
@@ -63,21 +62,17 @@ const invalidToken = (res) => sendError(res, 400, errorMessage.wrongToken);
 
 const missingToken = (res) => sendError(res, 400, errorMessage.noToken);
 
-const shortTitle = (res) => sendError(res, 400, errorMessage.titleLength);
-
 const shortArticle = (res) => sendError(res, 400, errorMessage.articleLength);
 
-const invalidTopicID = (res) => sendError(res, 400, errorMessage.idFormat);
+const invalidID = (res, type) => sendError(res, 400, `Your ${type} ${errorMessage.idFormat}`);
 
 const topicNotfound = (res) => sendError(res, 400, errorMessage.noTopcID);
 
-
 const needWords = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.requireWords}`);
-
 
 export default {
   emptyWord,
-  nameLenght,
+  shortLength,
   nameCharacter,
   emailFormat,
   emailIsUsed,
@@ -90,9 +85,8 @@ export default {
   failedAuth,
   invalidToken,
   missingToken,
-  shortTitle,
   shortArticle,
-  invalidTopicID,
+  invalidID,
   needWords,
   topicNotfound,
 };

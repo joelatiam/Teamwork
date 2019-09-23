@@ -20,7 +20,7 @@ const emptyWord= (userInput) => {
     userInput.placeholder = errorMessage.emptyString;
 }
 
-const nameLenght = (userName) => {
+const shortLength = (userName) => {
     userName.classList.add('errorinPlaceHolder');
     userName.value = '';
     userName.placeholder = errorMessage.userName;

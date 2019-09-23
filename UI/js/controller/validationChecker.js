@@ -23,7 +23,7 @@ const userName = (formName) =>{
             break;
 
         case (value.length > 20 || value.length <2):
-            nameLenght(formName);
+            shortLength(formName);
 
             status = false;
             break;

@@ -1,10 +1,12 @@
 import errorMessage from './errorMessage';
+import checkInput from './checkInput';
 import myDB from '../models/myDB';
 
-const displayNewArticle = (res, article) => {
+const displayNewArticle = (res, article, status) => {
+  const message = (status === 'new') ? 'article successfully created' : 'article successfully updated';
   res.status(201).json({
     status: 201,
-    message: 'article successfully created',
+    message,
     article,
   });
 };
@@ -23,7 +25,7 @@ const shareArticle = (res, author, title, article, topic) => {
       author,
       topic,
     });
-    displayNewArticle(res, myDB.articles[newData - 1]);
+    displayNewArticle(res, myDB.articles[newData - 1], 'new');
   } else {
     errorMessage.topicNotfound(res);
   }
@@ -31,32 +33,28 @@ const shareArticle = (res, author, title, article, topic) => {
 
 const validateArticle = (res, data, author) => {
   const { title, topic, article } = data;
-  const hasWord = /\w/g;
 
-  switch (true) {
-    case (title.length < 2):
-      errorMessage.shortTitle(res);
-      break;
-    case (article.length < 10):
-      errorMessage.shortArticle(res);
-      break;
-    // eslint-disable-next-line no-restricted-globals
-    case (isNaN(parseInt(topic, 10)) || topic <= 0):
-      errorMessage.invalidTopicID(res);
-      break;
-    case (!hasWord.test(title)):
-      errorMessage.needWords(res, 'Title');
-      break;
-    case (!hasWord.test(article)):
-      errorMessage.needWords(res, 'Article');
-      break;
-    default:
-      shareArticle(res, author, title, article, topic);
-      break;
+  const checkedTitle = checkInput.checkLength(res, 'Title', title, 2);
+  const checkedArticle = checkInput.checkLength(res, 'Article', article, 10);
+  const checkedTopic = checkInput.checkID(res, topic, 'Topic');
+
+  if (checkedTitle === true && checkedArticle === true && checkedTopic === true) {
+    shareArticle(res, author, title, article, topic);
   }
 };
 
+const validateComment = (res, author, Ucomment, articleID) => {
+  Ucomment.trim();
+
+  const checkedComment = checkInput.checkLength(res, 'Comment', Ucomment, 2);
+  const checkedArticleID = checkInput.checkID(res, articleID, 'articleID');
+
+  if (checkedComment === true && checkedArticleID === true) {
+
+  }
+};
 
 export default {
   validateArticle,
+  validateComment,
 };

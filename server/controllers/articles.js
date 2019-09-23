@@ -28,6 +28,20 @@ const newArticle = (req, res) => {
   }
 };
 
+const newComment = (req, res) => {
+  const user = verifyToken(req, res);
+  if (user) {
+    // console.table(user);
+    if (req.body && req.body.articleID && req.body.comment) {
+      // console.table(req.body);
+      articles.validateComment(res, req.body, user.email);
+    } else {
+      errorMessage.requestNotAccepted(res, ['articleID', 'comment']);
+    }
+  }
+};
+
 export default {
   newArticle,
+  newComment,
 };
