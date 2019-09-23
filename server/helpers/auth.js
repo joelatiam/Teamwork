@@ -69,7 +69,7 @@ const createNewUser = (res, newUser) => {
   const data = [{ token: generateJWT(userObject) }, infoToSend(userObject)];
   res.status(201).json({
     status: 201,
-    message: 'user created successfully',
+    message: 'user successfully created',
     data,
   });
 };

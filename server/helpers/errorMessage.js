@@ -14,6 +14,11 @@ const errorMessage = {
   missingFields: 'Sorry, send all the required datas',
   failedAuth: 'Wrong email or password',
   noToken: 'Please signin to get the token key',
+  titleLength: 'Your title should contain at least 2 characters',
+  articleLength: 'Your article need some words',
+  idFormat: 'Send an interger representing the topic ID',
+  requireWords: 'should contain word characters',
+  noTopcID: 'No matching Topic category',
 
 };
 
@@ -58,6 +63,18 @@ const invalidToken = (res) => sendError(res, 400, errorMessage.wrongToken);
 
 const missingToken = (res) => sendError(res, 400, errorMessage.noToken);
 
+const shortTitle = (res) => sendError(res, 400, errorMessage.titleLength);
+
+const shortArticle = (res) => sendError(res, 400, errorMessage.articleLength);
+
+const invalidTopicID = (res) => sendError(res, 400, errorMessage.idFormat);
+
+const topicNotfound = (res) => sendError(res, 400, errorMessage.noTopcID);
+
+
+const needWords = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.requireWords}`);
+
+
 export default {
   emptyWord,
   nameLenght,
@@ -73,4 +90,9 @@ export default {
   failedAuth,
   invalidToken,
   missingToken,
+  shortTitle,
+  shortArticle,
+  invalidTopicID,
+  needWords,
+  topicNotfound,
 };

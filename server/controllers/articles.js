@@ -1,22 +1,30 @@
 import { verifyJWT } from '../helpers/myJWT';
 import errorMessage from '../helpers/errorMessage';
+import articles from '../helpers/articles';
 
 const verifyToken = (req, res) => {
   if (req.headers.authorization) {
-    const access = verifyJWT(req.headers.authorization);
+    const tokenKey = req.headers.authorization.split(' ')[1];
+    const access = verifyJWT(res, tokenKey);
     if (access) {
-      return access;
+      const { email, isAdmin } = access;
+      return { email, isAdmin };
     }
-    errorMessage.invalidToken(res);
   } else {
     errorMessage.missingToken(res);
   }
 };
 
 const newArticle = (req, res) => {
-  const checkToken = verifyToken(req, res);
-  if(checkToken){
-    
+  const user = verifyToken(req, res);
+  if (user) {
+    // console.table(user);
+    if (req.body && req.body.title && req.body.topic && req.body.article) {
+      // console.table(req.body);
+      articles.validateArticle(res, req.body, user.email);
+    } else {
+      errorMessage.requestNotAccepted(res, ['title', 'topic', 'article']);
+    }
   }
 };
 
