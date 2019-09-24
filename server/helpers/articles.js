@@ -92,7 +92,31 @@ const validateComment = (res, author, Ucomment, article) => {
   }
 };
 
+const displayArticleDetails = (res, article) => {
+  const comments = myDB.comments.filter((elt) => elt.article === article.id);
+  res.status(200).json({
+    status: 200,
+    data: {
+      article,
+      comments,
+    },
+  });
+};
+
+const getArticle = (res, articleID) => {
+  const checkedArticleID = checkInput.checkID(res, articleID, 'articleID');
+  if (checkedArticleID) {
+    const findArticle = myDB.articles.find((art) => art.id === articleID);
+    if (findArticle) {
+      displayArticleDetails(res, findArticle);
+    } else {
+      errorMessage.IDNotfound(res, 'Article');
+    }
+  }
+};
+
 export default {
   validateArticle,
   validateComment,
+  getArticle,
 };

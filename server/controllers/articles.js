@@ -42,7 +42,22 @@ const newComment = (req, res) => {
   }
 };
 
+const articleDetails = (req, res) => {
+  const user = verifyToken(req, res);
+  if (user) {
+    // console.table(user);
+    if (req.params) {
+      let { articleId } = req.params;
+      articleId = parseInt(articleId, 10);
+      articles.getArticle(res, articleId);
+    } else {
+      errorMessage.requestNotAccepted(res, ['articleID as URL parameter']);
+    }
+  }
+};
+
 export default {
   newArticle,
   newComment,
+  articleDetails,
 };
