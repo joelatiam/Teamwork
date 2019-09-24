@@ -2,6 +2,7 @@ import { verifyJWT } from '../helpers/myJWT';
 import errorMessage from '../helpers/errorMessage';
 import articles from '../helpers/articles';
 
+// eslint-disable-next-line consistent-return
 const verifyToken = (req, res) => {
   if (req.headers.authorization) {
     const tokenKey = req.headers.authorization.split(' ')[1];
@@ -32,11 +33,11 @@ const newComment = (req, res) => {
   const user = verifyToken(req, res);
   if (user) {
     // console.table(user);
-    if (req.body && req.body.articleID && req.body.comment) {
+    if (req.body && req.params && req.body.comment) {
       // console.table(req.body);
-      articles.validateComment(res, req.body, user.email);
+      articles.validateComment(res, user.email, req.body.comment, req.params);
     } else {
-      errorMessage.requestNotAccepted(res, ['articleID', 'comment']);
+      errorMessage.requestNotAccepted(res, ['articleID as URL parameter', 'comment']);
     }
   }
 };

@@ -17,7 +17,7 @@ const errorMessage = {
   articleLength: 'Your article need some words',
   idFormat: 'ID format is not valid',
   requireWords: 'should contain word characters',
-  noTopcID: 'No matching Topic category',
+  noID: 'ID was not found',
 
 };
 
@@ -65,7 +65,7 @@ const shortArticle = (res) => sendError(res, 400, errorMessage.articleLength);
 
 const invalidID = (res, type) => sendError(res, 400, `Your ${type} ${errorMessage.idFormat}`);
 
-const topicNotfound = (res) => sendError(res, 400, errorMessage.noTopcID);
+const IDNotfound = (res, type) => sendError(res, 400, `Your ${type} ${errorMessage.noID}`);
 
 const needWords = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.requireWords}`);
 
@@ -87,5 +87,5 @@ export default {
   shortArticle,
   invalidID,
   needWords,
-  topicNotfound,
+  IDNotfound,
 };
