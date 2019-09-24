@@ -1,6 +1,7 @@
 import errorMessage from './errorMessage';
 import checkInput from './checkInput';
 import myDB from '../models/myDB';
+import shortArticles from './shortArticles';
 
 const displayNewArticle = (res, article, type) => {
   const message = (type === 'new') ? 'article successfully created' : 'article successfully updated';
@@ -98,7 +99,7 @@ const displayArticleDetails = (res, article) => {
     status: 200,
     data: {
       article,
-      comments,
+      comments: (comments.length > 0) ? comments : 'This article has no comment',
     },
   });
 };
@@ -115,8 +116,25 @@ const getArticle = (res, articleID) => {
   }
 };
 
+const displayAllArticles = (res, articles) => {
+  res.status(200).json({
+    status: 200,
+    data: articles,
+  });
+};
+
+const getAllArticles = (res) => {
+  const myArticles = myDB.articles.reverse();
+  const myShortArticles = [];
+  myArticles.forEach((post) => {
+    myShortArticles.push(shortArticles.shortPost(post));
+  });
+  displayAllArticles(res, myShortArticles);
+};
+
 export default {
   validateArticle,
   validateComment,
   getArticle,
+  getAllArticles,
 };

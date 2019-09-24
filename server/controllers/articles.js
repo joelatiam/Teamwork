@@ -56,8 +56,16 @@ const articleDetails = (req, res) => {
   }
 };
 
+const allArticles = (req, res) => {
+  const user = verifyToken(req, res);
+  if (user) {
+    articles.getAllArticles(res);
+  }
+};
+
 export default {
   newArticle,
   newComment,
   articleDetails,
+  allArticles,
 };
