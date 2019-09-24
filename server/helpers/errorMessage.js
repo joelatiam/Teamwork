@@ -30,8 +30,7 @@ const sendError = (res, code, errorText, ...fields) => {
     myObject['content-type'] = 'application / x - www - form - urlencoded';
   }
 
-  const buildResponse = res.status(code).json(myObject);
-  return buildResponse;
+  res.status(code).json(myObject);
 };
 
 const emptyWord = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.emptyString}`);

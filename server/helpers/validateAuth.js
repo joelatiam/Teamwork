@@ -58,23 +58,8 @@ const validatePassWord = (res, key, value) => {
   }
 };
 
-const validateDepartment = (res, key, value) => {
-  const checkedDepartment = checkInput.checkLength(res, key, value);
-  if (checkedDepartment === true) {
-    user[key] = value;
-  }
-};
-
-const validateJobRole = (res, key, value) => {
-  const checkedJobRole = checkInput.checkLength(res, key, value);
-  if (checkedJobRole === true) {
-    user[key] = value;
-  }
-};
-
-const validateAddress = (res, key, value) => {
-  const checkedAddress = checkInput.checkLength(res, key, value);
-  if (checkedAddress === true) {
+const validateWord = (res, key, value) => {
+  if (checkInput.checkLength(res, key, value, 2) === true) {
     user[key] = value;
   }
 };
@@ -108,14 +93,8 @@ const authValidation = (res, key, value) => {
     case (key === 'email'):
       validateEmail(res, key, value);
       break;
-    case (key === 'address'):
-      validateAddress(res, key, value);
-      break;
-    case (key === 'jobRole'):
-      validateJobRole(res, key, value);
-      break;
-    case (key === 'department'):
-      validateDepartment(res, key, value);
+    case (key === 'address' || key === 'jobRole' || key === 'department'):
+      validateWord(res, key, value);
       break;
     default:
       break;
