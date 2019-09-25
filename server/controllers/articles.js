@@ -65,6 +65,12 @@ const getID = (req) => {
   return articleID;
 };
 
+const getAuth = (req, res, author)=>{
+  const articleID = getID(req);
+  const authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
+  return authorize;
+}
+
 const editArticle = (req, res) => {
   const user = verifyToken(req, res);
   let verifyParam = false;
@@ -75,12 +81,12 @@ const editArticle = (req, res) => {
 
   if (user) {
     // console.table(user);
+    articleID = getID(req);
     verifyParam = checkParams(req, 'edit article');
     author = user.email;
 
     if (verifyParam) {
-      articleID = getID(req);
-      authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
+      authorize = getAuth(req, res, author);
     }
     if (authorize) {
       datas = req.body;
