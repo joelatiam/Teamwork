@@ -15,19 +15,19 @@ const verifyToken = (req, res) => {
     errorMessage.missingToken(res);
   }
 };
+const checkArticleBody = (body) => {
+  const { title, topic, article } = body;
+  if (title && topic && article) {
+    return true;
+  }
+};
 
 const checkParams = (req, status) => {
   let valid = false;
   if (req.body) {
-    const {
-      title,
-      topic,
-      article,
-    } = req.body;
-
-    const articleID = req.params;
-    const inputs = title && topic && article;
-    if (inputs) {
+    const checkBody = checkArticleBody(req.body);
+    if (checkBody) {
+      const { articleID } = req.params;
       if (status === 'new article') {
         valid = true;
       } else if (status === 'edit article' && articleID) {
