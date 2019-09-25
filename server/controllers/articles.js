@@ -22,17 +22,21 @@ const checkArticleBody = (body) => {
   }
 };
 
+const checkArticleOption = (req, status) => {
+  const { articleID } = req.params;
+  if (status === 'new article') {
+    return true;
+  } if (status === 'edit article' && articleID) {
+    return true;
+  }
+};
+
 const checkParams = (req, status) => {
   let valid = false;
   if (req.body) {
     const checkBody = checkArticleBody(req.body);
     if (checkBody) {
-      const { articleID } = req.params;
-      if (status === 'new article') {
-        valid = true;
-      } else if (status === 'edit article' && articleID) {
-        valid = true;
-      }
+      valid = checkArticleOption(req, status);
     }
   }
   return valid;
@@ -51,27 +55,29 @@ const newArticle = (req, res) => {
   }
 };
 
+const editFields = ['title', 'topic', 'article', 'articleID as URL parameter'];
+const editArtOpiton = 'Edit this Article';
+const getID = (req) => {
+  let { articleID } = req.params;
+  articleID = parseInt(articleID, 10);
+  return articleID;
+};
+
 const editArticle = (req, res) => {
   const user = verifyToken(req, res);
 
   if (user) {
     // console.table(user);
     if (checkParams(req, 'edit article')) {
-      const option = 'Edit this Article';
-      let { articleID } = req.params;
+      const articleID = getID(req);
       const author = user.email;
-      articleID = parseInt(articleID, 10);
-      const authorize = articles.checkAuth(res, author, articleID, option);
-
+      const authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
       if (authorize) {
         const datas = req.body;
         articles.validateArticle(res, datas, author, articleID);
       }
     } else {
-      const parameter = 'articleID as URL parameter';
-      const body = ['title', 'topic', 'article'];
-      const message = body.push(parameter);
-      errorMessage.requestNotAccepted(res, message);
+      errorMessage.requestNotAccepted(res, editFields);
     }
   }
 };
