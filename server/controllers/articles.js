@@ -67,20 +67,23 @@ const getID = (req) => {
 
 const editArticle = (req, res) => {
   const user = verifyToken(req, res);
+  let verifyParam = false;
+  let authorize = false;
+  let articleID = null;
+  let author = null;
+  let datas = null;
 
   if (user) {
     // console.table(user);
-    const verifyParam = checkParams(req, 'edit article');
-    const author = user.email;
-    let authorize = false;
-    let articleID = null;
+    verifyParam = checkParams(req, 'edit article');
+    author = user.email;
 
     if (verifyParam) {
       articleID = getID(req);
       authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
     }
     if (authorize) {
-      const datas = req.body;
+      datas = req.body;
       articles.validateArticle(res, datas, author, articleID);
     } else {
       errorMessage.requestNotAccepted(res, editFields);
