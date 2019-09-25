@@ -20,6 +20,7 @@ const checkArticleBody = (body) => {
   if (title && topic && article) {
     return true;
   }
+  return false;
 };
 
 const checkArticleOption = (req, status) => {
@@ -29,6 +30,7 @@ const checkArticleOption = (req, status) => {
   } if (status === 'edit article' && articleID) {
     return true;
   }
+  return false;
 };
 
 const checkParams = (req, status) => {
@@ -68,14 +70,18 @@ const editArticle = (req, res) => {
 
   if (user) {
     // console.table(user);
-    if (checkParams(req, 'edit article')) {
-      const articleID = getID(req);
-      const author = user.email;
-      const authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
-      if (authorize) {
-        const datas = req.body;
-        articles.validateArticle(res, datas, author, articleID);
-      }
+    const verifyParam = checkParams(req, 'edit article');
+    const author = user.email;
+    let authorize = false;
+    let articleID = null;
+
+    if (verifyParam) {
+      articleID = getID(req);
+      authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
+    }
+    if (authorize) {
+      const datas = req.body;
+      articles.validateArticle(res, datas, author, articleID);
     } else {
       errorMessage.requestNotAccepted(res, editFields);
     }
