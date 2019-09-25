@@ -132,29 +132,38 @@ const getAllArticles = (res) => {
   displayAllArticles(res, myShortArticles);
 };
 
-const deleted = (res, type) => {
-  res.status(204).json({
-    status: 204,
+const deletedResult = (res, type) => {
+  res.status(200).json({
+    status: 200,
     message: `${type} successfuly deleted`,
   });
+};
+const removeArticle = (articleID) => myDB.articles.filter((art) => art.id !== articleID);
+const removeComments = (articleID) => myDB.comments.filter((com) => com.article !== articleID);
+
+const deletionAuth = (res, author, articleID) => {
+  let status = false;
+  const findArticle = myDB.articles.find((art) => art.id === articleID);
+  if (findArticle) {
+    if (findArticle.author === author) {
+      status = true;
+    } else {
+      errorMessage.NotAuthorized(res, 'Delete this article');
+    }
+  } else {
+    errorMessage.IDNotfound(res, 'Article');
+  }
+  return status;
 };
 
 const deletePost = (res, author, articleID) => {
   const checkedarticleID = checkInput.checkID(res, articleID, 'articleID');
   if (checkedarticleID) {
-    const findArticle = myDB.articles.find((art) => art.id === articleID);
-    if (findArticle) {
-      if (findArticle.author === author) {
-        const newDBArticles = myDB.articles.filter((art) => art.id !== articleID);
-        myDB.articles = newDBArticles;
-        const newDBComment = myDB.comments.filter((comment) => comment.article !== articleID);
-        myDB.comments = newDBComment;
-        deleted(res, 'Article');
-      } else {
-        errorMessage.NotAuthorized(res, 'Delete this article');
-      }
-    } else {
-      errorMessage.IDNotfound(res, 'Article');
+    const checkAuthorization = deletionAuth(res, author, articleID);
+    if (checkAuthorization) {
+      myDB.articles = removeArticle(articleID);
+      myDB.comments = removeComments(articleID);
+      deletedResult(res, 'Article');
     }
   }
 };
