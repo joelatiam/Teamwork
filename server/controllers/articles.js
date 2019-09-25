@@ -18,13 +18,16 @@ const verifyToken = (req, res) => {
 
 const checkParams = (req, status) => {
   let valid = false;
-  if (status === 'new article') {
-    if (req.body && req.body.title && req.body.topic && req.body.article) {
-      valid = true;
-    }
-  } else if (status === 'edit article') {
-    if (req.body && req.body.title && req.body.topic && req.body.article && req.params) {
-      valid = true;
+  if (req.body) {
+    const { title, topic, article } = req.body;
+    const articleID = req.params;
+    if (title && topic && article) {
+      if (status === 'new article') {
+        valid = true;
+      }
+      else if (status === 'edit article' && articleID) {
+        valid = true;
+      }
     }
   }
   return valid;
@@ -56,10 +59,13 @@ const editArticle = (req, res) => {
       const authorize = articles.checkAuth(res, author, articleID, option);
 
       if (authorize) {
-        articles.validateArticle(res, req.body, author, articleID);
+        const datas = req.body;
+        articles.validateArticle(res, datas, author, articleID);
       }
     } else {
-      errorMessage.requestNotAccepted(res, ['title', 'topic', 'article', 'articleID as URL parameter']);
+      const parameter = 'articleID as URL parameter';
+      const message = ['title', 'topic', 'article', parameter];
+      errorMessage.requestNotAccepted(res, message);
     }
   }
 };
