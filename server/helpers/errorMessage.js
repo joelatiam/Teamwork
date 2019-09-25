@@ -18,7 +18,7 @@ const errorMessage = {
   idFormat: 'ID format is not valid',
   requireWords: 'should contain word characters',
   noID: 'ID was not found',
-
+  authorization: 'You are not authorized to',
 };
 
 const sendError = (res, code, errorText, ...fields) => {
@@ -69,6 +69,8 @@ const IDNotfound = (res, type) => sendError(res, 400, `Your ${type} ${errorMessa
 
 const needWords = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.requireWords}`);
 
+const NotAuthorized = (res, type) => sendError(res, 403, `${errorMessage.authorization} ${type}`);
+
 export default {
   emptyWord,
   shortLength,
@@ -88,4 +90,5 @@ export default {
   invalidID,
   needWords,
   IDNotfound,
+  NotAuthorized,
 };

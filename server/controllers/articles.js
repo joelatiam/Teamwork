@@ -47,9 +47,9 @@ const articleDetails = (req, res) => {
   if (user) {
     // console.table(user);
     if (req.params) {
-      let { articleId } = req.params;
-      articleId = parseInt(articleId, 10);
-      articles.getArticle(res, articleId);
+      let { articleID } = req.params;
+      articleID = parseInt(articleID, 10);
+      articles.getArticle(res, articleID);
     } else {
       errorMessage.requestNotAccepted(res, ['articleID as URL parameter']);
     }
@@ -63,9 +63,19 @@ const allArticles = (req, res) => {
   }
 };
 
+const deleteArticle = (req, res) => {
+  const user = verifyToken(req, res);
+  if (user) {
+    let { articleID } = req.params;
+    articleID = parseInt(articleID, 10);
+    articles.deletePost(res, user.email, articleID);
+  }
+};
+
 export default {
   newArticle,
   newComment,
   articleDetails,
   allArticles,
+  deleteArticle,
 };

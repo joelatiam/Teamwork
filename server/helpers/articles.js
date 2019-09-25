@@ -86,9 +86,9 @@ const validateComment = (res, author, Ucomment, article) => {
   const articleID = parseInt(Object.values(article)[0], 10);
   Ucomment.trim();
   const checkedComment = checkInput.checkLength(res, 'Comment', Ucomment, 2);
-  const checkedArticleID = checkInput.checkID(res, articleID, 'articleID');
+  const checkedarticleID = checkInput.checkID(res, articleID, 'articleID');
 
-  if (checkedComment === true && checkedArticleID === true) {
+  if (checkedComment === true && checkedarticleID === true) {
     addComment(res, author, Ucomment, articleID);
   }
 };
@@ -105,8 +105,8 @@ const displayArticleDetails = (res, article) => {
 };
 
 const getArticle = (res, articleID) => {
-  const checkedArticleID = checkInput.checkID(res, articleID, 'articleID');
-  if (checkedArticleID) {
+  const checkedarticleID = checkInput.checkID(res, articleID, 'articleID');
+  if (checkedarticleID) {
     const findArticle = myDB.articles.find((art) => art.id === articleID);
     if (findArticle) {
       displayArticleDetails(res, findArticle);
@@ -132,9 +132,37 @@ const getAllArticles = (res) => {
   displayAllArticles(res, myShortArticles);
 };
 
+const deleted = (res, type) => {
+  res.status(204).json({
+    status: 204,
+    message: `${type} successfuly deleted`,
+  });
+};
+
+const deletePost = (res, author, articleID) => {
+  const checkedarticleID = checkInput.checkID(res, articleID, 'articleID');
+  if (checkedarticleID) {
+    const findArticle = myDB.articles.find((art) => art.id === articleID);
+    if (findArticle) {
+      if (findArticle.author === author) {
+        const newDBArticles = myDB.articles.filter((art) => art.id !== articleID);
+        myDB.articles = newDBArticles;
+        const newDBComment = myDB.comments.filter((comment) => comment.article !== articleID);
+        myDB.comments = newDBComment;
+        deleted(res, 'Article');
+      } else {
+        errorMessage.NotAuthorized(res, 'Delete this article');
+      }
+    } else {
+      errorMessage.IDNotfound(res, 'Article');
+    }
+  }
+};
+
 export default {
   validateArticle,
   validateComment,
   getArticle,
   getAllArticles,
+  deletePost,
 };
