@@ -57,43 +57,31 @@ const newArticle = (req, res) => {
   }
 };
 
-const editFields = ['title', 'topic', 'article', 'articleID as URL parameter'];
-const editArtOpiton = 'Edit this Article';
 const getID = (req) => {
   let { articleID } = req.params;
   articleID = parseInt(articleID, 10);
   return articleID;
 };
 
-const getAuth = (req, res, author)=>{
-  const articleID = getID(req);
-  const authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
-  return authorize;
-}
+const editFields = ['title', 'topic', 'article', 'articleID as URL parameter'];
+const editArtOpiton = 'Edit this Article';
 
 const editArticle = (req, res) => {
   const user = verifyToken(req, res);
-  let verifyParam = false;
-  let authorize = false;
-  let articleID = null;
+  const articleID = getID(req);
+  const verifyParam = checkParams(req, 'edit article');
   let author = null;
-  let datas = null;
 
-  if (user) {
-    // console.table(user);
-    articleID = getID(req);
-    verifyParam = checkParams(req, 'edit article');
+  if (user && verifyParam) {
     author = user.email;
+    const authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
 
-    if (verifyParam) {
-      authorize = getAuth(req, res, author);
-    }
     if (authorize) {
-      datas = req.body;
+      const datas = req.body;
       articles.validateArticle(res, datas, author, articleID);
-    } else {
-      errorMessage.requestNotAccepted(res, editFields);
     }
+  } else {
+    errorMessage.requestNotAccepted(res, editFields);
   }
 };
 
