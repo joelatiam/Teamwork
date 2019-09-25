@@ -16,11 +16,25 @@ const verifyToken = (req, res) => {
   }
 };
 
+const checkParams = (req, status) => {
+  let valid = false;
+  if (status === 'new article') {
+    if (req.body && req.body.title && req.body.topic && req.body.article) {
+      valid = true;
+    }
+  } else if (status === 'edit article') {
+    if (req.body && req.body.title && req.body.topic && req.body.article && req.params) {
+      valid = true;
+    }
+  }
+  return valid;
+};
+
 const newArticle = (req, res) => {
   const user = verifyToken(req, res);
   if (user) {
     // console.table(user);
-    if (req.body && req.body.title && req.body.topic && req.body.article) {
+    if (checkParams(req, 'new article')) {
       // console.table(req.body);
       articles.validateArticle(res, req.body, user.email);
     } else {
@@ -31,14 +45,18 @@ const newArticle = (req, res) => {
 
 const editArticle = (req, res) => {
   const user = verifyToken(req, res);
+
   if (user) {
     // console.table(user);
-    if (req.body && req.body.title && req.body.topic && req.body.article && req.params) {
+    if (checkParams(req, 'edit article')) {
+      const option = 'Edit this Article';
       let { articleID } = req.params;
+      const author = user.email;
       articleID = parseInt(articleID, 10);
-      const authorize = articles.checkAuth(res, user.email, articleID, 'Edit this Article');
+      const authorize = articles.checkAuth(res, author, articleID, option);
+
       if (authorize) {
-        articles.validateArticle(res, req.body, user.email, articleID);
+        articles.validateArticle(res, req.body, author, articleID);
       }
     } else {
       errorMessage.requestNotAccepted(res, ['title', 'topic', 'article', 'articleID as URL parameter']);
