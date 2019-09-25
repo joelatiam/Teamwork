@@ -3,7 +3,22 @@ import checkInput from './checkInput';
 import myDB from '../models/myDB';
 import shortArticles from './shortArticles';
 
-const displayNewArticle = (res, article, type) => {
+const checkAuth = (res, author, articleID, authorization) => {
+  let status = false;
+  const findArticle = myDB.articles.find((art) => art.id === articleID);
+  if (findArticle) {
+    if (findArticle.author === author) {
+      status = true;
+    } else {
+      errorMessage.NotAuthorized(res, authorization);
+    }
+  } else {
+    errorMessage.IDNotfound(res, 'Article');
+  }
+  return status;
+};
+
+const displayArticle = (res, article, type) => {
   const message = (type === 'new') ? 'article successfully created' : 'article successfully updated';
   res.status(201).json({
     status: 201,
@@ -32,21 +47,31 @@ const displayNewComment = (res, comment) => {
 };
 
 const shareArticle = (res, author, title, article, topic) => {
-  title.trim();
-  article.trim();
-  const newTitle = title.slice(0, 60);
-  const newArticle = article.slice(0, 2000);
-
   if (myDB.topics[topic]) {
     const newData = myDB.articles.push({
       id: myDB.articles.length + 1,
       date: new Date(),
-      title: newTitle,
-      article: newArticle,
+      title,
+      article,
       author,
       topic,
     });
-    displayNewArticle(res, myDB.articles[newData - 1], 'new');
+    displayArticle(res, myDB.articles[newData - 1], 'new');
+  } else {
+    errorMessage.IDNotfound(res, 'Topic');
+  }
+};
+
+const editArticle = (res, author, title, article, topic, articleID) => {
+  if (myDB.topics[topic]) {
+    const articleToUpdate = myDB.articles.findIndex((art) => art.id === articleID);
+    if (articleToUpdate > -1) {
+      myDB.articles[articleToUpdate].title = title;
+      myDB.articles[articleToUpdate].topic = topic;
+      myDB.articles[articleToUpdate].article = article;
+      myDB.articles[articleToUpdate].lastUpdate = new Date();
+      displayArticle(res, myDB.articles[articleToUpdate], 'update');
+    }
   } else {
     errorMessage.IDNotfound(res, 'Topic');
   }
@@ -70,7 +95,7 @@ const addComment = (res, author, Ucomment, article) => {
   }
 };
 
-const validateArticle = (res, data, author) => {
+const validateArticle = (res, data, author, ...articleID) => {
   const { title, topic, article } = data;
 
   const checkedTitle = checkInput.checkLength(res, 'Title', title, 2);
@@ -78,7 +103,15 @@ const validateArticle = (res, data, author) => {
   const checkedTopic = checkInput.checkID(res, topic, 'Topic');
 
   if (checkedTitle === true && checkedArticle === true && checkedTopic === true) {
-    shareArticle(res, author, title, article, topic);
+    title.trim();
+    article.trim();
+    const newTitle = title.slice(0, 60);
+    const newArticle = article.slice(0, 2000);
+    if (articleID.length > 0) {
+      editArticle(res, author, newTitle, newArticle, topic, articleID[0]);
+    } else {
+      shareArticle(res, author, newTitle, newArticle, topic);
+    }
   }
 };
 
@@ -141,25 +174,10 @@ const deletedResult = (res, type) => {
 const removeArticle = (articleID) => myDB.articles.filter((art) => art.id !== articleID);
 const removeComments = (articleID) => myDB.comments.filter((com) => com.article !== articleID);
 
-const deletionAuth = (res, author, articleID) => {
-  let status = false;
-  const findArticle = myDB.articles.find((art) => art.id === articleID);
-  if (findArticle) {
-    if (findArticle.author === author) {
-      status = true;
-    } else {
-      errorMessage.NotAuthorized(res, 'Delete this article');
-    }
-  } else {
-    errorMessage.IDNotfound(res, 'Article');
-  }
-  return status;
-};
-
 const deletePost = (res, author, articleID) => {
   const checkedarticleID = checkInput.checkID(res, articleID, 'articleID');
   if (checkedarticleID) {
-    const checkAuthorization = deletionAuth(res, author, articleID);
+    const checkAuthorization = checkAuth(res, author, articleID, 'Delete this article');
     if (checkAuthorization) {
       myDB.articles = removeArticle(articleID);
       myDB.comments = removeComments(articleID);
@@ -174,4 +192,5 @@ export default {
   getArticle,
   getAllArticles,
   deletePost,
+  checkAuth,
 };

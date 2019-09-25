@@ -29,6 +29,23 @@ const newArticle = (req, res) => {
   }
 };
 
+const editArticle = (req, res) => {
+  const user = verifyToken(req, res);
+  if (user) {
+    // console.table(user);
+    if (req.body && req.body.title && req.body.topic && req.body.article && req.params) {
+      let { articleID } = req.params;
+      articleID = parseInt(articleID, 10);
+      const authorize = articles.checkAuth(res, user.email, articleID, 'Edit this Article');
+      if (authorize) {
+        articles.validateArticle(res, req.body, user.email, articleID);
+      }
+    } else {
+      errorMessage.requestNotAccepted(res, ['title', 'topic', 'article', 'articleID as URL parameter']);
+    }
+  }
+};
+
 const newComment = (req, res) => {
   const user = verifyToken(req, res);
   if (user) {
@@ -78,4 +95,5 @@ export default {
   articleDetails,
   allArticles,
   deleteArticle,
+  editArticle,
 };

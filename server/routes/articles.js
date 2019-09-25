@@ -9,5 +9,6 @@ router.post(`${apiVersion}/articles/:articleID/comments`, articles.newComment);
 router.get(`${apiVersion}/articles/:articleID`, articles.articleDetails);
 router.get(`${apiVersion}/feeds`, articles.allArticles);
 router.delete(`${apiVersion}/articles/:articleID`, articles.deleteArticle);
+router.patch(`${apiVersion}/articles/:articleID`, articles.editArticle);
 
 export default router;
