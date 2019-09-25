@@ -19,13 +19,18 @@ const verifyToken = (req, res) => {
 const checkParams = (req, status) => {
   let valid = false;
   if (req.body) {
-    const { title, topic, article } = req.body;
+    const {
+      title,
+      topic,
+      article,
+    } = req.body;
+
     const articleID = req.params;
-    if (title && topic && article) {
+    const inputs = title && topic && article;
+    if (inputs) {
       if (status === 'new article') {
         valid = true;
-      }
-      else if (status === 'edit article' && articleID) {
+      } else if (status === 'edit article' && articleID) {
         valid = true;
       }
     }
@@ -64,7 +69,8 @@ const editArticle = (req, res) => {
       }
     } else {
       const parameter = 'articleID as URL parameter';
-      const message = ['title', 'topic', 'article', parameter];
+      const body = ['title', 'topic', 'article'];
+      const message = body.push(parameter);
       errorMessage.requestNotAccepted(res, message);
     }
   }
