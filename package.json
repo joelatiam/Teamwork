@@ -7,7 +7,8 @@
     "start": "nodemon --exec babel-node server/index.js",
     "build": "babel src --out-dir dist",
     "serve": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc --reporter=html --reporter=text  mocha --recursive --require @babel/register ./server/**/test.js --timeout 10000 --exit  ",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,9 @@
   "homepage": "https://github.com/joelatiam/Teamwork#readme",
   "dependencies": {
     "@types/cors": "^2.8.6",
+    "chai": "^4.2.0",
+    "chai-asserttype-extra": "^1.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "eslint": "^6.4.0",
@@ -34,6 +38,10 @@
     "@babel/core": "^7.6.0",
     "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
-    "nodemon": "^1.19.2"
+    "@babel/register": "^7.6.2",
+    "coveralls": "^3.0.6",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.2",
+    "nyc": "^14.1.1"
   }
 }
