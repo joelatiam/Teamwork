@@ -15,6 +15,18 @@ const userToSignin = {
   password: '123456',
 };
 
+const token = [];
+const fetchToken = (chai, app, signinAddress, done) => {
+  chai.request(app)
+    .post(signinAddress)
+    .set('content-type', 'application/x-www-form-urlencoded')
+    .send(userToSignin)
+    .then((res) => {
+      token.push(res.body.token);
+    })
+    .then(done, done);
+};
+
 const checkSignup = (user) => {
   user.should.be.an.object();
   user.status.should.be.an.integer();
@@ -61,4 +73,6 @@ export default {
   userToSignup,
   userToSignin,
   testAuth,
+  fetchToken,
+  token,
 };

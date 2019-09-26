@@ -107,10 +107,11 @@ const validateArticle = (res, data, author, ...articleID) => {
     article.trim();
     const newTitle = title.slice(0, 60);
     const newArticle = article.slice(0, 2000);
+    const newTopic = parseInt(topic, 10);
     if (articleID.length > 0) {
-      editArticle(res, author, newTitle, newArticle, topic, articleID[0]);
+      editArticle(res, author, newTitle, newArticle, newTopic, articleID[0]);
     } else {
-      shareArticle(res, author, newTitle, newArticle, topic);
+      shareArticle(res, author, newTitle, newArticle, newTopic);
     }
   }
 };
