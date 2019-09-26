@@ -16,4 +16,9 @@ describe('### Test Authentication ###', () => {
       auth.testAuth(chai, app, `${apiVersion}/auth/signup`, auth.userToSignup, done);
     });
   });
+  describe(`POST ${apiVersion}/auth/signin`, () => {
+    it('Should return info about the user who has signed in', (done) => {
+      auth.testAuth(chai, app, `${apiVersion}/auth/signin`, auth.userToSignin, done);
+    });
+  });
 });

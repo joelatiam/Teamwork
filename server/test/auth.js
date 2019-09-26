@@ -10,6 +10,10 @@ const userToSignup = {
   department: 'IT',
   address: '12 Av du Palmier, Kisangani',
 };
+const userToSignin = {
+  email: 'joelatiam@googlemail.com',
+  password: '123456',
+};
 
 const checkSignup = (user) => {
   user.should.be.an.object();
@@ -23,19 +27,11 @@ const checkSignup = (user) => {
   (new Date(user.data[1].joined)).should.be.an.date();
 };
 
-// const checkSignin = (res) => {
-//   const body = res.body[0];
-//   if (body) {
-//     // console.log('Response Body:', body['access key']);
-//     body['access key'].should.be.a.string();
-//   }
-//   const body2 = res.body[1];
-//   if (body2) {
-//     // console.log('Response Body:', body['access key']);
-//     body2['first name'].should.be.a.string();
-//     body2['last name'].should.be.a.string();
-//   }
-// };
+const checkSignin = (body) => {
+  body.status.should.be.an.integer();
+  body.message.should.be.a.string();
+  body.token.should.be.a.string();
+};
 
 const resStatus = (x) => {
   //   status 201 for signup or 202 for signin
@@ -52,10 +48,9 @@ const testAuth = (chai, app, address, userToSign, done) => {
       res.should.have.status(resStatus(address));
       if (resStatus(address) === 201) {
         checkSignup(res.body);
+      } else {
+        checkSignin(res.body);
       }
-      //   else {
-      //     checkSignin(res);
-      //   }
       console.log('body: ', res.body);
       console.log(address);
       done();
@@ -64,5 +59,6 @@ const testAuth = (chai, app, address, userToSign, done) => {
 
 export default {
   userToSignup,
+  userToSignin,
   testAuth,
 };

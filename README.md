@@ -1,6 +1,6 @@
 ![Teamwork Logo](UI/img/logo.png)
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/d2bae7534b764f580476/maintainability)](https://codeclimate.com/github/joelatiam/Teamwork/maintainability)[![Build Status](https://travis-ci.org/joelatiam/Teamwork.svg?branch=ch-signup%2FapiTest-168238817-168767601)](https://travis-ci.org/joelatiam/Teamwork)[![Coverage Status](https://coveralls.io/repos/github/joelatiam/Teamwork/badge.svg?branch=ch-signup%2FapiTest-168238817-168767601)](https://coveralls.io/github/joelatiam/Teamwork?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d2bae7534b764f580476/maintainability)](https://codeclimate.com/github/joelatiam/Teamwork/maintainability)[![Build Status](https://travis-ci.org/joelatiam/Teamwork.svg?branch=ch-signin%2FapiTest-168238837-168784847)](https://travis-ci.org/joelatiam/Teamwork)[![Coverage Status](https://coveralls.io/repos/github/joelatiam/Teamwork/badge.svg?branch=ch-signin%2FapiTest-168238837-168784847)](https://coveralls.io/github/joelatiam/Teamwork?branch=develop)
 # Teamwork
 
 
