@@ -4,8 +4,7 @@
   "description": "![Teamwork Logo](UI/img/logo.png)",
   "main": "server/index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node server/index.js",
-    "build": "babel ./server/ --out-dir dist",
+    "start": "babel-node server/index.js",
     "serve": "node dist/index.js",
     "test": "nyc --reporter=html --reporter=text  mocha --recursive --require @babel/register ./server/**/test.js --timeout 10000 --exit  ",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
@@ -22,6 +21,11 @@
   "homepage": "https://github.com/joelatiam/Teamwork#readme",
   "dependencies": {
     "@types/cors": "^2.8.6",
+    "@babel/node": "^7.6.1",
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.2",
     "chai": "^4.2.0",
     "chai-asserttype-extra": "^1.2.0",
     "chai-http": "^4.3.0",
@@ -36,7 +40,6 @@
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
-    "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
     "@babel/register": "^7.6.2",
     "coveralls": "^3.0.6",
