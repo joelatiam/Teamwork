@@ -38,6 +38,18 @@ describe('### Test About Share and Edit Articles ###', () => {
   });
 });
 
+describe('### Test About the comment feature ###', () => {
+  before((done) => {
+    auth.fetchToken(chai, app, signinAddress, done);
+  });
+
+  describe(`POST ${apiVersion}/articles`, () => {
+    it('Should return info about the new comment: 201', (done) => {
+      articles.writeComment(chai, app, `${apiVersion}/articles/5/comments`, articles.commentToShare, auth.token[0], done);
+    });
+  });
+});
+
 describe('### Test About Specific Article, News feed and Delete Article ###', () => {
   before((done) => {
     auth.fetchToken(chai, app, signinAddress, done);
