@@ -23,6 +23,10 @@
   "dependencies": {
     "@types/cors": "^2.8.6",
     "@babel/node": "^7.6.1",
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.2",
     "chai": "^4.2.0",
     "chai-asserttype-extra": "^1.2.0",
     "chai-http": "^4.3.0",
@@ -35,10 +39,6 @@
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@babel/register": "^7.6.2",
     "coveralls": "^3.0.6",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.2",
