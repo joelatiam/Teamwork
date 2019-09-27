@@ -34,6 +34,12 @@ const checkComment = (body) => {
   body.data['Article Author'].should.be.a.string();
 };
 
+const checkDeletion = (body) => {
+  body.should.be.an.object();
+  body.status.should.be.an.integer();
+  body.message.should.be.a.string();
+};
+
 const testWriteArticle = (chai, app, address, toShare, token, done) => {
   chai.request(app)
     .post(address)
@@ -78,6 +84,20 @@ const specificArticle = (chai, app, address, token, done) => {
     });
 };
 
+const deleteArticle = (chai, app, address, token, done) => {
+  chai.request(app)
+    .delete(address)
+    .set({ Authorization: `bearer ${token}` })
+    .set('content-type', 'application/x-www-form-urlencoded')
+    .end((err, res) => {
+      res.should.have.status(200);
+      checkDeletion(res.body);
+      console.log('body: ', res.body);
+      console.log(address);
+      done();
+    });
+};
+
 const allArticles = (chai, app, address, token, done) => {
   chai.request(app)
     .get(address)
@@ -99,4 +119,5 @@ export default {
   allArticles,
   commentToShare,
   writeComment,
+  deleteArticle,
 };
