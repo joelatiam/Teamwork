@@ -4,7 +4,7 @@ const articleToShare = {
   article: 'This is an article',
 };
 
-const checkNewArticle = (message) => {
+const checkArticle = (message) => {
   message.should.be.an.object();
   message.status.should.be.an.integer();
   message.message.should.be.a.string();
@@ -25,15 +25,29 @@ const testWriteArticle = (chai, app, address, toShare, token, done) => {
     .send(toShare)
     .end((err, res) => {
       res.should.have.status(201);
-      checkNewArticle(res.body);
+      checkArticle(res.body);
       console.log('body: ', res.body);
       console.log(address);
       done();
     });
 };
 
+const specificArticle = (chai, app, address, token, done) => {
+  chai.request(app)
+    .get(address)
+    .set({ Authorization: `bearer ${token}` })
+    .set('content-type', 'application/x-www-form-urlencoded')
+    .end((err, res) => {
+      res.should.have.status(200);
+      //   checkArticle(res.body);
+      console.log('body: ', res.body);
+      console.log(address);
+      done();
+    });
+};
 
 export default {
   articleToShare,
   testWriteArticle,
+  specificArticle,
 };

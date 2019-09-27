@@ -37,3 +37,15 @@ describe('### Test About Share and Edit Articles ###', () => {
     });
   });
 });
+
+describe('### Test About Specific Article, News feed and Delete Article ###', () => {
+  before((done) => {
+    auth.fetchToken(chai, app, signinAddress, done);
+  });
+
+  describe(`GET ${apiVersion}/articles/<articleID>`, () => {
+    it('Should return info about a specific article: 200', (done) => {
+      articles.specificArticle(chai, app, `${apiVersion}/articles/6`, auth.token[0], done);
+    });
+  });
+});
