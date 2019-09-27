@@ -48,4 +48,10 @@ describe('### Test About Specific Article, News feed and Delete Article ###', ()
       articles.specificArticle(chai, app, `${apiVersion}/articles/6`, auth.token[0], done);
     });
   });
+
+  describe(`GET ${apiVersion}/articles/<articleID>`, () => {
+    it('Should return all the Articles: 200', (done) => {
+      articles.allArticles(chai, app, `${apiVersion}/feeds`, auth.token[0], done);
+    });
+  });
 });

@@ -46,8 +46,23 @@ const specificArticle = (chai, app, address, token, done) => {
     });
 };
 
+const allArticles = (chai, app, address, token, done) => {
+  chai.request(app)
+    .get(address)
+    .set({ Authorization: `bearer ${token}` })
+    .set('content-type', 'application/x-www-form-urlencoded')
+    .end((err, res) => {
+      res.should.have.status(200);
+
+      console.log('body: ', res.body);
+      console.log(address);
+      done();
+    });
+};
+
 export default {
   articleToShare,
   testWriteArticle,
   specificArticle,
+  allArticles,
 };
