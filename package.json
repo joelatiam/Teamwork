@@ -22,6 +22,7 @@
   "homepage": "https://github.com/joelatiam/Teamwork#readme",
   "dependencies": {
     "@types/cors": "^2.8.6",
+    "@babel/node": "^7.6.1",
     "chai": "^4.2.0",
     "chai-asserttype-extra": "^1.2.0",
     "chai-http": "^4.3.0",
@@ -36,7 +37,6 @@
   "devDependencies": {
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
-    "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
     "@babel/register": "^7.6.2",
     "coveralls": "^3.0.6",
