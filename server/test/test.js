@@ -36,6 +36,12 @@ describe('### Test About Share and Edit Articles ###', () => {
       articles.testWriteArticle(chai, app, `${apiVersion}/articles`, articles.articleToShare, auth.token[0], done);
     });
   });
+
+  describe(`PATCH ${apiVersion}/articles`, () => {
+    it('Should return info about the updated article: 201', (done) => {
+      articles.testEditArticle(chai, app, `${apiVersion}/articles/6`, articles.articleToShare, auth.token[0], done);
+    });
+  });
 });
 
 describe('### Test About the comment feature ###', () => {
@@ -43,7 +49,7 @@ describe('### Test About the comment feature ###', () => {
     auth.fetchToken(chai, app, signinAddress, done);
   });
 
-  describe(`POST ${apiVersion}/articles`, () => {
+  describe(`POST ${apiVersion}/articles/<articleID>/comments`, () => {
     it('Should return info about the new comment: 201', (done) => {
       articles.writeComment(chai, app, `${apiVersion}/articles/5/comments`, articles.commentToShare, auth.token[0], done);
     });

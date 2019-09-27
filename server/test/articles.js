@@ -55,6 +55,21 @@ const testWriteArticle = (chai, app, address, toShare, token, done) => {
     });
 };
 
+const testEditArticle = (chai, app, address, toShare, token, done) => {
+  chai.request(app)
+    .patch(address)
+    .set({ Authorization: `bearer ${token}` })
+    .set('content-type', 'application/x-www-form-urlencoded')
+    .send(toShare)
+    .end((err, res) => {
+      res.should.have.status(201);
+      checkArticle(res.body);
+      console.log('body: ', res.body);
+      console.log(address);
+      done();
+    });
+};
+
 const writeComment = (chai, app, address, toShare, token, done) => {
   chai.request(app)
     .post(address)
@@ -120,4 +135,5 @@ export default {
   commentToShare,
   writeComment,
   deleteArticle,
+  testEditArticle,
 };
