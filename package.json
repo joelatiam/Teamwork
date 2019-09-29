@@ -20,12 +20,12 @@
   },
   "homepage": "https://github.com/joelatiam/Teamwork#readme",
   "dependencies": {
-    "@types/cors": "^2.8.6",
-    "@babel/node": "^7.6.1",
     "@babel/cli": "^7.6.0",
     "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
     "@babel/register": "^7.6.2",
+    "@types/cors": "^2.8.6",
     "chai": "^4.2.0",
     "chai-asserttype-extra": "^1.2.0",
     "chai-http": "^4.3.0",
@@ -35,7 +35,9 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",

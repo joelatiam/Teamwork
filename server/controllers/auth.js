@@ -10,6 +10,7 @@ const signup = (req, res) => {
   }
 };
 
+
 const signin = (req, res) => {
   if (req.body && req.body.email && req.body.password) {
     auth.signin(res, req.body);
