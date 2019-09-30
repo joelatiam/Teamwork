@@ -41,6 +41,18 @@ const users = [
     joined: new Date(),
   },
   {
+    firstName: 'Daniel',
+    lastName: 'Nziranziza',
+    gender: 'male',
+    email: 'dan@andela.com',
+    password: '123456',
+    department: 'IT',
+    jobRole: 'Software engineer',
+    address: 'Kigali Rwanda',
+    topics: [],
+    joined: new Date(),
+  },
+  {
     firstName: 'Ken',
     lastName: 'Bwende',
     gender: 'male',
