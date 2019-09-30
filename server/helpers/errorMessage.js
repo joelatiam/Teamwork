@@ -41,7 +41,7 @@ const nameCharacter = (res, userInput) => sendError(res, 400, `${userInput} ${er
 
 const emailFormat = (res) => sendError(res, 400, errorMessage.wrongEmailFormat);
 
-const emailIsUsed = (res, userEmail) => sendError(res, 400, `${userEmail} ${errorMessage.usedEmail}`);
+const emailIsUsed = (res, userEmail) => sendError(res, 403, `${userEmail} ${errorMessage.usedEmail}`);
 
 const passwordLenght = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.pwLenght}`);
 
@@ -59,13 +59,13 @@ const failedAuth = (res) => sendError(res, 400, errorMessage.failedAuth);
 
 const invalidToken = (res) => sendError(res, 400, errorMessage.wrongToken);
 
-const missingToken = (res) => sendError(res, 400, errorMessage.noToken);
+const missingToken = (res) => sendError(res, 401, errorMessage.noToken);
 
 const shortArticle = (res) => sendError(res, 400, errorMessage.articleLength);
 
 const invalidID = (res, type) => sendError(res, 400, `Your ${type} ${errorMessage.idFormat}`);
 
-const IDNotfound = (res, type) => sendError(res, 400, `Your ${type} ${errorMessage.noID}`);
+const IDNotfound = (res, type) => sendError(res, 404, `Your ${type} ${errorMessage.noID}`);
 
 const needWords = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.requireWords}`);
 
