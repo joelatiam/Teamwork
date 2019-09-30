@@ -434,7 +434,6 @@ const comments = [
   },
 ];
 
-
 let localUser = {};
 let localComment = {};
 let localArticle = {};
