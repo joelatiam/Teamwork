@@ -7,3 +7,7 @@ coverage/
 dist/
 UI/.screenShot/
 node_modules
+.nyc_output/
+coverage/
+dist/
+server/
