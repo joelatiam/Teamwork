@@ -1,104 +1,96 @@
 
+const displayDetails = ({
+  id, author, fullName, jobRole, department, time, date, title, topic, article,
+}) => {
+  const name = document.querySelector('.user-info .name');
+  name.innerHTML = fullName;
 
-const displayDetails = ({ id,author, fullName, jobRole, department, time, date, title, topic, article }) => {
+  const userRole = document.querySelector('.role .job-role');
+  userRole.innerHTML = jobRole;
 
-    const name = document.querySelector('.user-info .name');
-    name.innerHTML = fullName;
+  const uDepartment = document.querySelector('.role .department');
+  uDepartment.innerHTML = `${department} Department`;
 
-    const userRole = document.querySelector('.role .job-role');
-    userRole.innerHTML = jobRole;
+  const articleTitle = document.querySelector('.article-title-category .article-title');
+  articleTitle.innerHTML = title;
 
-    const uDepartment = document.querySelector('.role .department');
-    uDepartment.innerHTML = `${department} Department`;
+  const articleCategory = document.querySelector('.article-title-category .article-category');
+  articleCategory.innerHTML = topic;
 
-    const articleTitle = document.querySelector('.article-title-category .article-title');
-    articleTitle.innerHTML = title;
+  const articleTime = document.querySelector('.date .time');
+  articleTime.innerHTML = `${time[0]}:${time[1]}`;
 
-    const articleCategory = document.querySelector('.article-title-category .article-category');
-    articleCategory.innerHTML = topic;
+  const articleDate = document.querySelector('.date .date');
+  articleDate.innerHTML = date;
 
-    const articleTime = document.querySelector('.date .time');
-    articleTime.innerHTML = `${time[0]}:${time[1]}`;
+  const articleText = document.querySelector('.article-full p');
+  articleText.innerHTML = article;
 
-    const articleDate = document.querySelector('.date .date');
-    articleDate.innerHTML = date;
+  if (author !== localUser.email) {
+    const editArticle = document.querySelector('.article-options>.display-option .edit-article');
+    editArticle.remove();
 
-    const articleText = document.querySelector('.article-full p');
-    articleText.innerHTML = article;
+    const deleteArticle = document.querySelector('.article-options>.display-option .delete-article');
+    deleteArticle.remove();
 
-    if(author !== localUser.email){
-        const editArticle = document.querySelector('.article-options>.display-option .edit-article');
-        editArticle.remove();
+    const articleOptions = document.querySelector('.article-options .display-option');
+    articleOptions.setAttribute('class', 'display-option guest');
 
-        const deleteArticle = document.querySelector('.article-options>.display-option .delete-article');
-        deleteArticle.remove();
+    const flagArticle = document.querySelector('.flag-article');
+    flagArticle.setAttribute('class', 'flag flag-article guest-flag');
+  } else {
+    const flagArticle = document.querySelector('.article-options>.display-option .flag-article');
+    flagArticle.remove();
+  }
+};
 
-        const articleOptions = document.querySelector('.article-options .display-option');
-        articleOptions.setAttribute('class','display-option guest');
+const commentToHTML = (parent, comments) => {
+  parent.innerHTML = '<p class="title">Comments on this article</p>';
 
-        const flagArticle = document.querySelector('.flag-article');
-        flagArticle.setAttribute('class','flag flag-article guest-flag');
-
+  const commentFragment = document.createDocumentFragment();
 
 
-    }else{
-        const flagArticle = document.querySelector('.article-options>.display-option .flag-article');
-        flagArticle.remove();
+  comments.forEach((element) => {
+    const {
+      id, fullName, date, time, comment, author,
+    } = element;
+
+    const commentMain = document.createElement('div');
+    commentMain.setAttribute('id', `comment ${id}`);
+    commentMain.setAttribute('class', 'comment');
+
+    const header = document.createElement('div');
+    header.setAttribute('class', 'header');
+
+    const userName = document.createElement('div');
+    userName.setAttribute('class', 'user-name');
+    userName.innerHTML = `<p>${fullName}</p>`;
+
+    const dateTime = document.createElement('div');
+    dateTime.setAttribute('class', 'date');
+    dateTime.innerHTML = `<span class="time">
+            ${time[0]}:${time[1]}</span>
+            <span class="date">${date}</span>`;
+
+
+    header.appendChild(userName);
+    header.appendChild(dateTime);
+    commentMain.appendChild(header);
+
+    const commentBody = document.createElement('div');
+    commentBody.setAttribute('class', 'comment-body');
+    commentBody.innerHTML = `<p>${comment}</p>`;
+    commentMain.appendChild(commentBody);
+
+    if (author !== localUser.email) {
+      commentMain.innerHTML += commentOptionsOther;
+    } else {
+      commentMain.innerHTML += commentOptions;
     }
 
 
+    commentFragment.appendChild(commentMain);
+  });
 
-
-}
-
-const commentToHTML = (parent, comments)=>{
-    parent.innerHTML = `<p class="title">Comments on this article</p>`;
-
-    const commentFragment = document.createDocumentFragment();
-
-    
-    comments.forEach(element => {
-
-        const { id, fullName, date, time, comment, author } = element;
-
-        const commentMain = document.createElement('div');
-        commentMain.setAttribute('id',`comment ${id}`);
-        commentMain.setAttribute('class','comment');
-
-        const header = document.createElement('div');
-        header.setAttribute('class','header');
-
-        const userName = document.createElement('div');
-        userName.setAttribute('class', 'user-name');
-        userName.innerHTML = `<p>${fullName}</p>`;
-
-        const dateTime = document.createElement('div');
-        dateTime.setAttribute('class', 'date');
-        dateTime.innerHTML = `<span class="time">
-            ${time[0]}:${time[1]}</span>
-            <span class="date">${date}</span>`;
-        
-        
-        header.appendChild(userName);
-        header.appendChild(dateTime);
-        commentMain.appendChild(header);
-
-        const commentBody = document.createElement('div');
-        commentBody.setAttribute('class', 'comment-body');
-        commentBody.innerHTML = `<p>${comment}</p>`;
-        commentMain.appendChild(commentBody);
-
-        if (author !== localUser.email){
-            commentMain.innerHTML += commentOptionsOther;
-        }else{
-            commentMain.innerHTML += commentOptions;
-        }
-        
-
-        commentFragment.appendChild(commentMain);
-
-
-    });
-    
-    parent.appendChild(commentFragment);
-}
+  parent.appendChild(commentFragment);
+};

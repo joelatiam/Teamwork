@@ -1,373 +1,327 @@
 // redirect to the index page
 if (!localStorage.getItem('user')) {
-    window.location.assign("index.html");
+  window.location.assign('index.html');
 }
 
 
-
-
-
 document.addEventListener('DOMContentLoaded', (event) => {
+  // first Category page
+  // display topics for new
 
-    // first Category page
-    //display topics for new 
-    
-    const button = document.querySelectorAll('button');
-    if (button) {
-        button.forEach(btn => {
-            btn.addEventListener('click', () => {
+  const button = document.querySelectorAll('button');
+  if (button) {
+    button.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        btn.style.cssText = 'cursor: wait;';
+      });
+      btn.addEventListener('mousemove', () => {
+        btn.style.cssText = 'cursor: pointer;';
+      });
+    });
+  }
 
-                btn.style.cssText = 'cursor: wait;';
+  const categoryToDisplay = document.querySelector('.categories-list-selection');
+  if (categoryToDisplay) {
+    topicsReady(categoryToDisplay);
+  }
 
-            })
-            btn.addEventListener('mousemove', () => {
+  // home page
 
-                btn.style.cssText = 'cursor: pointer;';
+  const userTopMenu = document.querySelector('.app-menu>.user-info .user-name');
+  if (userTopMenu) {
+    if (localStorage.getItem('user')) {
+      localUser = JSON.parse(localStorage.getItem('user'));
 
-            });
-        })
+      const displayTopUserMenu = (parent, { firstName, lastName, jobRole }) => {
+        parent.innerHTML = '';
 
+        const fullName = document.createElement('span');
+        fullName.setAttribute('class', 'fullName');
+        fullName.innerHTML = `${firstName} ${lastName}`;
+        parent.appendChild(fullName);
+
+        parent.innerHTML += ', ';
+
+        const role = document.createElement('span');
+        role.setAttribute('class', 'jobRole');
+        role.innerHTML = jobRole;
+        parent.appendChild(role);
+      };
+
+
+      displayTopUserMenu(userTopMenu, localUser);
     }
-    
-    const categoryToDisplay = document.querySelector('.categories-list-selection');
-    if(categoryToDisplay){
-        topicsReady(categoryToDisplay);
-    }
+  }
 
-    // home page
+  // articles details
 
-    const userTopMenu = document.querySelector('.app-menu>.user-info .user-name');
-    if (userTopMenu) {
-        if (localStorage.getItem('user')) {
-            localUser = JSON.parse(localStorage.getItem('user'));
-         
-            const displayTopUserMenu = (parent, { firstName, lastName, jobRole }) => {
-                parent.innerHTML = '';
+  const displayAllArticles = document.querySelector('.all-articles');
+  if (displayAllArticles) {
+    allArticles(displayAllArticles);
+  }
 
-                let fullName = document.createElement('span');
-                fullName.setAttribute('class', 'fullName');
-                fullName.innerHTML = `${firstName} ${lastName}`;
-                parent.appendChild(fullName);
+  const menuLinks = document.querySelectorAll('.menu-link');
+  if (menuLinks) {
+    menuLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        link.classList.add('active-link');
+        link.style.cssText = 'cursor: wait;';
 
-                parent.innerHTML += ', ';
+        switch (true) {
+          case (link.classList.contains('openShare')):
 
-                let role = document.createElement('span');
-                role.setAttribute('class', 'jobRole');
-                role.innerHTML = jobRole;
-                parent.appendChild(role);
-            }
+            window.location.assign('share.html');
+            break;
+
+          case (link.classList.contains('openMyProfile')):
+
+            window.location.assign('myProfile.html');
+            break;
+
+          case (link.classList.contains('openHome')):
+
+            window.location.assign('home.html');
+            break;
+
+          case (link.classList.contains('openMyActivity')):
+
+            window.location.assign('myActivities.html');
+            break;
+
+          case (link.classList.contains('openArticleByCat')):
+
+            window.location.assign('readByCategory.html');
+            break;
+
+          case (link.classList.contains('openMyDepartment')):
+
+            window.location.assign('myDepartment.html');
+            break;
+
+          case (link.classList.contains('openTopics')):
+
+            window.location.assign('topics.html');
+            break;
 
 
-            displayTopUserMenu(userTopMenu, localUser);
-            
+          default:
+            break;
+        }
+      });
+
+      link.addEventListener('mousemove', () => {
+        const parentNode = document.querySelector('.left-menu.no-small');
+        if (parentNode.contains(link)) {
+          link.style.cssText = 'border-style: solid; border-width: thin; border-radius: 20px; cursor: pointer;';
+        }
+      });
+      link.addEventListener('mouseout', () => {
+        const parentNode = document.querySelector('.left-menu.no-small');
+        if (parentNode.contains(link)) {
+          if (!link.classList.contains('active-link')) {
+            link.style.cssText = 'border: initial;';
+          }
+        }
+      });
+    });
+  }
+
+  const postDetails = document.querySelector('.post-details');
+  if (postDetails) {
+    const params = new URLSearchParams(document.location.search.substring(1));
+
+    let postID = params.get('id');
+    postID = parseInt(postID);
+
+    articleDetails(postID);
+  }
+
+  const addComment = document.querySelector('.comment-message ');
+  if (addComment) {
+    addComment.addEventListener('click', () => {
+      addComment.classList.add('hidden');
+
+      const commentArea = document.querySelector('.comment-area');
+      commentArea.classList.remove('hidden');
+      commentArea.style.display = 'grid';
+    });
+    addComment.addEventListener('mousemove', () => {
+      addComment.style.cssText = 'cursor: pointer;';
+    });
+  }
+
+  const commentList = document.querySelector('.comments-area');
+  if (commentList) {
+    const params = new URLSearchParams(document.location.search.substring(1));
+
+    let postID = params.get('id');
+    postID = parseInt(postID);
+
+    displayComment(commentList, postID);
+  }
+
+  const submitComment = document.querySelector('.commentButton');
+  if (submitComment) {
+    submitComment.addEventListener('click', () => {
+      const textArea = document.querySelector('.comment-area>div textarea');
+
+      if (textArea) {
+        const params = new URLSearchParams(document.location.search.substring(1));
+
+        let postID = params.get('id');
+        postID = parseInt(postID);
+
+        newComment(textArea, postID);
+      }
+    });
+  }
+
+  // share article
+  let categoryToShare = null;
+
+  const displayTopicToShare = document.querySelector('.share-article>.category .list');
+  if (displayTopicToShare) {
+    topicToshareList(displayTopicToShare);
+  }
+
+  const selectedTopicToShare = document.querySelectorAll('.share-article>.category>.list div');
+  if (selectedTopicToShare) {
+    selectedTopicToShare.forEach((topic) => {
+      topic.addEventListener('click', () => {
+        if (categoryToShare) {
+          const previous = document.getElementById(`topic ${categoryToShare}`);
+          if (previous) {
+            previous.classList.remove('selected');
+            previous.style.cssText = 'background-color: #2a8994;';
+            console.log(previous);
+          }
         }
 
+        topic.classList.add('selected');
+        topic.style.background = 'background-color: #4c9e1f;';
+
+        let topicID = topic.getAttribute('id');
+        topicID = topicID.split(' ');
+        topicID = parseInt(topicID[1]);
+
+        categoryToShare = topicID;
+        // console.log(categoryToShare)
+      });
+    });
+  }
+
+  const submitArticle = document.querySelector('.share-article>.share-box>.submit-area .submit');
+  if (submitArticle) {
+    submitArticle.addEventListener('click', () => {
+      submitArticle.cssText = 'background-color: #166f28; cursor: wait;';
+
+      const author = localUser.email;
+      const title = document.querySelector('.share-article>.article-title input');
+      const article = document.querySelector('.share-article>.share-box>.input-area textarea');
+
+      if (categoryToShare && author && title && article) {
+        shareArticle(author, title, article, categoryToShare);
+      }
+    });
+  }
+
+  // myActivies
+  const displayMyArticles = document.querySelector('.my-articles');
+  if (displayMyArticles) {
+    myArticles(displayMyArticles);
+  }
+  //  read by category
+  // display categoryMenu
+  const categoryList = document.querySelector('.category-menu>.category .list');
+  if (categoryList) {
+    displayCategoryList(categoryList);
+  }
+
+  let lastSelected = null;
+
+  const firstcategoryToRead = document.querySelector('.category-to-read');
+  if (firstcategoryToRead) {
+    let categoryID = firstcategoryToRead.getAttribute('id');
+    if (categoryID) {
+      categoryID = categoryID.split(' ');
+      categoryID = categoryID[1];
+
+      firstcategoryToRead.classList.add('selected-category');
+      firstcategoryToRead.style.cssText = 'background-color: rgb(19, 196, 222);color: #2b56b9;';
+
+      lastSelected = categoryID;
+
+      articleByTopic(categoryID);
     }
-
-// articles details
-
-    const displayAllArticles = document.querySelector('.all-articles');
-    if (displayAllArticles) {
-        allArticles(displayAllArticles);
-    }
-
-    const menuLinks = document.querySelectorAll('.menu-link');
-    if (menuLinks){
-        menuLinks.forEach(link => {
-
-            link.addEventListener('click', () => {
-
-                link.classList.add('active-link');
-                link.style.cssText = 'cursor: wait;';
-                
-
-                switch (true) {
-
-                    case (link.classList.contains('openShare')):
-
-                        window.location.assign("share.html");
-                        break;
-
-                    case (link.classList.contains('openMyProfile')):
-
-                        window.location.assign("myProfile.html");
-                        break;
-
-                    case (link.classList.contains('openHome')):
-
-                        window.location.assign("home.html");
-                        break;
-
-                    case (link.classList.contains('openMyActivity')):
-
-                        window.location.assign("myActivities.html");
-                        break;
-
-                    case (link.classList.contains('openArticleByCat')):
-
-                        window.location.assign("readByCategory.html");
-                        break;
-
-                    case (link.classList.contains('openMyDepartment')):
-
-                        window.location.assign("myDepartment.html");
-                        break;
-
-                    case (link.classList.contains('openTopics')):
-
-                        window.location.assign("topics.html");
-                        break;
+  }
 
 
-                    default:
-                        break;
-                }
-            })
+  const categoryToRead = document.querySelectorAll('.category-to-read');
+  if (categoryToRead) {
+    categoryToRead.forEach((category) => {
+      category.addEventListener('mousemove', () => {
+        category.style.cssText = 'cursor: pointer;';
+      });
+      category.addEventListener('click', () => {
+        if (lastSelected) {
+          const previous = document.getElementById(`topic ${lastSelected}`);
 
-            link.addEventListener('mousemove',() =>{
-
-                const parentNode = document.querySelector('.left-menu.no-small');
-                if (parentNode.contains(link)) {
-                    link.style.cssText = 'border-style: solid; border-width: thin; border-radius: 20px; cursor: pointer;';
-
-                }
-            })
-            link.addEventListener('mouseout', () => {
-
-                const parentNode = document.querySelector('.left-menu.no-small');
-                if (parentNode.contains(link)) {
-                    if (!link.classList.contains('active-link')){
-                        link.style.cssText = 'border: initial;';
-                    }
-                    
-
-                }
-            })
-            
+          if (previous) {
+            previous.classList.remove('selected-category');
+            previous.style.cssText = 'background-color: #8ca2a2; color: #505477;';
+          }
+        }
 
 
-        });
-    }
+        category.classList.add('selected-category');
+        category.style.cssText = 'background-color: rgb(19, 196, 222);color: #2b56b9;';
 
-    const postDetails = document.querySelector('.post-details');
-    if (postDetails){
-        let params = new URLSearchParams(document.location.search.substring(1));
 
-        let postID = params.get('id');
-        postID = parseInt(postID);
-
-        articleDetails(postID);
-    }
-
-    const addComment = document.querySelector('.comment-message ');
-    if(addComment){
-        addComment.addEventListener('click',()=>{
-            addComment.classList.add('hidden');
-
-            const commentArea = document.querySelector('.comment-area');
-            commentArea.classList.remove('hidden');
-            commentArea.style.display = 'grid';
-            
-        })
-        addComment.addEventListener('mousemove', () => {
-
-            addComment.style.cssText = 'cursor: pointer;';
-
-        });
-    }
-
-    const commentList = document.querySelector('.comments-area');
-    if(commentList){
-        let params = new URLSearchParams(document.location.search.substring(1));
-
-        let postID = params.get('id');
-        postID = parseInt(postID);
-
-        displayComment(commentList, postID);
-    }
-
-    const submitComment = document.querySelector('.commentButton');
-    if(submitComment){
-        submitComment.addEventListener('click',()=>{
-            const textArea = document.querySelector('.comment-area>div textarea');
-
-            if (textArea){
-                let params = new URLSearchParams(document.location.search.substring(1));
-
-                let postID = params.get('id');
-                postID = parseInt(postID);
-                
-                newComment(textArea, postID);
-                
-            }
-        })
-    }
-    
-    // share article
-    let categoryToShare = null;
-
-    const displayTopicToShare = document.querySelector('.share-article>.category .list')
-    if (displayTopicToShare){
-        topicToshareList(displayTopicToShare);
-    }
-
-    const selectedTopicToShare = document.querySelectorAll('.share-article>.category>.list div');
-    if (selectedTopicToShare) {
-        selectedTopicToShare.forEach(topic => {
-            topic.addEventListener('click', () => {
-                if (categoryToShare) {
-                    const previous = document.getElementById(`topic ${categoryToShare}`);
-                    if (previous) {
-                        previous.classList.remove('selected');
-                        previous.style.cssText = 'background-color: #2a8994;';
-                        console.log(previous)
-                    }
-                }
-
-                topic.classList.add('selected');
-                topic.style.background = 'background-color: #4c9e1f;';
-
-                let topicID = topic.getAttribute('id');
-                topicID = topicID.split(' ');
-                topicID = parseInt(topicID[1]);
-
-                categoryToShare = topicID;
-                // console.log(categoryToShare)
-
-            })
-        })
-    }
-    
-    const submitArticle = document.querySelector('.share-article>.share-box>.submit-area .submit');
-    if(submitArticle){
-
-        submitArticle.addEventListener('click',()=>{
-            submitArticle.cssText = 'background-color: #166f28; cursor: wait;';
-
-            const author = localUser.email;
-            const title = document.querySelector('.share-article>.article-title input')
-            const article = document.querySelector('.share-article>.share-box>.input-area textarea');
-
-            if (categoryToShare && author && title && article){
-                shareArticle(author, title, article, categoryToShare);
-            }
-        });
-
-    }
-
-    // myActivies
-    const displayMyArticles = document.querySelector('.my-articles');
-    if (displayMyArticles) {
-        myArticles(displayMyArticles);
-    }
-    
-    
-    //  read by category
-
-    
-    // display categoryMenu
-    const categoryList = document.querySelector('.category-menu>.category .list');
-    if(categoryList){
-        displayCategoryList(categoryList);
-    }
-
-    let lastSelected = null
-
-    const firstcategoryToRead = document.querySelector('.category-to-read');
-    if (firstcategoryToRead) {
-
-        let categoryID = firstcategoryToRead.getAttribute('id');
+        let categoryID = category.getAttribute('id');
         if (categoryID) {
-            categoryID = categoryID.split(' ');
-            categoryID = categoryID[1];
+          categoryID = categoryID.split(' ');
+          categoryID = categoryID[1];
 
-            firstcategoryToRead.classList.add('selected-category');
-            firstcategoryToRead.style.cssText = 'background-color: rgb(19, 196, 222);color: #2b56b9;';
-            
-            lastSelected = categoryID;
+          lastSelected = categoryID;
 
-            articleByTopic(categoryID);
+          articleByTopic(categoryID);
         }
-    }
+      });
+    });
+  }
+  const departmentTitle = document.querySelector('.department-header>.myDepartment .department');
+  if (departmentTitle) {
+    departmentTitle.innerHTML = localUser.department;
+  }
 
+  const myDepartmentDiv = document.querySelector('.app-content.my-department');
+  if (myDepartmentDiv) {
+    readDepartment(myDepartmentDiv);
+  }
+  const userProfile = document.querySelector('.app-content .user-profile');
+  if (userProfile) {
+    const firstName = document.querySelector('.firstName>.data span');
+    firstName.innerHTML = localUser.firstName;
 
-    const categoryToRead = document.querySelectorAll('.category-to-read');
-    if(categoryToRead){
-        categoryToRead.forEach(category=>{
-            category.addEventListener('mousemove', () => {
+    const lastName = document.querySelector('.lastName>.data span');
+    lastName.innerHTML = localUser.lastName;
 
-                category.style.cssText = 'cursor: pointer;';
+    const gender = document.querySelector('.gender>.data span');
+    gender.innerHTML = localUser.gender;
 
-            });
-            category.addEventListener('click', () => {
+    const email = document.querySelector('.email>.data span');
+    email.innerHTML = localUser.email;
 
+    const department = document.querySelector('.department>.data span');
+    department.innerHTML = localUser.department;
 
-                if (lastSelected) {
-                    
-                    const previous = document.getElementById(`topic ${lastSelected}`);
-                    
-                    if (previous) {
-                        previous.classList.remove('selected-category');
-                        previous.style.cssText = 'background-color: #8ca2a2; color: #505477;';
-    
-                    }
-                }
-                
+    const jobRole = document.querySelector('.jobRole>.data span');
+    jobRole.innerHTML = localUser.jobRole;
 
-                category.classList.add('selected-category');
-                category.style.cssText = 'background-color: rgb(19, 196, 222);color: #2b56b9;';
+    const address = document.querySelector('.address>.data span');
+    address.innerHTML = localUser.address;
 
-
-                let categoryID = category.getAttribute('id');
-                if (categoryID) {
-                    categoryID = categoryID.split(' ');
-                    categoryID = categoryID[1];
-
-                    lastSelected = categoryID;
-
-                    articleByTopic(categoryID);
-                }
-            })
-           
-        })
-        
-    }
-    const departmentTitle = document.querySelector('.department-header>.myDepartment .department');
-    if(departmentTitle){
-        departmentTitle.innerHTML = localUser.department;
-    }
-
-    const myDepartmentDiv = document.querySelector('.app-content.my-department');
-    if (myDepartmentDiv){
-
-        readDepartment(myDepartmentDiv);
-    }
-    const userProfile = document.querySelector('.app-content .user-profile');
-    if (userProfile){
-
-        let firstName = document.querySelector('.firstName>.data span');
-        firstName.innerHTML = localUser.firstName;
-
-        let lastName = document.querySelector('.lastName>.data span');
-        lastName.innerHTML = localUser.lastName;
-
-        let gender = document.querySelector('.gender>.data span');
-        gender.innerHTML = localUser.gender;
-
-        let email = document.querySelector('.email>.data span');
-        email.innerHTML = localUser.email;
-
-        let department = document.querySelector('.department>.data span');
-        department.innerHTML = localUser.department;
-
-        let jobRole = document.querySelector('.jobRole>.data span');
-        jobRole.innerHTML = localUser.jobRole;
-
-        let address = document.querySelector('.address>.data span');
-        address.innerHTML = localUser.address;
-
-        let date = document.querySelector('.date>.data span');
-        date.innerHTML = new Date();
-    }
-
+    const date = document.querySelector('.date>.data span');
+    date.innerHTML = new Date();
+  }
 });

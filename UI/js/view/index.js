@@ -1,4 +1,4 @@
-const signUpHtml =`
+const signUpHtml = `
                              <div class="form-grid">
                                 <div>
                                     <div class="input-label">

@@ -1,77 +1,76 @@
 const displayCategoryList = (parent) => {
-    // const myAccount = users.find(user => user.email === localUser.email);
-    let myTopics = [];
-    
-        if(localUser.topics.length>0){
-            localUser.topics.forEach(topic=>{
-                myTopics.push([topic,topics[topic]]);
-            })
-        }
-    displayMyCategory(parent, myTopics);
+  // const myAccount = users.find(user => user.email === localUser.email);
+  const myTopics = [];
 
-}
-
-const articleByTopic =  (id)=>{
-    
-    const parent = document.querySelector('.app-content');
-    // console.log(parent)
-    let myArticles = articles.filter((article) => {
-       
-        return article.topic == id;
-
+  if (localUser.topics.length > 0) {
+    localUser.topics.forEach((topic) => {
+      myTopics.push([topic, topics[topic]]);
     });
-    // console.log(myArticles)
-    myArticles = myArticles.reverse();
+  }
+  displayMyCategory(parent, myTopics);
+};
 
-    let myShortArticles = [];
+const articleByTopic = (Categoryid) => {
+  const parent = document.querySelector('.app-content');
+  // console.log(parent)
+  let myArticles = articles.filter((article) => article.topic === Categoryid);
+  // console.log(myArticles)
+  myArticles = myArticles.reverse();
 
-    myArticles.forEach((post) => {
+  const myShortArticles = [];
 
-        let { id, date, title, article, author, topic } = post;
+  myArticles.forEach((post) => {
+    let {
+      date, title, article, topic,
+    } = post;
+    const id = post;
+    const author = post;
+    const options = {
+      weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
+    };
 
-        const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const time = date.toLocaleTimeString('fr-FR').split(':');
 
-        time = date.toLocaleTimeString('fr-FR').split(':');
+    date = date.toLocaleDateString('US', options).split(',');
+    const trimedDate = [];
+    date.forEach((e) => trimedDate.push(e.trim()));
+    date = trimedDate;
 
-        date = date.toLocaleDateString('US', options).split(',');
-        const trimedDate = [];
-        date.forEach((e) => trimedDate.push(e.trim()))
-        date = trimedDate;
+    const newtitle = () => {
+      if (title.length > 55) {
+        title = title.slice(0, 52);
+        title += '...';
+      }
+      return title;
+    };
 
-        const newtitle = () => {
-            if (title.length > 55) {
-                title = title.slice(0, 52);
-                title += '...';
-            }
-            return title;
-        }
+    article = article.trim();
 
-        article = article.trim();
+    const shortArticle = () => {
+      if (article.length > 100) {
+        article = article.slice(0, 97);
+        article += '...';
+      }
+      return article;
+    };
 
-        const shortArticle = () => {
-            if (article.length > 100) {
-                article = article.slice(0, 97);
-                article += '...';
-            }
-            return article;
-        }
+    article = shortArticle();
+    title = newtitle();
 
-        article = shortArticle();
-        title = newtitle();
+    topic = topics[post.topic];
 
-        topic = topics[post.topic];
+    const authorsName = () => {
+      const user = users.find((user) => user.email === author);
+      return `${user.firstName} ${user.lastName}`;
+    };
 
-        const authorsName = () => {
-            const user = users.find((user) => user.email === author);
-            return `${user.firstName} ${user.lastName}`;
-        }
+    const fullName = authorsName().trim();
 
-        const fullName = authorsName().trim();
-
-        myShortArticles.push({ id, fullName, time, date, title, topic, article })
-
-    })
+    myShortArticles.push({
+      id, fullName, time, date, title, topic, article,
+    });
+  });
 
 
-    displayAllArt(parent, myShortArticles)
-}
+  displayAllArt(parent, myShortArticles);
+};
