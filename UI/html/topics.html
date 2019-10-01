@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teamwork</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Joël Atiamutu">
+    <meta name="description" content="Teamwork is an internal social network for organizations’ employees. The goal of this                          
+application is to facilitate more interaction between colleagues and facilitate team bonding">
+
+    <script src="https://kit.fontawesome.com/c07dd265bc.js"></script>
+
+    <link rel="shortcut icon" href="../img/fav-ico.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../js/model/fakeArticles.js"></script>
+    <script src="../js/model/data.js"></script>
+    <script src="../js/view/firstCategory.js"></script>
+    <script src="../js/controller/firstCategory.js"></script>
+    <script src="../js/mainApp.js"></script>
+</head>
+
+<body class="app-body">
+    <div class="app-header">
+        <div class="app-top no-large hide-on-scroll">
+            <div class="menu-link link-to-profile openMyProfile">
+                <div>
+                    <i class="fas fa-user"></i>
+                </div>
+                <p>My Profile
+                    <p />
+            </div>
+            <div class="menu-logo logo-small">
+                <p> <img src="../img/fav-ico.png"></p>
+            </div>
+            <div class="menu-link link-to-activity openMyActivity">
+                <div>
+                    <i class="fas fa-history"></i>
+                </div>
+                <p>My Activities
+                    <p />
+            </div>
+        </div>
+
+        <div class="app-menu no-small">
+            <div class="menu-logo logo-large">
+                <p> <img src="../img/fav-ico.png"></p>
+            </div>
+            <div class="user-info no-small">
+                <p class="user-name">
+                    <span class="fullName">Joël Atiamutu</span>,
+                    <span class="jobRole">software developer</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="app-menu no-large">
+        <div class="menu-link link-to-home openHome ">
+            <div>
+                <i class="fas fa-home"></i>
+            </div>
+            <p>Home
+                <p />
+        </div>
+
+        <div class="menu-link link-to-articleByCategory openArticleByCat">
+            <div>
+                <i class="fas fa-folder-open"></i>
+            </div>
+            <p>Read by Category
+                <p />
+        </div>
+        <div class="menu-link link-to-share openShare">
+            <div>
+                <i class="far fa-edit"></i>
+            </div>
+            <p>Share
+                <p />
+        </div>
+
+        <div class="menu-link link-to-articleInDepartment openMyDepartment">
+            <div>
+                <i class="fas fa-users"></i>
+            </div>
+            <p>My Department
+                <p />
+        </div>
+        <div class="menu-link link-to-topic openTopics active-link">
+            <div>
+                <i class="fas fa-list-alt"></i>
+            </div>
+            <p>Choose Topics
+                <p />
+        </div>
+    </div>
+    <div class="app-section">
+        <div>
+            <div class="left-menu no-small">
+                <div class="menu-link link-to-share openShare">
+                    <div>
+                        <i class="far fa-edit"></i>
+                    </div>
+                    <p>Share
+                        <p />
+                </div>
+                <div class="menu-link link-to-profile openMyProfile">
+                    <div>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <p>My Profile
+                        <p />
+                </div>
+                <div class="menu-link link-to-home openHome ">
+                    <div>
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <p>Home
+                        <p />
+                </div>
+                <div class="menu-link link-to-activity openMyActivity">
+                    <div>
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <p>My Activities
+                        <p />
+                </div>
+
+                <div class="menu-link link-to-articleByCategory openArticleByCat">
+                    <div>
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <p>Read by Category
+                        <p />
+                </div>
+
+                <div class="menu-link link-to-articleInDepartment openMyDepartment">
+                    <div>
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <p>My Department
+                        <p />
+                </div>
+                <div class="menu-link link-to-topic openTopics active-link">
+                    <div>
+                        <i class="fas fa-list-alt"></i>
+                    </div>
+                    <p>Choose Topics
+                        <p />
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="app-content">
+
+                <div class="content-body choose-topics">
+                    <div class="content-div">
+                        <div class="instruction">
+                            <p>
+                                Edit topic categories<br /> to see on your news feed
+                            </p>
+                        </div>
+                        <div class="categories-selection">
+                            <div class="categories-list-selection editTopics">
+                                <button class="category-select selected-category">High Tect</button>
+                                <button class="category-select unselected-category">Finance</button>
+                                <button class="category-select unselected-category">Holiday</button>
+                                <button class="category-select unselected-category">Finance</button>
+                                <button class="category-select unselected-category">Holiday</button>
+                                <button class="category-select unselected-category">Finance</button>
+                                <button class="category-select unselected-category">Holiday</button>
+                                <button class="category-select unselected-category">Finance</button>
+                                <button class="category-select unselected-category">Holiday</button>
+                            </div>
+                        </div>
+
+                        <div class="categories-submit">
+                            <button class="submit-button">Confirm</button>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class=" app-footer ">
+        <p class="copyright">
+            copyright Teamwork 2019
+        </p>
+    </div>
+
+</body>
+
+</html>
