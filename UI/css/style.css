@@ -434,14 +434,8 @@ span.userFirstName {
     justify-content: center;
     align-content: start;
     grid-gap: 10px;
-<<<<<<< HEAD
-    height: 95%;
-||||||| merged common ancestors
-    height: 85%;
-=======
     height: 100%;
     margin-top: 4%;
->>>>>>> chore(LFA feedback/UI):Implement [start #168854088]
 }
 .instruction {
     text-align: center;
@@ -1969,11 +1963,6 @@ button.category-select:hover {
 
 .category-menu.department-header {
     text-align: center;
-<<<<<<< HEAD
-}
-||||||| merged common ancestors
-}
-=======
 }
 
 /* LFA feedback */
@@ -1988,4 +1977,3 @@ button.category-select:hover {
 .app-content.read-by-category {
     padding-top: 10%;
 }
->>>>>>> chore(LFA feedback/UI):Implement [start #168854088]
