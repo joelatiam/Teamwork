@@ -84,6 +84,19 @@ const createAccount = (res, newU) => {
   }
 };
 
+const signedUser = (user, token) => {
+  const userKeys = Object.keys(user);
+  const data = {};
+  data.token = token;
+  userKeys.forEach((key) => {
+    if (key !== 'password') {
+      data[key] = user[key];
+
+    }
+  });
+  return data;
+};
+
 const login = (res, data) => {
   const { email, password } = data;
   const signed = myDB.users.find((user) => user.email === email && user.password === password);
@@ -93,12 +106,7 @@ const login = (res, data) => {
     res.status(200).json({
       status: 200,
       message: `${signed.firstName} ${signed.lastName} is successfully logged in`,
-      data: {
-        token: myToken,
-        name: `${signed.firstName} ${signed.lastName}`,
-        email: signed.email,
-        role: `${signed.jobRole} in ${signed.department} department`,
-      },
+      data: signedUser(signed, myToken),
     });
   } else {
     errorMessage.failedAuth(res);
