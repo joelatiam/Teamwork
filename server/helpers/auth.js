@@ -4,7 +4,6 @@ import validateAuth from './validateAuth';
 import { generateJWT } from './myJWT';
 
 
-// check if the input meets the expectation
 const checkUserInput = (res, expected, data) => {
   const inputedKeys = Object.keys(data);
   const acceptedKeys = inputedKeys.filter((key) => expected.includes(key));
@@ -47,6 +46,7 @@ const userObject = {
 };
 
 const infoToSend = (uObject) => ({
+  token: generateJWT(uObject),
   Name: `${uObject.firstName} ${uObject.lastName}`,
   email: uObject.email,
   role: `${uObject.jobRole} in ${uObject.department} department`,
@@ -67,7 +67,7 @@ const createNewUser = (res, newUser) => {
   userObject.id = id;
   myDB.users.push(userObject);
 
-  const data = [{ token: generateJWT(userObject) }, infoToSend(userObject)];
+  const data = infoToSend(userObject);
   res.status(201).json({
     status: 201,
     message: 'user successfully created',
@@ -93,6 +93,9 @@ const login = (res, data) => {
       status: 200,
       message: `${signed.firstName} ${signed.lastName} is successfully logged in`,
       token: myToken,
+      Name: `${signed.firstName} ${signed.lastName}`,
+      email: signed.email,
+      role: `${signed.jobRole} in ${signed.department} department`,
     });
   } else {
     errorMessage.failedAuth(res);
