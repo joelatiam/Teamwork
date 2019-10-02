@@ -8,31 +8,35 @@
 // currentUser = JSON.parse(localStorage.getItem('user'));
 
 // ready to display topics
-const userTopMenu = document.querySelector('.app-menu>.user-info .user-name');
-if (userTopMenu) {
-  if (localStorage.getItem('user')) {
-    localUser = JSON.parse(localStorage.getItem('user'));
 
-    const displayTopUserMenu = (parent, { firstName, lastName, jobRole }) => {
-      parent.innerHTML = '';
+document.addEventListener('DOMContentLoaded', (event) => {
+  const userTopMenu = document.querySelector('.app-menu>.user-info .user-name');
+  if (userTopMenu) {
+    if (localStorage.getItem('user')) {
+      localUser = JSON.parse(localStorage.getItem('user'));
 
-      const fullName = document.createElement('span');
-      fullName.setAttribute('class', 'fullName');
-      fullName.innerHTML = `${firstName} ${lastName}`;
-      parent.appendChild(fullName);
+      const displayTopUserMenu = (parent, { firstName, lastName, jobRole }) => {
+        parent.innerHTML = '';
 
-      parent.innerHTML += ', ';
+        const fullName = document.createElement('span');
+        fullName.setAttribute('class', 'fullName');
+        fullName.innerHTML = `${firstName} ${lastName}`;
+        parent.appendChild(fullName);
 
-      const role = document.createElement('span');
-      role.setAttribute('class', 'jobRole');
-      role.innerHTML = jobRole;
-      parent.appendChild(role);
-    };
+        parent.innerHTML += ', ';
+
+        const role = document.createElement('span');
+        role.setAttribute('class', 'jobRole');
+        role.innerHTML = jobRole;
+        parent.appendChild(role);
+      };
 
 
-    displayTopUserMenu(userTopMenu, localUser);
+      displayTopUserMenu(userTopMenu, localUser);
+    }
   }
-}
+});
+
 
 const topicsReady = (parent) => {
   const allTopics = topics;
