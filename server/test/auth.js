@@ -33,9 +33,10 @@ const checkSignup = (user) => {
   user.message.should.be.a.string();
   user.data.should.be.an.object();
   user.data.token.should.be.a.string();
-  user.data.Name.should.be.a.string();
+  user.data.firstName.should.be.a.string();
+  user.data.lastName.should.be.a.string();
+  user.data.gender.should.be.a.string();
   user.data.email.should.be.a.string();
-  user.data.role.should.be.a.string();
   (new Date(user.data.joined)).should.be.an.date();
 };
 
