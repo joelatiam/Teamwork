@@ -434,7 +434,8 @@ span.userFirstName {
     justify-content: center;
     align-content: start;
     grid-gap: 10px;
-    height: 95%;
+    height: 100%;
+    margin-top: 4%;
 }
 .instruction {
     text-align: center;
@@ -842,7 +843,7 @@ p.new-user-message-large {
 @media only screen and (min-width: 768px) {
 
 	.app-content {
- padding-top: 50px;
+ /* padding-top: 50px; */
  }
 	 .no-small{
  display: block;
@@ -978,6 +979,8 @@ p.new-user-message-large {
     display: grid;
     /* margin-top: 5%; */
     height: 100%;
+    /* align-content: start; */
+    padding-top: 40px;
     grid-template-columns: 35% 65%;
 }
 }
@@ -990,7 +993,7 @@ body.app-body {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 	.app-content {
-    padding-top: 100px;
+    /* padding-top: 100px; */
     }
  .right-content.no-small {
     position: fixed;
@@ -1109,6 +1112,7 @@ body.app-body {
 
 .post-details>.header>.left-content>.user-info {
     padding: 5px;
+    padding-left: 15px;
 }
 
 .user-info>.name {
@@ -1166,7 +1170,7 @@ body.app-body {
     background-color: white;
     width: 20px;
     height: 20px;
-    display: grid;
+    display: none;
     align-content: center;
     justify-content: center;
     border-radius: 50%;
@@ -1883,11 +1887,9 @@ button.category-select:hover {
 	
 	grid-template-columns: 80% 20%;
 }
-.editTopics>button {
+.category-select {
     margin: 2px;
     font-size:15px;
-    width:110px
-    height:fit-content;
 }
 .category-menu {
     position: fixed;
@@ -1961,4 +1963,17 @@ button.category-select:hover {
 
 .category-menu.department-header {
     text-align: center;
+}
+
+/* LFA feedback */
+.user-post>.header>.post-avatar {
+    visibility: hidden;
+}
+.app-section>div {
+    align-content: start;
+    padding-top: 5%;
+}
+
+.app-content.read-by-category {
+    padding-top: 10%;
 }

@@ -29,22 +29,22 @@ const users = [
     joined: new Date(),
   },
   {
-    firstName: 'Nissi',
-    lastName: 'Atiamutu',
+    firstName: 'Daniel',
+    lastName: 'Nziranziza',
     gender: 'male',
-    email: 'nissiatiam@googlemail.com',
+    email: 'dan@andela.com',
     password: '123456',
-    department: 'Marketing',
-    jobRole: 'Marketing Specialist',
-    address: '12 av du Palmier',
+    department: 'IT',
+    jobRole: 'Software engineer',
+    address: 'Kigali Rwanda',
     topics: [],
     joined: new Date(),
   },
   {
-    firstName: 'Ken',
-    lastName: 'Bwende',
+    firstName: 'LFA',
+    lastName: 'Andela',
     gender: 'male',
-    email: 'kenB@googlemail.com',
+    email: 'lfa@andela.com',
     password: '123456',
     department: 'Operations Management',
     jobRole: 'Operations Manager',
@@ -156,7 +156,7 @@ const articles = [
     date: new Date(),
     title: 'Movie Review: Hustlers',
     article: entertainment2,
-    author: 'nissiatiam@googlemail.com',
+    author: 'dan@andela.com',
     topic: 1,
   },
   {
@@ -164,7 +164,7 @@ const articles = [
     date: new Date(),
     title: 'Apple Services Bundle Economics 101',
     article: business,
-    author: 'nissiatiam@googlemail.com',
+    author: 'dan@andela.com',
     topic: 2,
   },
   {
@@ -196,7 +196,7 @@ const articles = [
     date: new Date(),
     title: 'Getting Into Software Development',
     article: software,
-    author: 'kenB@googlemail.com',
+    author: 'lfa@andela.com',
     topic: 6,
   },
   {
@@ -204,7 +204,7 @@ const articles = [
     date: new Date(),
     title: 'I Was Wrong About My Daughter’s Wedding',
     article: family,
-    author: 'kenB@googlemail.com',
+    author: 'lfa@andela.com',
     topic: 7,
   },
   {
@@ -254,7 +254,7 @@ const comments = [
     id: 1,
     date: new Date(),
     comment: fakeComment,
-    author: 'nissiatiam@googlemail.com',
+    author: 'dan@andela.com',
     article: 1,
   },
   {
@@ -268,7 +268,7 @@ const comments = [
     id: 3,
     date: new Date(),
     comment: fakeComment,
-    author: 'kenB@googlemail.com',
+    author: 'lfa@andela.com',
     article: 2,
   },
   {
@@ -338,7 +338,7 @@ const comments = [
     id: 13,
     date: new Date(),
     comment: fakeComment,
-    author: 'nissiatiam@googlemail.com',
+    author: 'dan@andela.com',
     article: 7,
   },
   {
@@ -352,7 +352,7 @@ const comments = [
     id: 15,
     date: new Date(),
     comment: fakeComment,
-    author: 'kenB@googlemail.com',
+    author: 'lfa@andela.com',
     article: 8,
   },
   {
@@ -433,7 +433,6 @@ const comments = [
     article: 13,
   },
 ];
-
 
 let localUser = {};
 let localComment = {};

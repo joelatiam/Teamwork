@@ -10,11 +10,11 @@ const displayCategoryList = (parent) => {
   displayMyCategory(parent, myTopics);
 };
 
-const articleByTopic = (Categoryid) => {
+const articleByTopic = (Cat) => {
+  const Categoryid = parseInt(Cat, 10);
   const parent = document.querySelector('.app-content');
   // console.log(parent)
   let myArticles = articles.filter((article) => article.topic === Categoryid);
-  // console.log(myArticles)
   myArticles = myArticles.reverse();
 
   const myShortArticles = [];
@@ -23,8 +23,8 @@ const articleByTopic = (Categoryid) => {
     let {
       date, title, article, topic,
     } = post;
-    const id = post;
-    const author = post;
+    const { id } = post;
+    const { author } = post;
     const options = {
       weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',
     };
