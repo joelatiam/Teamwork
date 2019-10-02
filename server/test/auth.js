@@ -22,7 +22,7 @@ const fetchToken = (chai, app, signinAddress, done) => {
     .set('content-type', 'application/x-www-form-urlencoded')
     .send(userToSignin)
     .then((res) => {
-      token.push(res.body.token);
+      token.push(res.body.data.token);
     })
     .then(done, done);
 };
@@ -42,7 +42,7 @@ const checkSignup = (user) => {
 const checkSignin = (body) => {
   body.status.should.be.an.integer();
   body.message.should.be.a.string();
-  body.token.should.be.a.string();
+  body.data.should.be.an.object();
 };
 
 const resStatus = (x) => {

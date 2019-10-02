@@ -87,15 +87,18 @@ const createAccount = (res, newU) => {
 const login = (res, data) => {
   const { email, password } = data;
   const signed = myDB.users.find((user) => user.email === email && user.password === password);
+
   if (signed) {
     const myToken = generateJWT(signed);
     res.status(200).json({
       status: 200,
       message: `${signed.firstName} ${signed.lastName} is successfully logged in`,
-      token: myToken,
-      Name: `${signed.firstName} ${signed.lastName}`,
-      email: signed.email,
-      role: `${signed.jobRole} in ${signed.department} department`,
+      data: {
+        token: myToken,
+        name: `${signed.firstName} ${signed.lastName}`,
+        email: signed.email,
+        role: `${signed.jobRole} in ${signed.department} department`,
+      },
     });
   } else {
     errorMessage.failedAuth(res);
