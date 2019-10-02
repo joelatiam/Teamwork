@@ -22,7 +22,7 @@ const fetchToken = (chai, app, signinAddress, done) => {
     .set('content-type', 'application/x-www-form-urlencoded')
     .send(userToSignin)
     .then((res) => {
-      token.push(res.body.token);
+      token.push(res.body.data.token);
     })
     .then(done, done);
 };
@@ -31,18 +31,18 @@ const checkSignup = (user) => {
   user.should.be.an.object();
   user.status.should.be.an.integer();
   user.message.should.be.a.string();
-  user.data.should.be.an.array();
-  user.data[0].token.should.be.a.string();
-  user.data[1].Name.should.be.a.string();
-  user.data[1].email.should.be.a.string();
-  user.data[1].role.should.be.a.string();
-  (new Date(user.data[1].joined)).should.be.an.date();
+  user.data.should.be.an.object();
+  user.data.token.should.be.a.string();
+  user.data.Name.should.be.a.string();
+  user.data.email.should.be.a.string();
+  user.data.role.should.be.a.string();
+  (new Date(user.data.joined)).should.be.an.date();
 };
 
 const checkSignin = (body) => {
   body.status.should.be.an.integer();
   body.message.should.be.a.string();
-  body.token.should.be.a.string();
+  body.data.should.be.an.object();
 };
 
 const resStatus = (x) => {
