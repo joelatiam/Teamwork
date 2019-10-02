@@ -19,7 +19,8 @@ const readDepartment = (parent) => {
     let {
       date, title, article, topic,
     } = post;
-    const { id, author } = post;
+    const author = post;
+    const id = post;
 
     const options = {
       weekday: 'short', year: 'numeric', month: 'short', day: 'numeric',

@@ -1,5 +1,4 @@
-
-const activeUserInfo = {};
+import fakeArticles from './fakeArticles';
 
 const roleInMarketing = ['Chief Marketing Officer', 'Marketing Specialist', 'Brand Manager', 'Product Manager', 'SEO Specialist'];
 const roleInFinance = ['Accountant', 'Auditor', 'Budget Analyst', 'Chief Finance Officer', 'Finance Administrator'];
@@ -17,6 +16,7 @@ const myGender = ['male', 'female', 'other'];
 
 const users = [
   {
+    id: 1,
     firstName: 'Joël',
     lastName: 'Atiamutu',
     gender: 'male',
@@ -27,8 +27,10 @@ const users = [
     address: '12 av du Palmier',
     topics: [],
     joined: new Date(),
+    isAdmin: true,
   },
   {
+    id: 2,
     firstName: 'Nissi',
     lastName: 'Atiamutu',
     gender: 'male',
@@ -39,8 +41,10 @@ const users = [
     address: '12 av du Palmier',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 3,
     firstName: 'Ken',
     lastName: 'Bwende',
     gender: 'male',
@@ -51,8 +55,10 @@ const users = [
     address: '12 av du Palmier',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 4,
     firstName: 'Olivier',
     lastName: 'Esuka',
     gender: 'male',
@@ -63,8 +69,10 @@ const users = [
     address: '12 Kigali Rwanda',
     topics: [],
     joined: new Date(),
+    isAdmin: true,
   },
   {
+    id: 5,
     firstName: 'Natacha',
     lastName: 'Boyoko',
     gender: 'female',
@@ -75,8 +83,10 @@ const users = [
     address: '15 Himbi Goma',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 6,
     firstName: 'Christian',
     lastName: 'Atiamutu',
     gender: 'male',
@@ -87,8 +97,10 @@ const users = [
     address: '15 City center Goma',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 7,
     firstName: 'Blaise',
     lastName: 'Bikoro',
     gender: 'male',
@@ -99,8 +111,10 @@ const users = [
     address: '15 Himbi Goma',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 8,
     firstName: 'Marc',
     lastName: 'Lomba',
     gender: 'male',
@@ -111,8 +125,10 @@ const users = [
     address: '18 Kansanga Kampala',
     topics: [],
     joined: new Date(),
+    isAdmin: false,
   },
   {
+    id: 9,
     firstName: 'Espoir',
     lastName: 'Murhabazi',
     gender: 'male',
@@ -123,6 +139,7 @@ const users = [
     address: '25 Downtown Kigali',
     topics: [],
     joined: new Date(),
+    isAdmin: true,
   },
 ];
 
@@ -147,7 +164,7 @@ const articles = [
     id: 1,
     date: new Date(),
     title: 'The Marvel Superhero Who Saved Me',
-    article: entertainment1,
+    article: fakeArticles.entertainment1,
     author: 'oesukam@andela.com',
     topic: 1,
   },
@@ -155,7 +172,7 @@ const articles = [
     id: 2,
     date: new Date(),
     title: 'Movie Review: Hustlers',
-    article: entertainment2,
+    article: fakeArticles.entertainment2,
     author: 'nissiatiam@googlemail.com',
     topic: 1,
   },
@@ -163,7 +180,7 @@ const articles = [
     id: 3,
     date: new Date(),
     title: 'Apple Services Bundle Economics 101',
-    article: business,
+    article: fakeArticles.business,
     author: 'nissiatiam@googlemail.com',
     topic: 2,
   },
@@ -171,7 +188,7 @@ const articles = [
     id: 4,
     date: new Date(),
     title: 'Top 12 Things That Destroy Developer Productivity',
-    article: productivity,
+    article: fakeArticles.productivity,
     author: 'natachaboy@gmail.com',
     topic: 3,
   },
@@ -179,7 +196,7 @@ const articles = [
     id: 5,
     date: new Date(),
     title: 'What are people working on in coffee shops?',
-    article: work,
+    article: fakeArticles.work,
     author: 'natachaboy@gmail.com',
     topic: 4,
   },
@@ -187,7 +204,7 @@ const articles = [
     id: 6,
     date: new Date(),
     title: 'Blockchain is not only crappy technology but a bad vision for the future',
-    article: technology,
+    article: fakeArticles.technology,
     author: 'joelatiam@googlemail.com',
     topic: 5,
   },
@@ -195,7 +212,7 @@ const articles = [
     id: 7,
     date: new Date(),
     title: 'Getting Into Software Development',
-    article: software,
+    article: fakeArticles.software,
     author: 'kenB@googlemail.com',
     topic: 6,
   },
@@ -203,7 +220,7 @@ const articles = [
     id: 8,
     date: new Date(),
     title: 'I Was Wrong About My Daughter’s Wedding',
-    article: family,
+    article: fakeArticles.family,
     author: 'kenB@googlemail.com',
     topic: 7,
   },
@@ -211,7 +228,7 @@ const articles = [
     id: 9,
     date: new Date(),
     title: 'The Healthiest People in the World Don’t Go to the Gym',
-    article: health,
+    article: fakeArticles.health,
     author: 'chrisatiam@gmail.com',
     topic: 8,
   },
@@ -219,7 +236,7 @@ const articles = [
     id: 10,
     date: new Date(),
     title: 'Our Relationships Are Mirrors for Ourselves',
-    article: relationships,
+    article: fakeArticles.relationships,
     author: 'blaiseBik@gmail.com',
     topic: 9,
   },
@@ -227,7 +244,7 @@ const articles = [
     id: 11,
     date: new Date(),
     title: 'How to travel the world and get companies to pay for it',
-    article: travel,
+    article: fakeArticles.travel,
     author: 'marcLo@gmail.com',
     topic: 10,
   },
@@ -235,7 +252,7 @@ const articles = [
     id: 12,
     date: new Date(),
     title: 'I no longer understand my PhD dissertation ',
-    article: education,
+    article: fakeArticles.education,
     author: 'marcLo@gmail.com',
     topic: 11,
   },
@@ -243,7 +260,7 @@ const articles = [
     id: 13,
     date: new Date(),
     title: 'Why I Stopped Arguing Politics on Social Media',
-    article: politics,
+    article: fakeArticles.politics,
     author: 'espMurh@andela.com',
     topic: 12,
   },
@@ -253,230 +270,192 @@ const comments = [
   {
     id: 1,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'nissiatiam@googlemail.com',
     article: 1,
   },
   {
     id: 2,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'joelatiam@googlemail.com',
     article: 1,
   },
   {
     id: 3,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'kenB@googlemail.com',
     article: 2,
   },
   {
     id: 4,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'oesukam@andela.com',
     article: 2,
   },
   {
     id: 5,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'natachaboy@gmail.com',
     article: 3,
   },
   {
     id: 6,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'chrisatiam@gmail.com',
     article: 3,
   },
   {
     id: 7,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'blaiseBik@gmail.com',
     article: 4,
   },
   {
     id: 8,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'marcLo@gmail.com',
     article: 4,
   },
   {
     id: 9,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'espMurh@andela.com',
     article: 5,
   },
   {
     id: 10,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'marcLo@gmail.com',
     article: 5,
   },
   {
     id: 11,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'espMurh@andela.com',
     article: 6,
   },
   {
     id: 12,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'blaiseBik@gmail.com',
     article: 6,
   },
   {
     id: 13,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'nissiatiam@googlemail.com',
     article: 7,
   },
   {
     id: 14,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'joelatiam@googlemail.com',
     article: 7,
   },
   {
     id: 15,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'kenB@googlemail.com',
     article: 8,
   },
   {
     id: 16,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'oesukam@andela.com',
     article: 8,
   },
   {
     id: 17,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'natachaboy@gmail.com',
     article: 9,
   },
   {
     id: 18,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'chrisatiam@gmail.com',
     article: 9,
   },
   {
     id: 19,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'blaiseBik@gmail.com',
     article: 10,
   },
   {
     id: 20,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'marcLo@gmail.com',
     article: 10,
   },
   {
     id: 21,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'espMurh@andela.com',
     article: 11,
   },
   {
     id: 22,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'marcLo@gmail.com',
     article: 11,
   },
   {
     id: 23,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'espMurh@andela.com',
     article: 12,
   },
   {
     id: 24,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'blaiseBik@gmail.com',
     article: 12,
   },
   {
     id: 25,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'espMurh@andela.com',
     article: 13,
   },
   {
     id: 26,
     date: new Date(),
-    comment: fakeComment,
+    comment: fakeArticles.fakeComment,
     author: 'blaiseBik@gmail.com',
     article: 13,
   },
 ];
 
-
-let localUser = {};
-let localComment = {};
-let localArticle = {};
-
-
-if (localStorage.getItem('user')) {
-  localUser = JSON.parse(localStorage.getItem('user'));
-
-  if (localUser.email) {
-    const userExist = users.find((user) => user.email === (localUser.email));
-
-    if (!userExist) {
-      const newUser = users.push(localUser);
-    }
-  }
-}
-
-if (localStorage.getItem('comment')) {
-  localComment = JSON.parse(localStorage.getItem('comment'));
-
-  if (localComment.author === localUser.email) {
-    const commentExist = comments.find((uComment) => uComment.id === (localComment.id));
-
-    if (!commentExist) {
-      localComment.date = new Date();
-
-      const newComment = comments.push(localComment);
-      //         console.log(comments[newComment-1]);
-    }
-  }
-}
-
-if (localStorage.getItem('article')) {
-  localArticle = JSON.parse(localStorage.getItem('article'));
-
-  if (localArticle.author === localUser.email) {
-    const articleExist = articles.find((uArticle) => uArticle.id === (localArticle.id));
-
-    if (!articleExist) {
-      localArticle.date = new Date();
-
-      const newArticle = articles.push(localArticle);
-    }
-  }
-}
+export default {
+  myCompany,
+  myGender,
+  topics,
+  articles,
+  comments,
+  users,
+};
