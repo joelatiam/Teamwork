@@ -10,6 +10,15 @@ const userToSignup = {
   department: 'IT',
   address: '12 Av du Palmier, Kisangani',
 };
+
+const userWithPassError = {
+  firstName: 'Joel',
+  lastName: 'Atm',
+  email: 'abc@cd.co',
+  password: '12345',
+  gender: 'male',
+};
+
 const userToSignin = {
   email: 'joelatiam@googlemail.com',
   password: '123456',
@@ -47,24 +56,30 @@ const checkSignin = (body) => {
 };
 
 const resStatus = (x) => {
-  //   status 201 for signup or 202 for signin
-  if (x === `${apiVersion}/auth/signup`) return 201;
+  if (x === `${apiVersion}/auth/signup`) {
+    return 201;
+  }
   return 200;
 };
 
-const testAuth = (chai, app, address, userToSign, done) => {
+const testAuth = (chai, app, address, userToSign, done, ...error) => {
   chai.request(app)
     .post(address)
     .set('content-type', 'application/x-www-form-urlencoded')
     .send(userToSign)
     .end((err, res) => {
-      res.should.have.status(resStatus(address));
-      if (resStatus(address) === 201) {
-        checkSignup(res.body);
+      if (error.length > 0) {
+        res.should.have.status(error[0]);
+        res.body.status.should.be.an.integer();
+        res.body.error.should.be.a.string();
       } else {
-        checkSignin(res.body);
+        res.should.have.status(resStatus(address));
+        if (resStatus(address) === 201) {
+          checkSignup(res.body);
+        } else checkSignin(res.body);
       }
-      console.log('body: ', res.body);
+
+      console.log('body: ', error);
       console.log(address);
       done();
     });
@@ -72,6 +87,7 @@ const testAuth = (chai, app, address, userToSign, done) => {
 
 export default {
   userToSignup,
+  userWithPassError,
   userToSignin,
   testAuth,
   fetchToken,
