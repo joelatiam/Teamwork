@@ -4,7 +4,6 @@ import validateAuth from './validateAuth';
 import { generateJWT } from './myJWT';
 
 
-// check if the input meets the expectation
 const checkUserInput = (res, expected, data) => {
   const inputedKeys = Object.keys(data);
   const acceptedKeys = inputedKeys.filter((key) => expected.includes(key));
@@ -46,12 +45,18 @@ const userObject = {
   isAdmin: false,
 };
 
-const infoToSend = (uObject) => ({
-  Name: `${uObject.firstName} ${uObject.lastName}`,
-  email: uObject.email,
-  role: `${uObject.jobRole} in ${uObject.department} department`,
-  joined: uObject.joined.toLocaleDateString('US'),
-});
+const signedUser = (user) => {
+  const myToken = generateJWT(user);
+  const userKeys = Object.keys(user);
+  const data = {};
+  data.token = myToken;
+  userKeys.forEach((key) => {
+    if (key !== 'password') {
+      data[key] = user[key];
+    }
+  });
+  return data;
+};
 
 const createNewUser = (res, newUser) => {
   const id = myDB.users.length + 1;
@@ -67,11 +72,10 @@ const createNewUser = (res, newUser) => {
   userObject.id = id;
   myDB.users.push(userObject);
 
-  const data = [{ token: generateJWT(userObject) }, infoToSend(userObject)];
   res.status(201).json({
     status: 201,
     message: 'user successfully created',
-    data,
+    data: signedUser(userObject),
   });
 };
 const createAccount = (res, newU) => {
@@ -87,12 +91,12 @@ const createAccount = (res, newU) => {
 const login = (res, data) => {
   const { email, password } = data;
   const signed = myDB.users.find((user) => user.email === email && user.password === password);
+
   if (signed) {
-    const myToken = generateJWT(signed);
     res.status(200).json({
       status: 200,
       message: `${signed.firstName} ${signed.lastName} is successfully logged in`,
-      token: myToken,
+      data: signedUser(signed),
     });
   } else {
     errorMessage.failedAuth(res);
