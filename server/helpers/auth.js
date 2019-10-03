@@ -4,32 +4,32 @@ import validateAuth from './validateAuth';
 import { generateJWT } from './myJWT';
 
 
-const checkUserInput = (res, expected, data) => {
+const checkUserInput = (res, expected, optional, data) => {
   const inputedKeys = Object.keys(data);
-  const acceptedKeys = inputedKeys.filter((key) => expected.includes(key));
+  const requiredFields = inputedKeys.filter((key) => expected.includes(key)).slice(0, 5);
+  // let optionalKeys = inputedKeys.filter((key) => optional.includes(key));
+  // console.table(optionalKeys);
+  const keyToDB = expected.concat(optional);
 
-  if (acceptedKeys.length === expected.length) {
-    inputedKeys.forEach((key) => {
+  if (requiredFields.length === expected.length) {
+    keyToDB.forEach((key) => {
       const value = data[key];
-      validateAuth.authValidation(res, key.trim(), value.trim());
+      validateAuth.authValidation(res, key, value);
     });
   } else {
-    errorMessage.requestNotAccepted(res, expected);
+    errorMessage.requestNotAccepted(res, `${expected} Optional: ${optional}`);
   }
   const accepted = Object.keys(validateAuth.user);
 
-  // if (expected.length > accepted.length) {
-  //   // console.table(accepted)
-  //   errorMessage.missingFields(res, expected);
-  // }
-  return expected.length === accepted.length ? validateAuth.user : null;
+  return keyToDB.length === accepted.length ? validateAuth.user : null;
 };
 
-// Validate Signup datas before input
 const validateSignup = (res, data) => {
-  const expected = ['firstName', 'lastName', 'email', 'password', 'gender', 'jobRole', 'department', 'address'];
-  return checkUserInput(res, expected, data);
+  const expected = ['firstName', 'lastName', 'email', 'password', 'gender'];
+  const optional = ['jobRole', 'department', 'address'];
+  return checkUserInput(res, expected, optional, data);
 };
+
 
 // User signup
 const userObject = {
@@ -60,12 +60,12 @@ const signedUser = (user) => {
 
 const createNewUser = (res, newUser) => {
   const id = myDB.users.length + 1;
-  const keysTobeUpdated = Object.keys(newUser);
+  const keysToUpdate = Object.keys(newUser);
   const dataToInput = Object.values(newUser);
 
-  keysTobeUpdated.forEach((key) => {
-    const keyIndex = keysTobeUpdated.indexOf(key);
-    userObject[keysTobeUpdated[keyIndex]] = dataToInput[keyIndex];
+  keysToUpdate.forEach((key) => {
+    const keyIndex = keysToUpdate.indexOf(key);
+    userObject[keysToUpdate[keyIndex]] = dataToInput[keyIndex] ? dataToInput[keyIndex] : null;
   });
 
   userObject.joined = new Date();
