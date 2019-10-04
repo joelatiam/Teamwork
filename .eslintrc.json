@@ -13,7 +13,7 @@
         "sourceType": "module"
     },
     "rules": {
-        "no-console": "off",
+        "no-console": "error",
         "linebreak-style": 0,
         "global-require": 0,
         "eslint linebreak-style": [

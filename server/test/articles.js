@@ -49,8 +49,6 @@ const testWriteArticle = (chai, app, address, toShare, token, done) => {
     .end((err, res) => {
       res.should.have.status(201);
       checkArticle(res.body);
-      console.log('body: ', res.body);
-      console.log(address);
       done();
     });
 };
@@ -64,8 +62,6 @@ const testEditArticle = (chai, app, address, toShare, token, done) => {
     .end((err, res) => {
       res.should.have.status(201);
       checkArticle(res.body);
-      console.log('body: ', res.body);
-      console.log(address);
       done();
     });
 };
@@ -79,8 +75,6 @@ const writeComment = (chai, app, address, toShare, token, done) => {
     .end((err, res) => {
       res.should.have.status(201);
       checkComment(res.body);
-      console.log('body: ', res.body);
-      console.log(address);
       done();
     });
 };
@@ -92,9 +86,6 @@ const specificArticle = (chai, app, address, token, done) => {
     .set('content-type', 'application/x-www-form-urlencoded')
     .end((err, res) => {
       res.should.have.status(200);
-      //   checkArticle(res.body);
-      console.log('body: ', res.body);
-      console.log(address);
       done();
     });
 };
@@ -107,8 +98,6 @@ const deleteArticle = (chai, app, address, token, done) => {
     .end((err, res) => {
       res.should.have.status(200);
       checkDeletion(res.body);
-      console.log('body: ', res.body);
-      console.log(address);
       done();
     });
 };
@@ -120,9 +109,6 @@ const allArticles = (chai, app, address, token, done) => {
     .set('content-type', 'application/x-www-form-urlencoded')
     .end((err, res) => {
       res.should.have.status(200);
-
-      console.log('body: ', res.body);
-      console.log(address);
       done();
     });
 };
