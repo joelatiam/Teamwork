@@ -8,51 +8,23 @@ const verifyToken = (req, res) => {
     const tokenKey = req.headers.authorization.split(' ')[1];
     const access = verifyJWT(res, tokenKey);
     if (access) {
-      const { email, isAdmin } = access;
-      return { email, isAdmin };
+      const { id, email, isAdmin } = access;
+      return { id, email, isAdmin };
     }
   } else {
     errorMessage.missingToken(res);
   }
-};
-const checkArticleBody = (body) => {
-  const { title, topic, article } = body;
-  if (title && topic && article) {
-    return true;
-  }
-  return false;
-};
-
-const checkArticleOption = (req, status) => {
-  const { articleID } = req.params;
-  if (status === 'new article') {
-    return true;
-  } if (status === 'edit article' && articleID) {
-    return true;
-  }
-  return false;
-};
-
-const checkParams = (req, status) => {
-  let valid = false;
-  if (req.body) {
-    const checkBody = checkArticleBody(req.body);
-    if (checkBody) {
-      valid = checkArticleOption(req, status);
-    }
-  }
-  return valid;
 };
 
 const newArticle = (req, res) => {
   const user = verifyToken(req, res);
   if (user) {
     // console.table(user);
-    if (checkParams(req, 'new article')) {
+    if (req.body.article) {
       // console.table(req.body);
-      articles.validateArticle(res, req.body, user.email);
+      articles.validateArticle(res, req.body, user.id);
     } else {
-      errorMessage.requestNotAccepted(res, ['title', 'topic', 'article']);
+      errorMessage.requestNotAccepted(res, ['article', 'optional: title ,topic']);
     }
   }
 };
@@ -63,17 +35,16 @@ const getID = (req) => {
   return articleID;
 };
 
-const editFields = ['title', 'topic', 'article', 'articleID as URL parameter'];
+const editFields = ['title', 'articleID as URL parameter', 'optional : topic, article'];
 const editArtOpiton = 'Edit this Article';
 
 const editArticle = (req, res) => {
   const user = verifyToken(req, res);
   const articleID = getID(req);
-  const verifyParam = checkParams(req, 'edit article');
   let author = null;
 
-  if (user && verifyParam) {
-    author = user.email;
+  if (user && req.body.article) {
+    author = user.id;
     const authorize = articles.checkAuth(res, author, articleID, editArtOpiton);
 
     if (authorize) {
@@ -91,7 +62,7 @@ const newComment = (req, res) => {
     // console.table(user);
     if (req.body && req.params && req.body.comment) {
       // console.table(req.body);
-      articles.validateComment(res, user.email, req.body.comment, req.params);
+      articles.validateComment(res, user.id, req.body.comment, req.params);
     } else {
       errorMessage.requestNotAccepted(res, ['articleID as URL parameter', 'comment']);
     }
@@ -124,7 +95,7 @@ const deleteArticle = (req, res) => {
   if (user) {
     let { articleID } = req.params;
     articleID = parseInt(articleID, 10);
-    articles.deletePost(res, user.email, articleID);
+    articles.deletePost(res, user.id, articleID);
   }
 };
 

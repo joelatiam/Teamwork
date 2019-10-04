@@ -78,9 +78,6 @@ const testAuth = (chai, app, address, userToSign, done, ...error) => {
           checkSignup(res.body);
         } else checkSignin(res.body);
       }
-
-      console.log('body: ', error);
-      console.log(address);
       done();
     });
 };

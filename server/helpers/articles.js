@@ -23,6 +23,7 @@ const displayArticle = (res, article, type) => {
   res.status(201).json({
     status: 201,
     message,
+    'topic Category': myDB.topics[article.topic],
     article,
   });
 };
@@ -32,7 +33,7 @@ const displayNewComment = (res, comment) => {
   if (article) {
     res.status(201).json({
       status: 201,
-      message: 'relevant-success-message',
+      message: 'new article created',
       data: {
         id: comment.id,
         date: comment.date,
@@ -47,7 +48,7 @@ const displayNewComment = (res, comment) => {
 };
 
 const shareArticle = (res, author, title, article, topic) => {
-  if (myDB.topics[topic]) {
+  if (topic === null || myDB.topics[topic]) {
     const newData = myDB.articles.push({
       id: myDB.articles.length + 1,
       date: new Date(),
@@ -58,22 +59,26 @@ const shareArticle = (res, author, title, article, topic) => {
     });
     displayArticle(res, myDB.articles[newData - 1], 'new');
   } else {
-    errorMessage.IDNotfound(res, 'Topic');
+    errorMessage.IDNotfound(res, 'Topic Category');
   }
 };
 
-const editArticle = (res, author, title, article, topic, articleID) => {
-  if (myDB.topics[topic]) {
-    const articleToUpdate = myDB.articles.findIndex((art) => art.id === articleID);
-    if (articleToUpdate > -1) {
-      myDB.articles[articleToUpdate].title = title;
-      myDB.articles[articleToUpdate].topic = topic;
-      myDB.articles[articleToUpdate].article = article;
-      myDB.articles[articleToUpdate].lastUpdate = new Date();
-      displayArticle(res, myDB.articles[articleToUpdate], 'update');
-    }
+const approveEdit = (res, title, article, topic, articleID) => {
+  const articleToUpdate = myDB.articles.findIndex((art) => art.id === articleID);
+  if (articleToUpdate > -1) {
+    myDB.articles[articleToUpdate].article = article;
+    if (title !== null) myDB.articles[articleToUpdate].title = title;
+    if (topic !== null) myDB.articles[articleToUpdate].topic = topic;
+    myDB.articles[articleToUpdate].lastUpdate = new Date();
+    displayArticle(res, myDB.articles[articleToUpdate], 'update');
+  }
+};
+
+const editArticle = (res, title, article, topic, articleID) => {
+  if (topic === null || myDB.topics[topic]) {
+    approveEdit(res, title, article, topic, articleID);
   } else {
-    errorMessage.IDNotfound(res, 'Topic');
+    errorMessage.IDNotfound(res, 'Topic Category');
   }
 };
 
@@ -95,23 +100,28 @@ const addComment = (res, author, Ucomment, article) => {
   }
 };
 
+const trimArticle = (data, titleExist, topicExist) => {
+  const artObj = {};
+  artObj.article = data.article.trim().slice(0, 60);
+  artObj.title = titleExist ? data.title.trim().slice(0, 60) : null;
+  artObj.topic = topicExist ? parseInt(data.topic, 10) : null;
+
+  return artObj;
+};
+
 const validateArticle = (res, data, author, ...articleID) => {
   const { title, topic, article } = data;
 
-  const checkedTitle = checkInput.checkLength(res, 'Title', title, 2);
-  const checkedArticle = checkInput.checkLength(res, 'Article', article, 10);
-  const checkedTopic = checkInput.checkID(res, topic, 'Topic');
+  const checkedTitle = title ? checkInput.checkLength(res, 'Title', title, 2) : null;
+  const checkedArticle = article ? checkInput.checkLength(res, 'Article', article, 10) : null;
+  const checkedTopic = topic ? checkInput.checkID(res, topic, 'Topic') : null;
 
-  if (checkedTitle === true && checkedArticle === true && checkedTopic === true) {
-    title.trim();
-    article.trim();
-    const newTitle = title.slice(0, 60);
-    const newArticle = article.slice(0, 2000);
-    const newTopic = parseInt(topic, 10);
+  if (checkedArticle === true) {
+    const artObj = trimArticle(data, checkedTitle, checkedTopic);
     if (articleID.length > 0) {
-      editArticle(res, author, newTitle, newArticle, newTopic, articleID[0]);
+      editArticle(res, artObj.title, artObj.article, artObj.topic, articleID[0]);
     } else {
-      shareArticle(res, author, newTitle, newArticle, newTopic);
+      shareArticle(res, author, artObj.title, artObj.article, artObj.topic);
     }
   }
 };

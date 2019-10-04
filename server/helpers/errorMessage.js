@@ -55,9 +55,9 @@ const requestNotAccepted = (res, keys) => sendError(res, 400, errorMessage.inval
 
 const missingFields = (res, keys) => sendError(res, 400, errorMessage.missingFields, keys);
 
-const failedAuth = (res) => sendError(res, 400, errorMessage.failedAuth);
+const failedAuth = (res) => sendError(res, 401, errorMessage.failedAuth);
 
-const invalidToken = (res) => sendError(res, 400, errorMessage.wrongToken);
+const invalidToken = (res) => sendError(res, 401, errorMessage.wrongToken);
 
 const missingToken = (res) => sendError(res, 401, errorMessage.noToken);
 

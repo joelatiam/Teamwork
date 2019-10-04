@@ -23,7 +23,7 @@ const dateFormat = (moment) => {
 };
 
 const authorsName = (author) => {
-  const user = myDB.users.find((u) => u.email === author);
+  const user = myDB.users.find((u) => u.id === author);
   return `${user.firstName} ${user.lastName}`;
 };
 
