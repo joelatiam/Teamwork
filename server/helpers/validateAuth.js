@@ -59,8 +59,12 @@ const validatePassWord = (res, key, value) => {
 };
 
 const validateWord = (res, key, value) => {
-  if (checkInput.checkLength(res, key, value, 2) === true) {
+  if (value && value.length > 1) {
     user[key] = value;
+  } else if (!value) {
+    user[key] = undefined;
+  } else {
+    errorMessage.shortLength(res, key, 2);
   }
 };
 
@@ -84,7 +88,8 @@ const validateNameGenderPw = (res, key, value) => {
   }
 };
 
-const authValidation = (res, key, value) => {
+const authValidation = (res, key, val) => {
+  const value = val ? val.trim() : null;
   delete user[key];
   switch (true) {
     case (key === 'firstName' || key === 'lastName' || key === 'password' || key === 'gender'):
