@@ -29,7 +29,6 @@ const validateSignup = async (res, param) => {
   try {
     const ifExist = await config.pool.query(checkEmail, [param.email]);
     if (ifExist.rows[0]) {
-      
       errorMessage.emailIsUsed(res, param.email);
     } else {
       const user = await signup(res, param);
@@ -38,7 +37,6 @@ const validateSignup = async (res, param) => {
   } catch (err) {
     return (err);
   }
-  
 };
 
 export default {
