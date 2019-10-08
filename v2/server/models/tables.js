@@ -1,5 +1,6 @@
 import config from '../config/config';
 
+const db = 'CREATE DATABASE IF NOT EXISTS teamwork';
 const users = `CREATE TABLE IF NOT EXISTS users
 (	
 	id serial PRIMARY KEY NOT NULL ,
@@ -17,8 +18,9 @@ const users = `CREATE TABLE IF NOT EXISTS users
 
 const myTables = [users];
 
-const createTables = () => {
-  myTables.forEach((table) => {
+const createTables = async () => {
+  
+  await myTables.forEach((table) => {
     config.pool.query(table, (err, res) => {
       if (err) {
         console.log(err.stack);
@@ -29,4 +31,15 @@ const createTables = () => {
   });
 };
 
-export default createTables;
+const createDB = async () => {
+  try {
+    await config.pool.query(db);
+  } catch (err) {
+    return (err);
+  }
+}
+
+export default {
+  createDB,
+  createTables,
+};

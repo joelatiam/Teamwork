@@ -45,13 +45,18 @@ const signedUser = (user) => {
 };
 
 const createAccount = async (res, newU) => {
-  const newUser = await auth.validateSignup(res, newU);
-  if (newUser) {
-    res.status(201).json({
-      status: 201,
-      message: 'user successfully created',
-      data: signedUser(newUser),
-    });
+  try {
+    const newUser = await auth.validateSignup(res, newU);
+    if (newUser) {
+      res.status(201).json({
+        status: 201,
+        message: 'user successfully created',
+        data: signedUser(newUser),
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.send('server error');
   }
 };
 
