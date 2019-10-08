@@ -4,5 +4,10 @@ node_js:
 cache:
   directories:
     - "node_modules"
+services:
+  - postgresql
 
 after_success: npm run coverage
+
+before_script:
+  - psql -c 'create database teamwork;' -U postgres
