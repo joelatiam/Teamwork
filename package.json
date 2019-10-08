@@ -1,12 +1,18 @@
 {
   "name": "teamwork",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "![Teamwork Logo](UI/img/logo.png)",
   "main": "server/index.js",
   "scripts": {
     "start": "babel-node v2/server/index.js",
     "serve": "node dist/index.js",
+<<<<<<< HEAD
     "test": "nyc --reporter=html --reporter=text  mocha --recursive --require @babel/register ./v2/server/**/test.js --timeout 10000 --exit  ",
+||||||| merged common ancestors
+    "test": "nyc --reporter=html --reporter=text  mocha --recursive --require @babel/register ./server/**/test.js --timeout 10000 --exit  ",
+=======
+    "test": "nyc --reporter=html --reporter=text  mocha --recursive --require @babel/register server/**/test.js --timeout 10000 --exit  ",
+>>>>>>> ch-usePostgreSql-168968977
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {

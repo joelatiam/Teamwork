@@ -5,6 +5,8 @@ import express from 'express';
 import doc from './doc';
 import router from './routes';
 
+const port = process.env.PORT || 3000;
+
 
 const app = express();
 
@@ -20,6 +22,6 @@ app.get('/api/v1', (req, res) => {
 });
 
 
-app.listen(process.env.PORT, () => console.log(`Teamwork app listening on port ${process.env.PORT}!`));
+app.listen(port, () => console.log(`Teamwork app listening on port ${port}!`));
 
 export default app;
