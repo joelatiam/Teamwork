@@ -22,7 +22,6 @@ app.get('/api/v2', (req, res) => {
 
 
 app.listen(port);
-tables.createDB();
 tables.createTables();
 
 export default app;

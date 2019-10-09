@@ -23,23 +23,13 @@ const createTables = async () => {
   await myTables.forEach((table) => {
     config.pool.query(table, (err, res) => {
       if (err) {
-        console.log(err.stack);
-      } else {
-        console.log(res.rows[0]);
+        return (err.stack);
       }
     });
   });
 };
 
-const createDB = async () => {
-  try {
-    await config.pool.query(db);
-  } catch (err) {
-    return (err);
-  }
-}
 
 export default {
-  createDB,
   createTables,
 };
