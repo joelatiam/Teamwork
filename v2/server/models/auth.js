@@ -2,6 +2,7 @@ import config from '../config/config';
 import errorMessage from '../helpers/errorMessage';
 
 const checkEmail = 'SELECT * FROM users WHERE email = $1';
+const login = 'SELECT * FROM users WHERE email = $1 AND  password = $2';
 const newUser = `INSERT INTO users 
     (firstName, lastName, email, password, gender, jobRole, department, address, isadmin )
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
@@ -39,6 +40,12 @@ const validateSignup = async (res, param) => {
   }
 };
 
+const signin = async (email, password) => {
+  const user = await config.pool.query(login, [email, password]);
+  return user.rows[0];
+};
+
 export default {
   validateSignup,
+  signin,
 };

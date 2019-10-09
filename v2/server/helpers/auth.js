@@ -1,4 +1,3 @@
-import myDB from '../models/myDB';
 import auth from '../models/auth';
 import errorMessage from './errorMessage';
 import validateAuth from './validateAuth';
@@ -55,19 +54,18 @@ const createAccount = async (res, newU) => {
       });
     }
   } catch (err) {
-    console.log(err);
     res.send('server error');
   }
 };
 
-const login = (res, data) => {
+const login = async (res, data) => {
   const { email, password } = data;
-  const signed = myDB.users.find((user) => user.email === email && user.password === password);
+  const signed = await auth.signin(email, password);
 
   if (signed) {
     res.status(200).json({
       status: 200,
-      message: `${signed.firstName} ${signed.lastName} is successfully logged in`,
+      message: `${signed.firstname} ${signed.lastname} is successfully logged in`,
       data: signedUser(signed),
     });
   } else {

@@ -20,17 +20,17 @@ describe('### Test Authentication ###', () => {
     });
   });
 
-  // describe(`POST ${apiVersion}/auth/signup`, () => {
-  //   it('Should return a failed authentication with status: 400', (done) => {
-  //     auth.testAuth(chai, app, `${apiVersion}/auth/signup`, auth.userWithPassError, done, 400);
-  //   });
-  // });
+  describe(`POST ${apiVersion}/auth/signup`, () => {
+    it('Should return a failed authentication with status: 400', (done) => {
+      auth.testAuth(chai, app, `${apiVersion}/auth/signup`, auth.userWithPassError, done, 400);
+    });
+  });
 
-  // describe(`POST ${apiVersion}/auth/signin`, () => {
-  //   it('Should return info about the user who has signed in', (done) => {
-  //     auth.testAuth(chai, app, signinAddress, auth.userToSignin, done);
-  //   });
-  // });
+  describe(`POST ${apiVersion}/auth/signin`, () => {
+    it('Should return info about the user who has signed in', (done) => {
+      auth.testAuth(chai, app, signinAddress, auth.userToSignin, done);
+    });
+  });
 });
 
 describe('### Test About Share and Edit Articles ###', () => {

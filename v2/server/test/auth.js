@@ -1,9 +1,9 @@
-import apiVersion from '../helpers/index';
+import apiVersion from '../helpers';
 
 const userToSignup = {
   firstName: 'Joel',
   lastName: 'Atm',
-  email: 'joatB@dcd.co',
+  email: 'joeatiam@googlemail.com',
   password: '123456',
   gender: 'male',
   jobRole: 'Software Engineer',
@@ -11,17 +11,17 @@ const userToSignup = {
   address: '12 Av du Palmier, Kisangani',
 };
 
+const userToSignin = {
+  email: 'joeatiam@googlemail.com',
+  password: '123456',
+};
+
 const userWithPassError = {
   firstName: 'Joel',
   lastName: 'Atm',
-  email: 'abzsvjcV@cd.co',
+  email: 'abc@cd.co',
   password: '12345',
   gender: 'male',
-};
-
-const userToSignin = {
-  email: 'joelatiam@googlemail.com',
-  password: '123456',
 };
 
 const token = [];
@@ -42,8 +42,8 @@ const checkSignup = (user) => {
   user.message.should.be.a.string();
   user.data.should.be.an.object();
   user.data.token.should.be.a.string();
-  user.data.firstName.should.be.a.string();
-  user.data.lastName.should.be.a.string();
+  user.data.firstname.should.be.a.string();
+  user.data.lastname.should.be.a.string();
   user.data.gender.should.be.a.string();
   user.data.email.should.be.a.string();
   (new Date(user.data.joined)).should.be.an.date();
@@ -56,7 +56,7 @@ const checkSignin = (body) => {
 };
 
 const resStatus = (x) => {
-  if (x.includes('signup')) {
+  if (x === `${apiVersion}/auth/signup`) {
     return 201;
   }
   return 200;
@@ -68,8 +68,16 @@ const testAuth = (chai, app, address, userToSign, done, ...error) => {
     .set('content-type', 'application/x-www-form-urlencoded')
     .send(userToSign)
     .end((err, res) => {
-      res.should.have.status(201);
-
+      if (error.length > 0) {
+        res.should.have.status(error[0]);
+        res.body.status.should.be.an.integer();
+        res.body.error.should.be.a.string();
+      } else {
+        res.should.have.status(resStatus(address));
+        if (resStatus(address) === 201) {
+          checkSignup(res.body);
+        } else checkSignin(res.body);
+      }
       done();
     });
 };
