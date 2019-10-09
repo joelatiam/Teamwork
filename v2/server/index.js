@@ -21,7 +21,7 @@ app.get('/api/v2', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`Teamwork app listening on port ${port}!`));
+app.listen(port);
 tables.createDB();
 tables.createTables();
 
