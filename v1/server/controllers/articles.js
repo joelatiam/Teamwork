@@ -2,6 +2,7 @@ import { verifyJWT } from '../helpers/myJWT';
 import errorMessage from '../helpers/errorMessage';
 import articles from '../helpers/articles';
 
+// eslint-disable-next-line consistent-return
 const verifyToken = (req, res) => {
   if (req.headers.authorization) {
     const tokenKey = req.headers.authorization.split(' ')[1];
@@ -18,7 +19,9 @@ const verifyToken = (req, res) => {
 const newArticle = (req, res) => {
   const user = verifyToken(req, res);
   if (user) {
+    // console.table(user);
     if (req.body.article) {
+      // console.table(req.body);
       articles.validateArticle(res, req.body, user.id);
     } else {
       errorMessage.requestNotAccepted(res, ['article', 'optional: title ,topic']);
@@ -56,7 +59,9 @@ const editArticle = (req, res) => {
 const newComment = (req, res) => {
   const user = verifyToken(req, res);
   if (user) {
+    // console.table(user);
     if (req.body && req.params && req.body.comment) {
+      // console.table(req.body);
       articles.validateComment(res, user.id, req.body.comment, req.params);
     } else {
       errorMessage.requestNotAccepted(res, ['articleID as URL parameter', 'comment']);
@@ -67,6 +72,7 @@ const newComment = (req, res) => {
 const articleDetails = (req, res) => {
   const user = verifyToken(req, res);
   if (user) {
+    // console.table(user);
     if (req.params) {
       let { articleID } = req.params;
       articleID = parseInt(articleID, 10);

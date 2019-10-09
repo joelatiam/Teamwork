@@ -1,5 +1,6 @@
 import errorMessage from './errorMessage';
 
+// eslint-disable-next-line consistent-return
 const checkLength = (res, type, word, ...required) => {
   const hasWord = /\w/g;
   switch (true) {

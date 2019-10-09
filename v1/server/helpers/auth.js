@@ -7,6 +7,8 @@ import { generateJWT } from './myJWT';
 const checkUserInput = (res, expected, optional, data) => {
   const inputedKeys = Object.keys(data);
   const requiredFields = inputedKeys.filter((key) => expected.includes(key)).slice(0, 5);
+  // let optionalKeys = inputedKeys.filter((key) => optional.includes(key));
+  // console.table(optionalKeys);
   const keyToDB = expected.concat(optional);
 
   if (requiredFields.length === expected.length) {
@@ -29,6 +31,7 @@ const validateSignup = (res, data) => {
 };
 
 
+// User signup
 const userObject = {
   id: undefined,
   firstName: '',

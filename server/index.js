@@ -22,6 +22,6 @@ app.get('/api/v1', (req, res) => {
 });
 
 
-app.listen(port, () => console.log(`Teamwork app listening on port ${port}!`));
+app.listen(port);
 
 export default app;

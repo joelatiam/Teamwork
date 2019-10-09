@@ -3,17 +3,12 @@ import apiVersion from '../helpers';
 const userToSignup = {
   firstName: 'Joel',
   lastName: 'Atm',
-  email: 'joeatiam@googlemail.com',
+  email: 'abc@cd.co',
   password: '123456',
   gender: 'male',
   jobRole: 'Software Engineer',
   department: 'IT',
   address: '12 Av du Palmier, Kisangani',
-};
-
-const userToSignin = {
-  email: 'joeatiam@googlemail.com',
-  password: '123456',
 };
 
 const userWithPassError = {
@@ -22,6 +17,11 @@ const userWithPassError = {
   email: 'abc@cd.co',
   password: '12345',
   gender: 'male',
+};
+
+const userToSignin = {
+  email: 'joelatiam@googlemail.com',
+  password: '123456',
 };
 
 const token = [];
@@ -42,6 +42,11 @@ const checkSignup = (user) => {
   user.message.should.be.a.string();
   user.data.should.be.an.object();
   user.data.token.should.be.a.string();
+  user.data.firstName.should.be.a.string();
+  user.data.lastName.should.be.a.string();
+  user.data.gender.should.be.a.string();
+  user.data.email.should.be.a.string();
+  (new Date(user.data.joined)).should.be.an.date();
 };
 
 const checkSignin = (body) => {

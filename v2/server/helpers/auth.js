@@ -32,14 +32,8 @@ const validateSignup = (res, data) => {
 
 const signedUser = (user) => {
   const myToken = generateJWT(user);
-  const userKeys = Object.keys(user);
   const data = {};
   data.token = myToken;
-  userKeys.forEach((key) => {
-    if (key !== 'password') {
-      data[key] = user[key];
-    }
-  });
   return data;
 };
 
