@@ -104,9 +104,9 @@ describe('### Teamwork API V2 Test', () => {
   });
 
   authentication();
-  // shareEdit();
-  // comment();
-  // specificArticle();
+  shareEdit();
+  comment();
+  specificArticle();
 
   after(() => {
      tables.dropTables();
