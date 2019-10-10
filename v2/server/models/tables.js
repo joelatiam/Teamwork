@@ -1,6 +1,7 @@
 import config from '../config/config';
 
-const db = 'CREATE DATABASE IF NOT EXISTS teamwork';
+const dropUser = 'DROP TABLE IF EXISTS users';
+
 const users = `CREATE TABLE IF NOT EXISTS users
 (	
 	id serial PRIMARY KEY NOT NULL ,
@@ -29,7 +30,16 @@ const createTables = async () => {
   });
 };
 
+const dropTables = () => {
+  const tablesToDrop = [dropUser];
+
+  tablesToDrop.forEach((table) => {
+    config.pool.query(table);
+  });
+};
+
 
 export default {
   createTables,
+  dropTables,
 };
