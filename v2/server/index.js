@@ -2,6 +2,7 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
+import doc from './doc';
 import router from './routes';
 import tables from './models/tables';
 
@@ -15,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(router.auth);
 app.use(router.articles);
+app.use(doc);
 
 app.get('/api/v2', (req, res) => {
   res.send('Welcome to Teamwork v2!');

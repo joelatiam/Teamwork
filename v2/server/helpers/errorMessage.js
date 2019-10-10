@@ -41,7 +41,7 @@ const nameCharacter = (res, userInput) => sendError(res, 400, `${userInput} ${er
 
 const emailFormat = (res) => sendError(res, 400, errorMessage.wrongEmailFormat);
 
-const emailIsUsed = (res, userEmail) => sendError(res, 403, `${userEmail} ${errorMessage.usedEmail}`);
+const emailIsUsed = (res, userEmail) => sendError(res, 409, `${userEmail} ${errorMessage.usedEmail}`);
 
 const passwordLenght = (res, userInput) => sendError(res, 400, `${userInput} ${errorMessage.pwLenght}`);
 

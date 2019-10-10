@@ -1,6 +1,5 @@
 import config from '../config/config';
 
-const db = 'CREATE DATABASE IF NOT EXISTS teamwork';
 const users = `CREATE TABLE IF NOT EXISTS users
 (	
 	id serial PRIMARY KEY NOT NULL ,

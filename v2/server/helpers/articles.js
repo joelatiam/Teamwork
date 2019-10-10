@@ -4,9 +4,9 @@ import myDB from '../models/myDB';
 import articles from '../models/articles';
 import shortArticles from './shortArticles';
 
-const checkAuth = (res, author, articleID, authorization) => {
+const checkAuth = async (res, author, articleID, authorization) => {
   let status = false;
-  const findArticle = myDB.articles.find((art) => art.id === articleID);
+  const findArticle = await articles.findArticleByID(articleID);
   if (findArticle) {
     if (findArticle.author === author) {
       status = true;
@@ -47,6 +47,24 @@ const displayNewComment = (res, comment) => {
   }
 };
 
+const editArticle = async (res, data, articleID) => {
+  const dataTosend = Object.keys(data);
+  const dataToDB = { articleID };
+  const uData = data;
+
+  dataTosend.forEach((key) => {
+    if (uData[key] === undefined) {
+      uData[key] = '';
+    }
+    dataToDB[key] = uData[key];
+  });
+
+  const article = await articles.updateArt(dataToDB);
+  if (article) {
+    displayArticle(res, article, 'update');
+  }
+};
+
 const shareArticle = async (res, author, title, article, topic) => {
   const dataToDB = {
     title,
@@ -58,24 +76,6 @@ const shareArticle = async (res, author, title, article, topic) => {
   displayArticle(res, newArticle, 'new');
 };
 
-const approveEdit = (res, title, article, topic, articleID) => {
-  const articleToUpdate = myDB.articles.findIndex((art) => art.id === articleID);
-  if (articleToUpdate > -1) {
-    myDB.articles[articleToUpdate].article = article;
-    if (title !== null) myDB.articles[articleToUpdate].title = title;
-    if (topic !== null) myDB.articles[articleToUpdate].topic = topic;
-    myDB.articles[articleToUpdate].lastUpdate = new Date();
-    displayArticle(res, myDB.articles[articleToUpdate], 'update');
-  }
-};
-
-const editArticle = (res, title, article, topic, articleID) => {
-  if (topic === null || myDB.topics[topic]) {
-    approveEdit(res, title, article, topic, articleID);
-  } else {
-    errorMessage.IDNotfound(res, 'Topic Category');
-  }
-};
 
 const addComment = (res, author, Ucomment, article) => {
   const comment = Ucomment.slice(0, 280);
@@ -104,17 +104,22 @@ const trimArticle = (data, titleExist, topicExist) => {
   return artObj;
 };
 
-const validateArticle = (res, data, author, ...articleID) => {
+const validateArticle = async (res, data, author, ...articleID) => {
   const { title, topic, article } = data;
 
   const checkedTitle = title ? checkInput.checkLength(res, 'Title', title, 2) : null;
   const checkedArticle = article ? checkInput.checkLength(res, 'Article', article, 10) : null;
-  const checkedTopic = topic ? checkInput.checkLength(res, 'Category', title, topic) : null;
+  const checkedTopic = topic ? checkInput.checkLength(res, 'Category', topic, 2) : null;
 
   if (checkedArticle === true) {
     const artObj = trimArticle(data, checkedTitle, checkedTopic);
     if (articleID.length > 0) {
-      editArticle(res, artObj.title, artObj.article, artObj.topic, articleID[0]);
+      const myArticle = {
+        title,
+        article,
+        category: topic,
+      };
+      editArticle(res, myArticle, articleID[0]);
     } else {
       shareArticle(res, author, artObj.title, artObj.article, artObj.topic);
     }
@@ -155,10 +160,10 @@ const getArticle = (res, articleID) => {
   }
 };
 
-const displayAllArticles = (res, articles) => {
+const displayAllArticles = (res, art) => {
   res.status(200).json({
     status: 200,
-    data: articles,
+    data: art,
   });
 };
 
