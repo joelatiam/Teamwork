@@ -1,6 +1,6 @@
 const articleToShare = {
   title: 'Testing with Chai',
-  topic: 3,
+  topic: 'Movies',
   article: 'This is an article',
 };
 
