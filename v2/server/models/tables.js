@@ -16,7 +16,20 @@ const users = `CREATE TABLE IF NOT EXISTS users
     joined timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP
 );`;
 
-const myTables = [users];
+const articles = `CREATE TABLE IF NOT EXISTS articles
+(
+    id serial PRIMARY KEY NOT NULL,
+    title character varying,
+    category character varying,
+    article text NOT NULL,
+    author integer NOT NULL,
+    created time without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    lastupdate timestamp with time zone,
+    CONSTRAINT author FOREIGN KEY (author)
+        REFERENCES users (id) MATCH SIMPLE
+);`;
+
+const myTables = [users, articles];
 
 const createTables = async () => {
   

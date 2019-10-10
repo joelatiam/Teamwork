@@ -1,6 +1,7 @@
 import errorMessage from './errorMessage';
 import checkInput from './checkInput';
 import myDB from '../models/myDB';
+import articles from '../models/articles';
 import shortArticles from './shortArticles';
 
 const checkAuth = (res, author, articleID, authorization) => {
@@ -23,7 +24,6 @@ const displayArticle = (res, article, type) => {
   res.status(201).json({
     status: 201,
     message,
-    'topic Category': myDB.topics[article.topic],
     article,
   });
 };
@@ -47,20 +47,15 @@ const displayNewComment = (res, comment) => {
   }
 };
 
-const shareArticle = (res, author, title, article, topic) => {
-  if (topic === null || myDB.topics[topic]) {
-    const newData = myDB.articles.push({
-      id: myDB.articles.length + 1,
-      date: new Date(),
-      title,
-      article,
-      author,
-      topic,
-    });
-    displayArticle(res, myDB.articles[newData - 1], 'new');
-  } else {
-    errorMessage.IDNotfound(res, 'Topic Category');
-  }
+const shareArticle = async (res, author, title, article, topic) => {
+  const dataToDB = {
+    title,
+    category: topic,
+    article,
+    author,
+  };
+  const newArticle = await articles.newArticle(dataToDB);
+  displayArticle(res, newArticle, 'new');
 };
 
 const approveEdit = (res, title, article, topic, articleID) => {
@@ -102,9 +97,9 @@ const addComment = (res, author, Ucomment, article) => {
 
 const trimArticle = (data, titleExist, topicExist) => {
   const artObj = {};
-  artObj.article = data.article.trim().slice(0, 60);
+  artObj.article = data.article.trim().slice(0, 250);
   artObj.title = titleExist ? data.title.trim().slice(0, 60) : null;
-  artObj.topic = topicExist ? parseInt(data.topic, 10) : null;
+  artObj.topic = topicExist ? data.topic.trim().slice(0, 20) : null;
 
   return artObj;
 };
@@ -114,7 +109,7 @@ const validateArticle = (res, data, author, ...articleID) => {
 
   const checkedTitle = title ? checkInput.checkLength(res, 'Title', title, 2) : null;
   const checkedArticle = article ? checkInput.checkLength(res, 'Article', article, 10) : null;
-  const checkedTopic = topic ? checkInput.checkID(res, topic, 'Topic') : null;
+  const checkedTopic = topic ? checkInput.checkLength(res, 'Category', title, topic) : null;
 
   if (checkedArticle === true) {
     const artObj = trimArticle(data, checkedTitle, checkedTopic);
