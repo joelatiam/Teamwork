@@ -37,6 +37,7 @@ const checkDeletion = (body) => {
   body.status.should.be.an.integer();
   body.message.should.be.a.string();
 };
+const articleID = [];
 
 const testWriteArticle = (chai, app, address, toShare, token, done) => {
   chai.request(app)
@@ -46,6 +47,9 @@ const testWriteArticle = (chai, app, address, toShare, token, done) => {
     .send(toShare)
     .end((err, res) => {
       res.should.have.status(201);
+      if(res.body && res.body.article.id){
+        articleID.push(res.body.article.id);
+      }
       checkArticle(res.body);
       done();
     });
@@ -120,4 +124,5 @@ export default {
   writeComment,
   deleteArticle,
   testEditArticle,
+  articleID,
 };
