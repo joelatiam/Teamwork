@@ -12,9 +12,19 @@ if (process.env.NODE_ENV === 'test') {
   DEV_URL = process.env.DEV_URL;
 }
 
-const local = {
+let local = {
   connectionString: DEV_URL,
 };
+
+if (!process.env.NODE_ENV) {
+  local = {
+    user: process.env.PGUSER,
+    host: process.env.PGHOST,
+    database: process.env.PGDATABASE,
+    password: process.env.PGPASSWORD || null,
+    port: process.env.PGPORT,
+  };
+}
 
 const heroku = {
   connectionString: process.env.DATABASE_URL,
