@@ -28,8 +28,8 @@ const displayArticle = (res, article, type) => {
   });
 };
 
-const displayNewComment = (res, comment) => {
-  const article = myDB.articles.find((art) => art.id === comment.article);
+const displayNewComment = async (res, comment) => {
+  const article = await articles.findArticleByID(comment.article);
   if (article) {
     res.status(201).json({
       status: 201,
@@ -77,19 +77,13 @@ const shareArticle = async (res, author, title, article, topic) => {
 };
 
 
-const addComment = (res, author, Ucomment, article) => {
+const addComment = async (res, author, Ucomment, article) => {
   const comment = Ucomment.slice(0, 280);
-  const findArticle = myDB.articles.find((art) => art.id === article);
+  const findArticle = await articles.findArticleByID(article);
   if (findArticle) {
-    const newData = myDB.comments.push({
-      id: myDB.comments.length + 1,
-      date: new Date(),
-      comment,
-      author,
-      article,
-    });
+    const newComment = await articles.newComment({ comment, article, author });
 
-    displayNewComment(res, myDB.comments[newData - 1]);
+    displayNewComment(res, newComment);
   } else {
     errorMessage.IDNotfound(res, 'Article');
   }
@@ -126,14 +120,14 @@ const validateArticle = async (res, data, author, ...articleID) => {
   }
 };
 
-const validateComment = (res, author, Ucomment, article) => {
+const validateComment = async (res, author, Ucomment, article) => {
   const articleID = parseInt(Object.values(article)[0], 10);
   Ucomment.trim();
   const checkedComment = checkInput.checkLength(res, 'Comment', Ucomment, 2);
   const checkedarticleID = checkInput.checkID(res, articleID, 'articleID');
 
   if (checkedComment === true && checkedarticleID === true) {
-    addComment(res, author, Ucomment, articleID);
+    await addComment(res, author, Ucomment, articleID);
   }
 };
 

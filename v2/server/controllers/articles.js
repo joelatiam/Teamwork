@@ -59,9 +59,7 @@ const editArticle = (req, res) => {
 const newComment = (req, res) => {
   const user = verifyToken(req, res);
   if (user) {
-    // console.table(user);
     if (req.body && req.params && req.body.comment) {
-      // console.table(req.body);
       articles.validateComment(res, user.id, req.body.comment, req.params);
     } else {
       errorMessage.requestNotAccepted(res, ['articleID as URL parameter', 'comment']);

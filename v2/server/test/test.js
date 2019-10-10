@@ -58,7 +58,7 @@ describe('### Test About the comment feature ###', () => {
 
   describe(`POST ${apiVersion}/articles/<articleID>/comments`, () => {
     it('Should return info about the new comment: 201', (done) => {
-      articles.writeComment(chai, app, `${apiVersion}/articles/5/comments`, articles.commentToShare, auth.token[0], done);
+      articles.writeComment(chai, app, `${apiVersion}/articles/${articles.articleID}/comments`, articles.commentToShare, auth.token[0], done);
     });
   });
 });

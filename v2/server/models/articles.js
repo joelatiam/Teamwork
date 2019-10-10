@@ -4,8 +4,14 @@ const newArt = `INSERT INTO articles
 (title, category, article, author )
     VALUES ($1, $2, $3, $4)`;
 
+const newCom =  `INSERT INTO comments 
+(comment, article, author)
+    VALUES ($1, $2, $3);`;
+
 const selectNewArticle = 'SELECT * FROM articles WHERE author = $1 ORDER BY id  DESC LIMIT 1';
 const articleByID = 'SELECT * FROM articles WHERE id = $1';
+
+const selectNewCom = 'SELECT * FROM comments WHERE author = $1 ORDER BY id  DESC LIMIT 1';
 
 const updateAll = 'UPDATE articles SET title = $2, article = $3, category = $4, lastupdate = CURRENT_TIMESTAMP WHERE id = $1';
 const updateTitle = 'UPDATE articles SET title = $2, article = $3, lastupdate = CURRENT_TIMESTAMP WHERE id = $1';
@@ -18,7 +24,7 @@ const findArticleByID = async (art) => {
     const article = await config.pool.query(articleByID, [art]);
     return article.rows[0];
   } catch (err) {
-    return (err);
+    return false;
   }
 };
 
@@ -58,9 +64,19 @@ const newArticle = async (a) => {
   }
 };
 
+const newComment = async (com) => {
+  try {
+    await config.pool.query(newCom, [com.comment, com.article, com.author]);
+    const comment = await config.pool.query(selectNewCom, [com.author]);
+    return comment.rows[0];
+  } catch (err) {
+    return false;
+  }
+};
 
 export default {
   newArticle,
   findArticleByID,
   updateArt,
+  newComment,
 };

@@ -28,7 +28,18 @@ const articles = `CREATE TABLE IF NOT EXISTS articles
         REFERENCES users (id) MATCH SIMPLE
 );`;
 
-const myTables = [users, articles];
+const comments = `CREATE TABLE IF NOT EXISTS comments
+(
+    id serial PRIMARY KEY NOT NULL,
+    comment text NOT NULL,
+    article integer NOT NULL,
+    author integer NOT NULL,
+    created time without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT article FOREIGN KEY (article)
+      REFERENCES articles (id) MATCH SIMPLE
+);`;
+
+const myTables = [users, articles, comments];
 
 const createTables = async () => {
   
