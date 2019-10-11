@@ -4,7 +4,7 @@ const newArt = `INSERT INTO articles
 (title, category, article, author )
     VALUES ($1, $2, $3, $4)`;
 
-const newCom =  `INSERT INTO comments 
+const newCom = `INSERT INTO comments 
 (comment, article, author)
     VALUES ($1, $2, $3);`;
 
@@ -44,15 +44,20 @@ const findArticleByID = async (art) => {
 const getAll = async () => {
   try {
     const articles = await config.pool.query(allArticles);
-    return articles.rows;
+    if (articles.rows.length > 1) {
+      return articles.rows;
+    }
+    return articles.rows[0];
   } catch (err) {
     return false;
   }
 };
 
 const updateArt = async (data) => {
-  const { articleID, title, article, category } = data;
-   
+  const {
+    articleID, title, article, category,
+  } = data;
+
   try {
     switch (true) {
       case (title.length > 0 && article.length > 0 && category.length > 0):
