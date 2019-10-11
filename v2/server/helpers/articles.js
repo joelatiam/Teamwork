@@ -163,7 +163,7 @@ const displayAllArticles = (res, art) => {
 const getAllArticles = async (res) => {
   const myArticles = await articles.getAll();
   const myShortArticles = [];
-  if (myArticles.isArray()) {
+  if (Array.isArray(myArticles)) {
     myArticles.forEach((post) => {
       myShortArticles.push(shortArticles.shortPost(post));
     });
