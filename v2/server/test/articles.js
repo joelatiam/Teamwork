@@ -47,7 +47,7 @@ const testWriteArticle = (chai, app, address, toShare, token, done) => {
     .send(toShare)
     .end((err, res) => {
       res.should.have.status(201);
-      if(res.body && res.body.article.id){
+      if (res.body && res.body.article.id) {
         articleID.push(res.body.article.id);
       }
       checkArticle(res.body);
