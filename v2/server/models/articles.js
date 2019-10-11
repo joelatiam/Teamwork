@@ -12,6 +12,7 @@ const selectNewArticle = 'SELECT * FROM articles WHERE author = $1 ORDER BY id  
 const articleByID = 'SELECT * FROM articles WHERE id = $1';
 
 const selectNewCom = 'SELECT * FROM comments WHERE author = $1 ORDER BY id  DESC LIMIT 1';
+const comByArt = 'SELECT * FROM comments WHERE article = $1 ORDER BY id  DESC';
 
 const updateAll = 'UPDATE articles SET title = $2, article = $3, category = $4, lastupdate = CURRENT_TIMESTAMP WHERE id = $1';
 const updateTitle = 'UPDATE articles SET title = $2, article = $3, lastupdate = CURRENT_TIMESTAMP WHERE id = $1';
@@ -74,9 +75,18 @@ const newComment = async (com) => {
   }
 };
 
+const commentByarticle = async (id) => {
+  try {
+    const comment = await config.pool.query(comByArt, [id]);
+    return comment.rows;
+  } catch (err) {
+    return false;
+  }
+}
 export default {
   newArticle,
   findArticleByID,
   updateArt,
   newComment,
+  commentByarticle,
 };

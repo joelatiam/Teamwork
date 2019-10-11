@@ -33,7 +33,7 @@ const displayNewComment = async (res, comment) => {
   if (article) {
     res.status(201).json({
       status: 201,
-      message: 'new article created',
+      message: 'new comment created',
       data: {
         id: comment.id,
         date: comment.date,
@@ -131,8 +131,8 @@ const validateComment = async (res, author, Ucomment, article) => {
   }
 };
 
-const displayArticleDetails = (res, article) => {
-  const comments = myDB.comments.filter((elt) => elt.article === article.id);
+const displayArticleDetails = async (res, article) => {
+  const comments = await articles.commentByarticle(article.id);
   res.status(200).json({
     status: 200,
     data: {
@@ -142,10 +142,10 @@ const displayArticleDetails = (res, article) => {
   });
 };
 
-const getArticle = (res, articleID) => {
+const getArticle = async (res, articleID) => {
   const checkedarticleID = checkInput.checkID(res, articleID, 'articleID');
   if (checkedarticleID) {
-    const findArticle = myDB.articles.find((art) => art.id === articleID);
+    const findArticle = await articles.findArticleByID(articleID);
     if (findArticle) {
       displayArticleDetails(res, findArticle);
     } else {
