@@ -1,7 +1,6 @@
 import errorMessage from './errorMessage';
 import checkInput from './checkInput';
 import articles from '../models/articles';
-import shortArticles from './shortArticles';
 
 const checkAuth = async (res, author, articleID, authorization) => {
   let status = false;
@@ -162,15 +161,7 @@ const displayAllArticles = (res, art) => {
 
 const getAllArticles = async (res) => {
   const myArticles = await articles.getAll();
-  const myShortArticles = [];
-  if (Array.isArray(myArticles)) {
-    myArticles.forEach((post) => {
-      myShortArticles.push(shortArticles.shortPost(post));
-    });
-  } else {
-    myShortArticles.push(shortArticles.shortPost(myArticles));
-  }
-  displayAllArticles(res, myShortArticles);
+  displayAllArticles(res, myArticles);
 };
 
 const deletedResult = (res, type) => {
