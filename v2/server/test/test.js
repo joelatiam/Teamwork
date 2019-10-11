@@ -6,6 +6,7 @@ import app from '../index';
 import apiVersion from '../helpers/index';
 import auth from './auth';
 import articles from './articles';
+import tables from '../models/tables';
 
 chai.should();
 chai.use(chaiHttp);
@@ -47,6 +48,7 @@ describe('### Test About Share and Edit Articles ###', () => {
 
 describe('### Test About the comment feature ###', () => {
   before((done) => {
+    tables.createTables();
     auth.fetchToken(chai, app, signinAddress, done);
   });
 
