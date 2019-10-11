@@ -1,6 +1,5 @@
 import errorMessage from './errorMessage';
 import checkInput from './checkInput';
-import myDB from '../models/myDB';
 import articles from '../models/articles';
 import shortArticles from './shortArticles';
 
@@ -176,17 +175,16 @@ const deletedResult = (res, type) => {
     message: `${type} successfuly deleted`,
   });
 };
-const removeArticle = (articleID) => myDB.articles.filter((art) => art.id !== articleID);
-const removeComments = (articleID) => myDB.comments.filter((com) => com.article !== articleID);
 
-const deletePost = (res, author, articleID) => {
+const deletePost = async (res, author, articleID) => {
   const checkedarticleID = checkInput.checkID(res, articleID, 'articleID');
   if (checkedarticleID) {
-    const checkAuthorization = checkAuth(res, author, articleID, 'Delete this article');
+    const checkAuthorization = await checkAuth(res, author, articleID, 'Delete this article');
     if (checkAuthorization) {
-      myDB.articles = removeArticle(articleID);
-      myDB.comments = removeComments(articleID);
-      deletedResult(res, 'Article');
+      const deleted = await articles.removeArticle(articleID);
+      if (deleted === 1) {
+        deletedResult(res, 'Article');
+      }
     }
   }
 };

@@ -20,7 +20,18 @@ const updateTitle = 'UPDATE articles SET title = $2, article = $3, lastupdate = 
 const updateCat = 'UPDATE articles SET article = $2, category = $3, lastupdate = CURRENT_TIMESTAMP WHERE id = $1';
 const updatePost = 'UPDATE articles SET article = $2, lastupdate = CURRENT_TIMESTAMP WHERE id = $1';
 
+const deleteArticle = 'DELETE FROM articles WHERE id = $1';
+const deleteComment = 'DELETE FROM comments WHERE article = $1';
 
+const removeArticle = async (art) => {
+  try {
+    config.pool.query(deleteComment, [art]);
+    const article = await config.pool.query(deleteArticle, [art]);
+    return article.rowCount;
+  } catch (err) {
+    return false;
+  }
+};
 const findArticleByID = async (art) => {
   try {
     const article = await config.pool.query(articleByID, [art]);
@@ -101,5 +112,6 @@ export default {
   updateArt,
   newComment,
   commentByarticle,
-  getAll
+  getAll,
+  removeArticle,
 };

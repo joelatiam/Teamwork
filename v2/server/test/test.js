@@ -82,7 +82,7 @@ describe('### Test About Specific Article, News feed and Delete Article ###', ()
 
   describe(`DELETE ${apiVersion}/articles/<articleID>`, () => {
     it('Should return the confirmation message on deleted article: 200', (done) => {
-      articles.deleteArticle(chai, app, `${apiVersion}/articles/6`, auth.token[0], done);
+      articles.deleteArticle(chai, app, `${apiVersion}/articles/${articles.articleID}`, auth.token[0], done);
     });
   });
 });
