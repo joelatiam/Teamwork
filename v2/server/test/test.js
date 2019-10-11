@@ -43,12 +43,6 @@ describe('### Test About Share and Edit Articles ###', () => {
       articles.testWriteArticle(chai, app, `${apiVersion}/articles`, articles.articleToShare, auth.token[0], done);
     });
   });
-
-  // describe(`PATCH ${apiVersion}/articles`, () => {
-  //   it('Should return info about the updated article: 201', (done) => {
-  //     articles.testEditArticle(chai, app, `${apiVersion}/articles/${articles.articleID}`, articles.articleToShare, auth.token[0], done);
-  //   });
-  // });
 });
 
 describe('### Test About the comment feature ###', () => {
@@ -66,6 +60,12 @@ describe('### Test About the comment feature ###', () => {
 describe('### Test About Specific Article, News feed and Delete Article ###', () => {
   before((done) => {
     auth.fetchToken(chai, app, signinAddress, done);
+  });
+
+  describe(`PATCH ${apiVersion}/articles`, () => {
+    it('Should return info about the updated article: 201', (done) => {
+      articles.testEditArticle(chai, app, `${apiVersion}/articles/${articles.articleID}`, articles.articleToShare, auth.token[0], done);
+    });
   });
 
   describe(`GET ${apiVersion}/articles/<articleID>`, () => {
