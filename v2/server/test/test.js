@@ -44,11 +44,11 @@ describe('### Test About Share and Edit Articles ###', () => {
     });
   });
 
-  describe(`PATCH ${apiVersion}/articles`, () => {
-    it('Should return info about the updated article: 201', (done) => {
-      articles.testEditArticle(chai, app, `${apiVersion}/articles/${articles.articleID}`, articles.articleToShare, auth.token[0], done);
-    });
-  });
+  // describe(`PATCH ${apiVersion}/articles`, () => {
+  //   it('Should return info about the updated article: 201', (done) => {
+  //     articles.testEditArticle(chai, app, `${apiVersion}/articles/${articles.articleID}`, articles.articleToShare, auth.token[0], done);
+  //   });
+  // });
 });
 
 describe('### Test About the comment feature ###', () => {
