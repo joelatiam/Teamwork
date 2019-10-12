@@ -9,13 +9,13 @@ The goal of this application is to facilitate more _**interaction**_ between col
 
 ## Getting started
 
-###Installing
+### Installing
 - Clone this repository
 - Have Postgres installed
 - Have nodejs installed
 - Have all the packages the package.json installed
 
-###Running
+### Running
 - Start the app `npm start`
 
 - Units Test `npm test`
