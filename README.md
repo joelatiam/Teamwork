@@ -38,5 +38,5 @@ The goal of this application is to facilitate more _**interaction**_ between col
 
 Built with
 ------------
-UI : HTML5/CSS3 + ES6, Host: Github Pages
-API: ES6(Express/Nodejs), Test: Chai/Mocha , Database: Postgres SQL, Host: Heroku
+- UI : HTML5/CSS3 + ES6, Host: Github Pages
+- API: ES6(Express/Nodejs), Test: Chai/Mocha , Database: Postgres SQL, Host: Heroku
